@@ -6,8 +6,7 @@
     <title>LogClass</title>
      <!-- importando o arquivo css da página -->
      <link rel="stylesheet" href="/static/layout.css">
-     {% block css %}
-     {% endblock %}
+    
      <!-- importanto os ícones do bootstrap -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -16,11 +15,11 @@
     <!-- cabeçalho -->
     <header>
         <!-- section para o cabeçalho -->
-        <section class="container-header">
+        <section class="header-container">
             <!-- container para a imagem do header -->
-            <div class="container-header__img">
+            <div class="header-container__logo">
                 <figure>
-                    <img src="" alt="">
+                    <img src="/static/img/Blue Modern Shipping Package Box Logo.svg" alt="Logo">
                 </figure>
             </div>
 
@@ -30,7 +29,7 @@
             </div>
 
             <!-- container para o menu sanduíche -->
-            <div class="container-header__menu">
+            <div class="header-container__menu">
                 <h2>MENU</h2>
                 <!-- código do menu -->
                 <div class="header-container__menu--itens">
