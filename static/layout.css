@@ -9,6 +9,7 @@
     text-decoration: none;
 }
 
+
 /* ****************************** padronização/ estilização MENU ************************************ */
 .header-container{
     width: 100vw;
@@ -20,7 +21,6 @@
     color: #E8D3B6;
     gap: 2rem;
     position: fixed;
-    top: 30;
     left: 0;
     z-index: 1;
     

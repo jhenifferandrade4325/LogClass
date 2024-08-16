@@ -1,14 +1,33 @@
+<!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
 {% block css %}
-<link rel="stylesheet" href="/static/pagina-inicial.css">
+    <link rel="stylesheet" href="/static/pagina-inicial.css">
 {% endblock %}
-
 
 {% extends "layout.html" %}
 {% block conteudo %}
 
-<!-- CONTEUDO DO SITE -->
+<section class="container-geral">
+    <section class="container-principal">
 
-
+        <div class="titulo-destaque">
+            <span class="part1">LOG</span>
+            <span class="part2">LOGÍSTICA</span>
+        </div>
+    
+        <div class="container-grid"></div>
+    
+    </section>
+    
+    <section class="container-cards">
+        <div class="grid-container">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+        </div>
+    </section>
+</section>
 
 
 {% endblock %}
