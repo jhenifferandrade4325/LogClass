@@ -44,7 +44,7 @@ body, html {
   background: linear-gradient(to bottom right, #a77aff, #65a3ff);
   filter: blur(3rem);
   margin-bottom: 5rem;
-  border-radius: 3rem;
+  border-radius: 2.5rem;
 }
 
 .container-cards{
