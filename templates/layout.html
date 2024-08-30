@@ -6,7 +6,10 @@
     <title>LogClass</title>
      <!-- importando o arquivo css da página -->
      <link rel="stylesheet" href="/static/layout.css">
-    
+
+     {% block css %}
+     {% endblock %}
+
      <!-- importanto os ícones do bootstrap -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -55,6 +58,9 @@
         </section>
     </header>
 
+    {% block conteudo %}
+    {% endblock %}
+    
     <!-- rodapé -->
     <footer>
         <p>&copy; 2024 LogClass Sistema Educacional</p>
