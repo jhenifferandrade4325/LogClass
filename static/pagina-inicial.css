@@ -49,22 +49,122 @@ body, html {
 
 .container-cards{
   height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 100%;
+  margin-top: 0.5rem;
+  /*DEFINE OS ESPAÇOS ENTRE AS LINHAS E COLUNAS*/
+  gap: 1;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  width: 80%;
-  margin: 0 auto;
+/*AQUI COMEÇA A GALERIA*/
+.c-galeria{
+    
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rem;
+  margin-top: 5rem;
+  text-align: center;
+  /*DEFINE O TAMANHO DO EFEITO NA IMAGEM QUANDO O MOUSE É PASSADO*/
+  flex: 2 5 10px;
+  float: left;
+  /*DEFINE A TRANSPARÊNCIA DO ELEMENTO*/
+  opacity: 1;
+  transition: 0.5s;
 }
 
-.grid-item {
-  height: 100px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+/*GALERIA DE IMAGENS COM ELEMENTOS FLUTUANTE (FLOAT), TODAS AS CLASS SERVICOS SÃO IGUAIS*/
+.servicos{
+
+  position: relative;
+  /*NÃO DEIXA O CARD FICAR VISIVEL SE O MESMO FICAR MAIOR QUE O PAI*/
+  overflow: hidden;
+  display: flex;
+  /*MARGEM EXTERNA*/
+  margin: 0.5rem;
+  /*FLUTUAR*/
+  float: left;
+  /*LARGURA DO CARD.*/
+  width: 30%;
+  /*COR DE FUNDO DO CARD*/
+  height: 100%;
+  /*COR DA FONTE*/
+  color: black;
+  /*CENTRALIZA O TEXTO*/
+  border-radius: 1rem;
+  /*SUAVIZAR EFEITO DA TRANSIÇÃO*/
+  transition: transform 0.5s;
+  flex-direction: column;
+
 }
+
+.servicos img{
+
+  /*AJUSTAR A IMAGEM DE ACORDO COM A LARGURA DO CARD*/
+  width: 100%;
+  /*ALTURA AUTOMATICA DA IMAGEM*/
+  height: 35rem;
+  object-fit: cover;
+  filter: brightness(80%);/*DEIXA A IMAGEM MAIS ESCURA, MAIS CINZA*/
+  padding: 3rem;
+}
+
+
+.servicos img:hover{
+  /*NOS PERMITE DAR O EFEITO DE ZOOM E OU PERSPECTIVA*/
+  transform: scale(1.1);
+  /*DEFINE O TAMANHO DO EFEITO NA IMAGEM QUANDO O MOUSE É PASSADO*/
+  flex: 3;
+}
+
+.descricao{
+  position: absolute;
+  /*DEIXA A DESCRICAO ABAIXO DA IMAGEM*/
+  top:100%; 
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: top 0.3s;
+  font-size: 1rem;
+  padding-top: 5rem;
+}
+
+.servicos:hover .descricao{
+  /*FAZ IR PARA O TOPO QUANDO O MOUSE PASSAR EM CIMA*/
+  top: 0;
+  background-color:  rgba(83, 103, 156, 0.292);
+  /*AUMENTAR O TAMANHO DA IMAGEM*/
+  transform: scale(1.1);
+}
+
+.descricao h2{
+  font-family: 'Courier New', Courier, monospace;
+  /*DEFINE O TAMANHO DA FONTE*/
+  font-size: 2rem;
+  color: white;
+}
+
+.butn-c-servicos{
+
+  font-family: 'Courier New', Courier, monospace;
+  width:15rem;
+  height: 3rem;
+  transition: 1.5s;
+  /*QUANDO PASSAR O MOUSE NO BOTÃO MUDO O FORMATO DO PONTEIRO DO MESMO*/
+  cursor: pointer;
+  background-color: transparent;
+  border: 0.1rem solid #fff;
+  color: #fff;
+  /*TRANSFORMA O TEXTO EM LETRA MAÍUSCULA*/
+  text-transform: uppercase;
+  border-radius: 2.5rem;
+}
+
+.butn-c-servicos h2{
+  font-size: 1rem;
+}
+
