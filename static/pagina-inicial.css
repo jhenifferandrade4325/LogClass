@@ -3,15 +3,14 @@ body, html {
   padding: 0;
   height: 100vh;
   font-family: Arial, sans-serif;
-  
-  
+  overflow-x: hidden;
 }
 
-.container-geral{
+.container-geral {
   background: linear-gradient(#f4f4f4, #f4f4f4, #004aad, #000000);
 }
 
-.container-principal{
+.container-principal {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -47,78 +46,57 @@ body, html {
   border-radius: 2.5rem;
 }
 
-.container-cards{
+.container-cards {
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 100%;
   margin-top: 0.5rem;
-  /*DEFINE OS ESPAÇOS ENTRE AS LINHAS E COLUNAS*/
-  gap: 1;
-}
-
-/*AQUI COMEÇA A GALERIA*/
-.c-galeria{
-    
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15rem;
-  margin-top: 5rem;
-  text-align: center;
-  /*DEFINE O TAMANHO DO EFEITO NA IMAGEM QUANDO O MOUSE É PASSADO*/
-  flex: 2 5 10px;
-  float: left;
-  /*DEFINE A TRANSPARÊNCIA DO ELEMENTO*/
-  opacity: 1;
-  transition: 0.5s;
-}
-
-
-/*GALERIA DE IMAGENS COM ELEMENTOS FLUTUANTE (FLOAT), TODAS AS CLASS SERVICOS SÃO IGUAIS*/
-.servicos{
-
-  position: relative;
-  /*NÃO DEIXA O CARD FICAR VISIVEL SE O MESMO FICAR MAIOR QUE O PAI*/
   overflow: hidden;
+}
+
+
+.container-carrossel{
   display: flex;
-  /*MARGEM EXTERNA*/
-  margin: 0.5rem;
-  /*FLUTUAR*/
-  float: left;
-  /*LARGURA DO CARD.*/
-  width: 30%;
-  /*COR DE FUNDO DO CARD*/
-  height: 100%;
-  /*COR DA FONTE*/
-  color: black;
-  /*CENTRALIZA O TEXTO*/
-  border-radius: 1rem;
-  /*SUAVIZAR EFEITO DA TRANSIÇÃO*/
-  transition: transform 0.5s;
-  flex-direction: column;
-
+  max-width: 80%;
+  margin: 5rem auto;
+  position: relative;
+  overflow: hidden;
+  gap: 0.5rem;
 }
 
-.servicos img{
+.carrossel{
+    text-align: center;
+    color: #fff;
+    position: relative;
+    /*NÃO DEIXA O CARD FICAR VISIVEL SE O MESMO FICAR MAIOR QUE O PAI*/
+    overflow: hidden;
+    display: flex;
+    /*MARGEM EXTERNA*/
+    margin: 0.5rem;
+    /*FLUTUAR*/
+    float: left;
+    /*LARGURA DO CARD.*/
+    width: 25%;
+    /*COR DE FUNDO DO CARD*/
+    height: 100%;
+    background-color:#5b9a86;
+    /*COR DA FONTE*/
+    color: black;
+    /*CENTRALIZA O TEXTO*/
+    border-radius: 1rem;
+    /*SUAVIZAR EFEITO DA TRANSIÇÃO*/
+    transition: transform 0.5s;
+    flex-direction: column;
+}
 
-  /*AJUSTAR A IMAGEM DE ACORDO COM A LARGURA DO CARD*/
-  width: 100%;
-  /*ALTURA AUTOMATICA DA IMAGEM*/
-  height: 35rem;
-  object-fit: cover;
+.carrossel img{
+  width: 500px;  /* Largura fixa */
+  height: 500px; /* Altura fixa */
+  overflow: hidden; /* Oculta partes das imagens que excedem o contêiner */
+  border-radius: 0.18rem ;
   filter: brightness(80%);/*DEIXA A IMAGEM MAIS ESCURA, MAIS CINZA*/
-  padding: 3rem;
-}
-
-
-.servicos img:hover{
-  /*NOS PERMITE DAR O EFEITO DE ZOOM E OU PERSPECTIVA*/
-  transform: scale(1.1);
-  /*DEFINE O TAMANHO DO EFEITO NA IMAGEM QUANDO O MOUSE É PASSADO*/
-  flex: 3;
 }
 
 .descricao{
@@ -129,42 +107,52 @@ body, html {
   padding: 10px;
   box-sizing: border-box;
   transition: top 0.3s;
+  text-align: center;
   font-size: 1rem;
-  padding-top: 5rem;
+  padding-top: 9rem;
 }
 
-.servicos:hover .descricao{
-  /*FAZ IR PARA O TOPO QUANDO O MOUSE PASSAR EM CIMA*/
-  top: 0;
-  background-color:  rgba(83, 103, 156, 0.292);
-  /*AUMENTAR O TAMANHO DA IMAGEM*/
-  transform: scale(1.1);
+.carrossel:hover .descricao{
+   /*FAZ IR PARA O TOPO QUANDO O MOUSE PASSAR EM CIMA*/
+   top: 0;
+   background-color:  rgba(30, 136, 228, 0.292);
+   border: 0.18rem solid  rgb(55, 0, 255);
+   /*AUMENTAR O TAMANHO DA IMAGEM*/
+   transform: scale(1.1);
 }
 
 .descricao h2{
   font-family: 'Courier New', Courier, monospace;
   /*DEFINE O TAMANHO DA FONTE*/
-  font-size: 2rem;
+  font-size: 1.5rem;
+  color: white;
+  margin: 3rem;
+}
+
+.descricao a{
   color: white;
 }
 
-.butn-c-servicos{
 
-  font-family: 'Courier New', Courier, monospace;
-  width:15rem;
-  height: 3rem;
-  transition: 1.5s;
-  /*QUANDO PASSAR O MOUSE NO BOTÃO MUDO O FORMATO DO PONTEIRO DO MESMO*/
+.anterior,
+.próximo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  color: #ffffff;
   cursor: pointer;
-  background-color: transparent;
-  border: 0.1rem solid #fff;
-  color: #fff;
-  /*TRANSFORMA O TEXTO EM LETRA MAÍUSCULA*/
-  text-transform: uppercase;
-  border-radius: 2.5rem;
 }
 
-.butn-c-servicos h2{
-  font-size: 1rem;
+.anterior {
+  left: 0;
 }
+
+.próximo {
+  right: 0;
+}
+
+
 
