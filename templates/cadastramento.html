@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block conteudo %}
+
+
+    <div class="form-container">
+        <!-- Campo "Recebido em" -->
+        <input type="date" placeholder="Recebido em:" class="input-field">
+
+        <!-- Primeiro Dropdown - "Modelo" -->
+        <div class="select-menu">
+            <div class="select-btn">
+                <span class="sBtn-text">Modelo</span>
+                <i class="bx bx-chevron-down"></i>
+            </div>
+            <ul class="options">
+                <li class="option">
+                    <span class="option-text">Infantil</span>
+                </li>
+                <li class="option">
+                    <span class="option-text">Adulto</span>
+                </li>
+                <li class="option">
+                    <span class="option-text">Íntima</span>
+                </li>
+                <li class="option">
+                    <span class="option-text">Esportiva</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Segundo Dropdown - "Gênero" -->
+        <div class="select-menu">
+            <div class="select-btn">
+                <span class="sBtn-text">Gênero</span>
+                <i class="bx bx-chevron-down"></i>
+            </div>
+            <ul class="options">
+                <li class="option">
+                    <span class="option-text">Feminino</span>
+                </li>
+                <li class="option">
+                    <span class="option-text">Masculino</span>
+                </li>
+                <li class="option">
+                    <span class="option-text">Unissex</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Campo "Fabricante" -->
+        <input type="text" placeholder="Fabricante" class="input-field">
+
+        <!-- Campo "Quantidade" -->
+        <input type="number" placeholder="Quantidade" class="input-field">
+
+        <!-- Campo "Descrição Técnica" -->
+        <textarea placeholder="Descrição Técnica" class="textarea-field"></textarea>
+
+        <!-- Campo "Responsável pelo Recebimento" -->
+        <input type="text" placeholder="Responsável pelo Recebimento" class="input-field">
+
+        <!-- Botão de Enviar -->
+        <button class="submit-btn">Enviar</button>
+    </div>
+
+
+{% endblock %}
