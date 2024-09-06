@@ -5,13 +5,8 @@ body, ul{
 
 
 #logo{
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: black;
-    text-decoration: none;
-    font-family: sans-serif;
-    padding: 0.3rem;
+  width: 25rem;
+  height: 6.5rem;
 }
 
 .container-menu{
@@ -28,6 +23,7 @@ body, ul{
     position: fixed;
     top: 0rem;
     z-index: 1000;
+    gap: 0.5rem;
 
 }
 
@@ -38,7 +34,7 @@ body, ul{
 }
 
 /* aumentar a área de contato para uma tela touch */
-#menu-home a{
+ #menu-home img{
     display: block;
     padding: 0.5rem;
     margin-top: 0.5rem;
