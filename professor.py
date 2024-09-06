@@ -2,19 +2,18 @@ from conexao import Conexao
 
 class Professor:
     def __init__(self):
-        self.cpf_prof = None
         self.nome_prof = None
         self.email_prof = None
         self.senha_espec = None
 
     # criando função para cadastrar o professor
-    def cadastrarProf (self, cpf_prof, nome_prof, email_prof, senha_espec):
+    def cadastrarProf (self, nome_prof, email_prof, senha_espec):
         # conectando com o banco de dados
         mydb = Conexao.conectar()
 
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_professor (cpf_prof, nome_prof, email_prof, senha_espec) VALUES ('{cpf_prof}', '{nome_prof}', '{email_prof}', '{senha_espec}')"
+        dados = f"INSERT INTO tb_professor (nome_prof, email_prof, senha_espec) VALUES ('{nome_prof}', '{email_prof}', '{senha_espec}')"
 
         #executar
         mycursor.execute(dados)
