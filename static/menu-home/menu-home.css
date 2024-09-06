@@ -1,0 +1,55 @@
+body, ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    text-decoration: none;
+    font-family: sans-serif;
+    padding: 0.3rem;
+}
+
+.container-menu{
+    /* altura máxima de 70px de altura, descontando o padding de 1 rem */
+    box-sizing: border-box;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /*LARGURA DE 100% DA TELA (VIEWPORT)*/
+    width: 100%;
+    /*OCUPAR 7% DA ALTURA DO BODY*/
+    height: auto;
+    position: fixed;
+    top: 0rem;
+    z-index: 1000;
+
+}
+
+#menu-home{
+    display: flex;
+    list-style: none; /*tirando a decoração da lista*/
+    gap: 0.5rem; /*separando os itens do menu*/
+}
+
+/* aumentar a área de contato para uma tela touch */
+#menu-home a{
+    display: block;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    text-decoration: none;
+    color: black;
+    text-decoration: none;
+    font-family: sans-serif;
+    padding: 0.3rem;
+}
+
+#btn-mobile{
+    display: none;
+}
+
