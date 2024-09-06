@@ -9,7 +9,7 @@ class Aluno:
     # criando uma função para cadastrar o aluno
     def cadastrar (self, nome, email, senha):
         # conectando com o banco de dados
-        mydb = Conexao.conectar()
+        mydb = Conexao.conectarAluno()
 
         mycursor = mydb.cursor()
 
