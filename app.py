@@ -18,7 +18,7 @@ def pagina_inicial():
 
 # # roteamento da página de cadastramento
 # @app.route("/cadastramento")
-# def pagina_cadastro():
+# def pagina_cadastramento():
 #     return render_template("cadastramento.html")
 
 # # roteamento da página dos processos de registro estoque
