@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogClass</title>
      <!-- importando o arquivo css da página -->
-     <link rel="stylesheet" href="/static/layout.css">
-     <link rel="stylesheet" href="/static/menu-home/menu-home.css">
-
+     <link rel="stylesheet" href="/static/styles/layout.css">
+     <link rel="stylesheet" href="/static//menu-home/menu-home.css">
+     <link rel="stylesheet" href="/static/styles/media/menu-home-media.css">
 
 
      <script src="/static/js/menu.js" defer></script>
@@ -24,7 +24,28 @@
     <!-- Cabeçalho -->
     <header>
 
-        <div class="container-menu" id="container-menu"></div>
+        <section class="header-container">
+
+            <figure>
+                <img src="/static/img/Blue Modern Shipping Package Box Logo.svg" alt="logo">
+            </figure>
+    
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Menu</button>
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="/">Home</a>
+                  <a href="/login">Conecte-se</a>
+                  <a href="/cadastramento">Cadastramento</a>
+                  <a href="/rnc">Registro de Não conformidade (RNC)</a>
+                  <a href="/picking">Cadastro de Picking</a>
+                  <a href="/estoque">Controle de Estoque</a>
+                  <a href="/pop">POP</a>
+                  <a href="/expedicao">Cadastro de Expedição</a>
+                </div>
+              </div>
+
+        </section>
+        
 
     </header>
 
