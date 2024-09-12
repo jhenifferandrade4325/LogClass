@@ -156,3 +156,15 @@ class Professor:
                 FOREIGN KEY (cod_aluno) REFERENCES tb_aluno(cod_aluno)
             );
         "
+
+        #executar
+        mycursor.execute(dados)
+
+        # salvar o que foi adicionado ao banco de dados
+        mydb.commit()
+
+        # fechando o banco de dados
+        mydb.close()
+
+        # retornando um valor verdadeiro
+        return True

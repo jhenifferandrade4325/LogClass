@@ -11,10 +11,10 @@ app.secret_key = 'logclass'
 def pagina_inicial():
     return render_template("pagina-inicial.html")
 
-# # roteamento da página de cadastro e login que no caso são a mesma
-# @app.route("/login")
-# def pagina_cadastro():
-#     return render_template("login.html")
+# roteamento da página de cadastro e login que no caso são a mesma
+@app.route("/login")
+def pagina_cadastro():
+    return render_template("login.html")
 
 # # roteamento da página de cadastramento
 # @app.route("/cadastramento")
