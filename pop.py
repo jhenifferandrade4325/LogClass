@@ -1,5 +1,5 @@
 from conexao import Conexao
-
+# classe que armazena as funções que correspondem ao registro de pop
 class Pop:
     def __init__(self):
         self.cod_pop = None

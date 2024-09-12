@@ -1,4 +1,5 @@
 from conexao import Conexao
+# classe que irá armazenar as funções referentes ao processo de cadastramento
 class Cadastramento:
     def __init__(self):
         # inicializa os atributos da classe com o valor None

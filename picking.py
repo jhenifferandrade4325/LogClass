@@ -1,5 +1,5 @@
 from conexao import Conexao
-
+# classe que irá armazenar as funções de registro de picking
 class Picking:
     def __init__(self):
         self.cod_produto = None

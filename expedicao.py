@@ -1,5 +1,5 @@
 from conexao import Conexao
-
+# classe que irá armazenar as funções referentes ao processo de cadastro de expedição
 class Expedicao:
     def __init__(self):
         self.cod_prod_exp = None

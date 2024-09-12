@@ -12,7 +12,7 @@ class Conexao:
         )
 
         return mydb
-    
+    # função que irá executar um determinado banco de dados (o qual será escolhido pelo aluno)
     def conectarAluno(databaseAluno):
         mydb = mysql.connector.connect(
             host ="127.0.0.1",

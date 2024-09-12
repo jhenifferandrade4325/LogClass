@@ -1,5 +1,5 @@
 from conexao import Conexao
-
+# classe que armazena as funções referentes ao processo de cadastro e login do professor
 class Professor:
     def __init__(self):
         self.nome_prof = None
