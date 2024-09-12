@@ -7,9 +7,9 @@ class Aluno:
         self.senha = None
 
     # criando uma função para cadastrar o aluno
-    def cadastrar (self, nome, email, senha):
+    def cadastrar (self, nome, email, senha, turma):
         # conectando com o banco de dados
-        mydb = Conexao.conectarAluno()
+        mydb = Conexao.conectarAluno(turma)
 
         mycursor = mydb.cursor()
 

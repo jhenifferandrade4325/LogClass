@@ -8,7 +8,7 @@ class Conexao:
             # não esquecer de modificar isso conforme a porta do banco de dados
             user ="usuario_logclass",
             password ="logclass",
-            database ="databaseProfessor02"
+            database ="databaseProfessor"
         )
 
         return mydb
@@ -21,3 +21,5 @@ class Conexao:
             password ="logclass",
             database = databaseAluno           
         )
+
+        return mydb

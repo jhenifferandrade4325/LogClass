@@ -1,10 +1,6 @@
 {% extends "layout.html" %}
 {% block css %}
-<<<<<<< HEAD
-<link rel="stylesheet" href="/static/login.css">
-=======
-<link rel="stylesheet" href="/static/styles/layout.css">
->>>>>>> afa41c2a683f96d3eae027cbd7cf2d5fde291788
+<link rel="stylesheet" href="/static/styles/login.css">
 {% endblock %}
 
 
@@ -29,25 +25,34 @@
 <div class="container" id="login-section" style="display: none;">
     <div class="login-box" id="login-aluno">
         <h2>Cadastro do Aluno</h2>
-        <form>
-            <input type="email" placeholder="E-MAIL" required>
-            <input type="password" placeholder="SENHA" required>
+        <form action="/login" method="POST">
+            <input type="hidden" value="Aluno" name="tipo">
+            <input type="name" placeholder="Nome" required name="nome">
+            <input type="email" placeholder="E-MAIL" required name="email">
+            <input type="password" placeholder="SENHA" required name="senha">
             <div class="select-menu">
                 <div class="select-btn">
                     <span class="sBtn-text">Turma</span>
                     <i class="bx bx-chevron-down"></i>
                 </div>
-                <ul class="options">
+                <input list="browsers" name="turma">
+                <datalist id="browsers">
+                    <option value="turma1"></option>
+                    <option value="turma2"></option>
+                    <option value="turma3"></option>
+                </datalist>
+
+                <!-- <ul class="options">
                     <li class="option">
-                        <span class="option-text">Turma 1</span>
+                        <span class="option-text">turma1</span>
                     </li>
                     <li class="option">
-                        <span class="option-text">Turma 2</span>
+                        <span class="option-text">turma2</span>
                     </li>
                     <li class="option">
-                        <span class="option-text">Turma 3</span>
+                        <span class="option-text">turma3</span>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <a href="#" id="voltar-aluno" class="signup-link">VOLTAR</a>
             <!-- <i class="fa-solid fa-turn-down-left">Voltar</i> NÃO ESQUECER DE CORRIGIR -->
@@ -57,11 +62,11 @@
 
     <div class="login-box" id="login-professor" style="display: none;">
         <h2>Cadastro do Professor</h2>
-        <form>
-            <input type="email" placeholder="E-mail" required>
-            <input type="password" placeholder="Senha" required>
-            <input type="password" placeholder="Repetir senha" required>
-            <input type="text" placeholder="Código de Acesso" required>
+        <form action="/login" method="POST">
+            <input type="hidden" value="Professor" name="tipo">
+            <input type="name" placeholder="Nome" required name="nome">
+            <input type="email" placeholder="E-mail" required name="email">
+            <input type="text" placeholder="Código de Acesso" required name="senha">
             <a href="#" id="voltar-professor" class="signup-link">VOLTAR</a>
             <button type="submit">IR</button>
         </form>
@@ -74,9 +79,10 @@
     <div class="container" id="login-existente-section" style="display: none;">
         <div class="login-box" id="login-existente-box">
             <h2>Login do Aluno</h2>
-            <form>
-                <input type="email" id="email-login" placeholder="E-MAIL" required>
-                <input type="password" id="senha-login" placeholder="SENHA" required>
+            <form action="/login" method="POST">
+                <input type="hidden" value="LoginAluno" name="tipo">
+                <input type="email" id="email-login" placeholder="E-MAIL" required name="email">
+                <input type="password" id="senha-login" placeholder="SENHA" required name="senha">
                 <button type="submit" id="login-existente-btn">ENTRAR</button>
             </form>
             <a href="#" id="voltar-login-existente-link" class="signup-link">VOLTAR</a>

@@ -57,7 +57,7 @@ class Professor:
         mycursor = mydb.cursor()
 
         # variável que armazena o comando que executará um novo banco de dados
-        dados = f"
+        dados = f"""
             # criando um banco de dados caso ele ainda não exista (IF NOT EXISTS)
             CREATE DATABASE IF NOT EXISTS database_geral;
             USE database_geral;
@@ -154,8 +154,7 @@ class Professor:
                 PRIMARY KEY (desc_rnc),
                 FOREIGN KEY (cod_prod) REFERENCES tb_cadastramento(cod_prod),
                 FOREIGN KEY (cod_aluno) REFERENCES tb_aluno(cod_aluno)
-            );
-        "
+            );"""
 
         #executar
         mycursor.execute(dados)
