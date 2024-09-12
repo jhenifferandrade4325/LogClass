@@ -26,6 +26,11 @@ def pagina_cadastramento():
 def pagina_rnc():
     return render_template("rnc.html")
 
+# roteamento da página dos processos de registro picking
+@app.route("/picking")
+def pagina_picking():
+    return render_template("picking.html")
+
 # # roteamento da página dos processos de registro estoque
 # @app.route("/estoque")
 # def pagina_estoque():
@@ -35,11 +40,6 @@ def pagina_rnc():
 # @app.route("/expedicao")
 # def pagina_expedicao():
 #     return render_template("expedicao.html")
-
-# # roteamento da página dos processos de registro picking
-# @app.route("/picking")
-# def pagina_picking():
-#     return render_template("picking.html")
 
 # # roteamento da página dos processos de registro pop
 # @app.route("/pop")
