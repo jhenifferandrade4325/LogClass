@@ -39,8 +39,8 @@ body, html {
 }
 
 .container-grid {
-  width: 300px;
-  height: 260px;
+  width: 20rem;
+  height: 16rem;
   background: linear-gradient(to bottom right, #a77aff, #65a3ff);
   filter: blur(3rem);
   margin-bottom: 5rem;
