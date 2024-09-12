@@ -152,8 +152,8 @@ body, html {
  
 }
 
-.butn-c-servicos{
 
+.butn a{
   font-family: 'Courier New', Courier, monospace;
   width:10rem;
   height:2rem;
@@ -166,11 +166,9 @@ body, html {
   /*TRANSFORMA O TEXTO EM LETRA MAÍUSCULA*/
   text-transform: uppercase;
   border-radius: 2.5rem;
+  padding: 0.5rem;
 }
 
-.butn-c-servicos h2{
-  font-size: 1rem;
-}
 
 .container-mensagem_professor{
   height: 100vh;

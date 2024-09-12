@@ -21,6 +21,11 @@ def pagina_inicial():
 def pagina_cadastramento():
      return render_template("cadastramento.html")
 
+# roteamento da página dos processos de registro rnc
+@app.route("/rnc")
+def pagina_rnc():
+    return render_template("rnc.html")
+
 # # roteamento da página dos processos de registro estoque
 # @app.route("/estoque")
 # def pagina_estoque():
@@ -41,9 +46,6 @@ def pagina_cadastramento():
 # def pagina_pop():
 #     return render_template("pop.html")
 
-# # roteamento da página dos processos de registro rnc
-# @app.route("/rnc")
-# def pagina_rnc():
-#     return render_template("rnc.html")
+
 
 app.run(debug=True)
