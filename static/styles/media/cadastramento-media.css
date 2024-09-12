@@ -1,0 +1,70 @@
+@media (max-width: 576px) {
+
+
+    .container-cadastramento{
+        gap: 2rem;
+    }
+
+    .cadastramento-titulo span{
+        font-size: 1.5rem;
+        margin-left: 3.5rem;
+
+    }   
+    
+    .container-img {
+        width: 10rem;
+        height: 7rem;
+    }
+
+    .form_container {
+        width: 25rem;
+        padding: 3.5rem;
+        
+    }
+
+}
+
+@media (max-width: 768px) {
+
+
+    .container-cadastramento{
+        gap: 10rem;
+    }
+
+    .cadastramento-titulo span{
+        font-size: 2rem;
+        margin-left: 2.5rem;
+
+    }   
+    
+    .container-img {
+        width: 15rem;
+        height: 15rem;
+    }
+
+    .form_container {
+        width: 30rem;
+        padding: 2rem;
+        
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+
+    .cadastramento-titulo span{
+        font-size: 2.5rem;
+    }   
+    
+    .container-img {
+        height: 10rem;
+    }
+
+    .form_container {
+        width: 45rem;
+        padding: 1.5rem;
+        
+    }
+
+}
