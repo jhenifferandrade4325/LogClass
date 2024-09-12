@@ -1,5 +1,4 @@
 // Código para o input de TROCAR TURMAS ---------------------------------------------------
-
 document.querySelectorAll('.select-menu').forEach(menu => {
     const selectBtn = menu.querySelector('.select-btn');
     const options = menu.querySelectorAll('.option');
@@ -17,130 +16,94 @@ document.querySelectorAll('.select-menu').forEach(menu => {
         });
     });
 });
-// --------------------------------------------------------------------------------------
 
-// Código para trocar a Tela 01 para Tela 02
+//----------------------------------------------------------------------------------------------------------------
+
 document.addEventListener("DOMContentLoaded", function() {
-    const alunoBtn = document.getElementById("aluno-btn");
-    const professorBtn = document.getElementById("professor-btn");
+    // Botões e seções principais
+    const signupBtn = document.getElementById("signup-btn");
+    const loginBtn = document.getElementById("login-btn");
+    const introSection = document.getElementById("intro-section");
+    const registerSection = document.getElementById("register-section");
+    const loginSection = document.getElementById("login-section");
+
+    // Seções de cadastro
+    const alunoRegisterBtn = document.getElementById("aluno-register-btn");
+    const professorRegisterBtn = document.getElementById("professor-register-btn");
+    const registerAluno = document.getElementById("register-aluno");
+    const registerProfessor = document.getElementById("register-professor");
+    const connectBoxRegister = document.querySelector("#register-section .connect-box");
+
+    // Seções de login
+    const alunoLoginBtn = document.getElementById("aluno-login-btn");
+    const professorLoginBtn = document.getElementById("professor-login-btn");
     const loginAluno = document.getElementById("login-aluno");
     const loginProfessor = document.getElementById("login-professor");
-    const connectBox = document.querySelector(".connect-box");
-    const voltarAluno = document.getElementById("voltar-aluno");
-    const voltarProfessor = document.getElementById("voltar-professor");
+    const connectBoxLogin = document.getElementById("connect-login");
 
-    professorBtn.addEventListener("click", function() {
-        connectBox.style.display = "none"; // Esconde a tela de seleção
-        loginProfessor.style.display = "block"; // Exibe a tela de login do professor
-        loginAluno.style.display = "none"; // Garante que a tela de login do aluno esteja oculta
+    // Função para exibir a tela de cadastro
+    signupBtn.addEventListener("click", function() {
+        introSection.style.display = "none";
+        registerSection.style.display = "flex";
+        connectBoxRegister.style.display = "block";
+        registerAluno.style.display = "none";
+        registerProfessor.style.display = "none";
     });
 
-    alunoBtn.addEventListener("click", function() {
-        if (loginAluno.style.display === "block") {
-            alert("Você já está na página de cadastro do aluno");
-        } else {
-            loginProfessor.style.display = "none"; // Garante que a tela de login do professor esteja oculta
-            loginAluno.style.display = "block"; // Exibe a tela de login do aluno
-            connectBox.style.display = "none"; // Garante que a tela de seleção fique invisível
-        }
-    });
-
-    voltarAluno.addEventListener("click", function() {
-        loginProfessor.style.display = "none"; // Esconde a tela de login do professor
-        loginAluno.style.display = "none"; // Esconde a tela de login do aluno
-        connectBox.style.display = "block"; // Volta para a tela de seleção de tipo de conta
-    });
-
-    voltarProfessor.addEventListener("click", function() {
-        loginProfessor.style.display = "none"; // Esconde a tela de login do professor
-        loginAluno.style.display = "none"; // Esconde a tela de login do aluno
-        connectBox.style.display = "block"; // Volta para a tela de seleção de tipo de conta
-    });
-});
-
-
-document.getElementById("signup-btn").addEventListener("click", function() {
-    document.getElementById("intro-section").style.display = "none";
-    document.getElementById("login-section").style.display = "flex";
-});
-
-
-
-
-
-
-
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     const alunoBtn = document.getElementById("aluno-btn");
-//     const professorBtn = document.getElementById("professor-btn");
-//     const loginAluno = document.getElementById("login-aluno");
-//     const loginProfessor = document.getElementById("login-professor");
-//     const connectBox = document.querySelector(".connect-box");
-//     const voltarAluno = document.getElementById("voltar-aluno");
-//     const voltarProfessor = document.getElementById("voltar-professor");
-
-//     professorBtn.addEventListener("click", function() {
-//         connectBox.style.display = "none"; // Esconde a tela de seleção
-//         loginProfessor.style.display = "block"; // Exibe a tela de login do professor
-//         loginAluno.style.display = "none"; // Garante que a tela de login do aluno esteja oculta
-//     });
-
-//     alunoBtn.addEventListener("click", function() {
-//         if (loginAluno.style.display === "block") {
-//             alert("Você já está na página de cadastro do aluno");
-//         } else {
-//             loginProfessor.style.display = "none"; // Garante que a tela de login do professor esteja oculta
-//             loginAluno.style.display = "block"; // Exibe a tela de login do aluno
-//             connectBox.style.display = "none"; // Garante que a tela de seleção fique invisível
-//         }
-//     });
-
-//     voltarAluno.addEventListener("click", function() {
-//         loginProfessor.style.display = "none"; // Esconde a tela de login do professor
-//         loginAluno.style.display = "none"; // Esconde a tela de login do aluno
-//         connectBox.style.display = "block"; // Volta para a tela de seleção de tipo de conta
-//     });
-
-//     voltarProfessor.addEventListener("click", function() {
-//         loginProfessor.style.display = "none"; // Esconde a tela de login do professor
-//         loginAluno.style.display = "none"; // Esconde a tela de login do aluno
-//         connectBox.style.display = "block"; // Volta para a tela de seleção de tipo de conta
-//     });
-// });
-
-
-// document.getElementById("login-btn").addEventListener("click", function() {
-//     document.getElementById("intro-section").style.display = "none";
-//     document.getElementById("login-section").style.display = "flex";
-// });
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    const loginBtn = document.getElementById("login-btn");
-    const loginExistenteSection = document.getElementById("login-existente-section");
-    const introSection = document.getElementById("intro-section");
-    const voltarLoginExistenteLink = document.getElementById("voltar-login-existente-link");
-    const connectBox = document.querySelector(".connect-box");
-    const alunoBtn = document.getElementById("aluno-btn");
-    const professorBtn = document.getElementById("professor-btn");
-
-    // Exibe a tela de login ao clicar em "IR PARA LOGIN"
+    // Função para exibir a tela de login
     loginBtn.addEventListener("click", function() {
         introSection.style.display = "none";
-        loginExistenteSection.style.display = "none";
+        loginSection.style.display = "block";
+        connectBoxLogin.style.display = "block";
+        loginAluno.style.display = "none";
+        loginProfessor.style.display = "none";
     });
 
-
-
-    // Volta para a tela de introdução ao clicar em "VOLTAR"
-    voltarLoginExistenteLink.addEventListener("click", function() {
-        loginExistenteSection.style.display = "none";
-        introSection.style.display = "block";
+    // Função para exibir o cadastro do aluno
+    alunoRegisterBtn.addEventListener("click", function() {
+        connectBoxRegister.style.display = "none";
+        registerAluno.style.display = "block";
+        registerProfessor.style.display = "none";
     });
-});
 
-document.getElementById("login-btn").addEventListener("click", function() {
-    document.getElementById("intro-section").style.display = "none";
-    document.getElementById("login-section").style.display = "flex";
+    // Função para exibir o cadastro do professor
+    professorRegisterBtn.addEventListener("click", function() {
+        connectBoxRegister.style.display = "none";
+        registerProfessor.style.display = "block";
+        registerAluno.style.display = "none";
+    });
+
+    // Função para exibir o login do aluno
+    alunoLoginBtn.addEventListener("click", function() {
+        connectBoxLogin.style.display = "none";
+        loginAluno.style.display = "block";
+        loginProfessor.style.display = "none";
+    });
+
+    // Função para exibir o login do professor
+    professorLoginBtn.addEventListener("click", function() {
+        connectBoxLogin.style.display = "none";
+        loginProfessor.style.display = "block";
+        loginAluno.style.display = "none";
+    });
+
+    // Função para voltar à tela de seleção no cadastro
+    document.querySelectorAll("#voltar-register").forEach(button => {
+        button.addEventListener("click", function() {
+            registerSection.style.display = "flex";
+            connectBoxRegister.style.display = "block";
+            registerAluno.style.display = "none";
+            registerProfessor.style.display = "none";
+        });
+    });
+
+    // Função para voltar à tela de seleção no login
+    document.querySelectorAll("#voltar-login").forEach(button => {
+        button.addEventListener("click", function() {
+            loginSection.style.display = "block";
+            connectBoxLogin.style.display = "block";
+            loginAluno.style.display = "none";
+            loginProfessor.style.display = "none";
+        });
+    });
 });
