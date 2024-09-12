@@ -1,6 +1,7 @@
 from conexao import Conexao
-
+# classe que irá contar todas as funções referente a tudo que diz respeito ao aluno
 class Aluno:
+# método construtor em Python, ele é utilizado para inicializar um novo objeto de uma classe
     def __init__(self):
         self.nome = None
         self.email = None
@@ -31,11 +32,13 @@ class Aluno:
 
         mycursor = mydb.cursor()
 
+        # variável que armazena uma função do sql
         dados = f"SELECT * FROM database_geral.tb_aluno WHERE email = '{email} AND senha = '{senha}"
 
         # executando
         mycursor.execute(dados)
 
+        # selecionando apenas um dado do comando acima
         resultado = mycursor.fetchone
 
         # caso não encontre o usuário com os dados que foram passados 
@@ -43,9 +46,12 @@ class Aluno:
             self.logado = True
             self.email = resultado[2]
             self.senha = resultado[3]
+            self.nome = resultado[1]
         else:
             self.logado = False
 
+        # salvando os dados 
         mydb.commit()
 
+        # fechando o banco de dados 
         mydb.close()

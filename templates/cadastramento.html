@@ -29,46 +29,34 @@
 
             <div class="form_container">
                
+                <form action="/cadastramento" method="POST">
+                    <!-- Campo "Descrição Técnica" -->
+                    <textarea placeholder="Descrição Técnica" class="textarea-field" name="descricao"></textarea>
 
-                <!-- Campo "Descrição Técnica" -->
-                <textarea placeholder="Descrição Técnica" class="textarea-field"></textarea>
+                    <input list="browsers" name="modelo" placeholder="Modelo do Produto" class="input-field">
+                    <datalist id="browsers">
+                        <option value="Infantil"></option>
+                        <option value="Adulto"></option>
+                        <option value="Íntima"></option>
+                        <option value="Esportiva"></option>
+                    </datalist>
 
-                <!-- Primeiro Dropdown - "Modelo" -->
-                <div class="select-menu">
-                    <div class="select-btn">
-                        <span class="sBtn-text">Modelo do Produto</span>
-                        <i class="bx bx-chevron-down"></i>
-                    </div>
-                    <ul class="options">
-                        <li class="option">
-                            <span class="option-text">Infantil</span>
-                        </li>
-                        <li class="option">
-                            <span class="option-text">Adulto</span>
-                        </li>
-                        <li class="option">
-                            <span class="option-text">Íntima</span>
-                        </li>
-                        <li class="option">
-                            <span class="option-text">Esportiva</span>
-                        </li>
-                    </ul>
-                </div>
+                    <!-- Campo "Fabricante" -->
+                    <input type="text" placeholder="Fabricante" class="input-field" name="fabricante">
 
-                <!-- Campo "Fabricante" -->
-                <input type="text" placeholder="Fabricante" class="input-field">
+                    <!-- Campo "Código do produto" -->
+                    <input type="number" placeholder="Código do Produto" class="input-field" name="codigo">
 
-                <!-- Campo "Código do produto" -->
-                <input type="number" placeholder="Código do Produto" class="input-field">
+                    <!-- Campo "Responsável pelo Recebimento" -->
+                    <input type="number" placeholder="Número de Lote" class="input-field" name="numeroLote">
 
-                <!-- Campo "Responsável pelo Recebimento" -->
-                <input type="number" placeholder="Número de Lote" class="input-field">
+                    <!-- Campo "Responsável pelo Recebimento" -->
+                    <input type="text" placeholder="Endereçamento" class="input-field" name="enderecamento">
 
-                <!-- Campo "Responsável pelo Recebimento" -->
-                <input type="text" placeholder="Endereçamento" class="input-field">
+                    <!-- Botão de Enviar -->
+                    <button class="submit-btn">Enviar</button>
+                </form>
 
-                <!-- Botão de Enviar -->
-                <button class="submit-btn">Enviar</button>
             </div>
 
         </section>

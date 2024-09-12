@@ -8,17 +8,16 @@ class Cadastramento:
         self.fabricante = None
         self.num_lote = None
         self.enderecamento = None
-        self.cpf_prof = None
 
     # função para cadastrar os produtos
-    def cadastramento (self, cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento, cpf_prof):
+    def cadastramento (self, cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento, turma):
         # conectando com o banco de dados
-        mydb = Conexao.conectar()
+        mydb = Conexao.conectarAluno(turma)
 
         # criando um cursor para executar comandos SQL na conexão com o banco de dados
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_cadastramento (cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento, cpf_prof) VALUES ('{cod_prod}', '{descricao_tecnica}', '{modelo}', '{fabricante}', '{num_lote}', '{enderecamento}', '{cpf_prof}')"
+        dados = f"INSERT INTO tb_cadastramento (cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento) VALUES ('{cod_prod}', '{descricao_tecnica}', '{modelo}', '{fabricante}', '{num_lote}', '{enderecamento}')"
 
         #executando a variável a cima
         mycursor.execute(dados)
