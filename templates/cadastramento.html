@@ -1,67 +1,82 @@
+<!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
+{% block css %}
+<link rel="stylesheet" href="/static/styles/cadastramento.css">
+<link rel="stylesheet" href="/static/styles/media/cadastramento-media.css">
+{% endblock %}
+
 {% extends "layout.html" %}
 {% block conteudo %}
 
 
-    <div class="form-container">
-        <!-- Campo "Recebido em" -->
-        <input type="date" placeholder="Recebido em:" class="input-field">
+    <!-- LINK PARA O JAVASCRIPT(FUNCIONALIDADE)   -->
+    <script src="/static/js/cadastramento.js" defer></script>
 
-        <!-- Primeiro Dropdown - "Modelo" -->
-        <div class="select-menu">
-            <div class="select-btn">
-                <span class="sBtn-text">Modelo</span>
-                <i class="bx bx-chevron-down"></i>
+
+    <section class="geral-cadastramento">
+
+        <section class="container-cadastramento">
+
+            <div class="cadastramento-titulo">
+                <span class="cadastramento1">PROCESSO DE </span>
+                <span class="cadastramento2">CADASTRAMENTO</span>
             </div>
-            <ul class="options">
-                <li class="option">
-                    <span class="option-text">Infantil</span>
-                </li>
-                <li class="option">
-                    <span class="option-text">Adulto</span>
-                </li>
-                <li class="option">
-                    <span class="option-text">Íntima</span>
-                </li>
-                <li class="option">
-                    <span class="option-text">Esportiva</span>
-                </li>
-            </ul>
-        </div>
 
-        <!-- Segundo Dropdown - "Gênero" -->
-        <div class="select-menu">
-            <div class="select-btn">
-                <span class="sBtn-text">Gênero</span>
-                <i class="bx bx-chevron-down"></i>
+            <div class="container-img"></div>
+        </section>
+
+
+        <section class="formulario">
+
+            <div class="form_container">
+               
+
+                <!-- Campo "Descrição Técnica" -->
+                <textarea placeholder="Descrição Técnica" class="textarea-field"></textarea>
+
+                <!-- Primeiro Dropdown - "Modelo" -->
+                <div class="select-menu">
+                    <div class="select-btn">
+                        <span class="sBtn-text">Modelo do Produto</span>
+                        <i class="bx bx-chevron-down"></i>
+                    </div>
+                    <ul class="options">
+                        <li class="option">
+                            <span class="option-text">Infantil</span>
+                        </li>
+                        <li class="option">
+                            <span class="option-text">Adulto</span>
+                        </li>
+                        <li class="option">
+                            <span class="option-text">Íntima</span>
+                        </li>
+                        <li class="option">
+                            <span class="option-text">Esportiva</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Campo "Fabricante" -->
+                <input type="text" placeholder="Fabricante" class="input-field">
+
+                <!-- Campo "Código do produto" -->
+                <input type="number" placeholder="Código do Produto" class="input-field">
+
+                <!-- Campo "Responsável pelo Recebimento" -->
+                <input type="number" placeholder="Número de Lote" class="input-field">
+
+                <!-- Campo "Responsável pelo Recebimento" -->
+                <input type="text" placeholder="Endereçamento" class="input-field">
+
+                <!-- Botão de Enviar -->
+                <button class="submit-btn">Enviar</button>
             </div>
-            <ul class="options">
-                <li class="option">
-                    <span class="option-text">Feminino</span>
-                </li>
-                <li class="option">
-                    <span class="option-text">Masculino</span>
-                </li>
-                <li class="option">
-                    <span class="option-text">Unissex</span>
-                </li>
-            </ul>
-        </div>
 
-        <!-- Campo "Fabricante" -->
-        <input type="text" placeholder="Fabricante" class="input-field">
-
-        <!-- Campo "Quantidade" -->
-        <input type="number" placeholder="Quantidade" class="input-field">
-
-        <!-- Campo "Descrição Técnica" -->
-        <textarea placeholder="Descrição Técnica" class="textarea-field"></textarea>
-
-        <!-- Campo "Responsável pelo Recebimento" -->
-        <input type="text" placeholder="Responsável pelo Recebimento" class="input-field">
-
-        <!-- Botão de Enviar -->
-        <button class="submit-btn">Enviar</button>
-    </div>
+        </section>
+        
+</section>
+    
+       
+    
 
 
 {% endblock %}

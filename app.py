@@ -16,10 +16,10 @@ def pagina_inicial():
 # def pagina_cadastro():
 #     return render_template("login.html")
 
-# # roteamento da página de cadastramento
-# @app.route("/cadastramento")
-# def pagina_cadastramento():
-#     return render_template("cadastramento.html")
+# roteamento da página de cadastramento
+@app.route("/cadastramento")
+def pagina_cadastramento():
+     return render_template("cadastramento.html")
 
 # # roteamento da página dos processos de registro estoque
 # @app.route("/estoque")
