@@ -1,0 +1,19 @@
+:root{
+
+    --cor-pagina-inicial:linear-gradient(#f4f4f4, #f4f4f4, #004aad, #000000);
+    --cor-titulo1-pgInicial:#6a00c2;
+    --cor-titulo2-pgInicial:#0071c2;
+    --cor-icone-pgInicial:linear-gradient(to bottom right, #a77aff, #65a3ff);
+    --cor-servicos-hover: rgba(83, 103, 156, 0.292);
+    --cor-card-mensagem:#87b7ff;
+
+
+    --cor-padrao-letras:#ffffff;
+    
+
+    --cor-header:#f4f4f4;
+    --cor-dpop-btn:#3498DB;
+    --cor-footer:#000000;
+
+
+}
