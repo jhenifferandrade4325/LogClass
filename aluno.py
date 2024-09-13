@@ -7,6 +7,7 @@ class Aluno:
         self.email = None
         self.senha = None
         self.turma = None
+        self.cod_aluno = None
 
     # criando uma função para cadastrar o aluno
     def cadastrar (self, nome, email, senha, turma):
@@ -52,6 +53,7 @@ class Aluno:
             self.senha = resultado[3]
             self.nome = resultado[1]
             self.turma = turma
+            self.cod_aluno = resultado[0]
             return True
         else:
             self.logado = False

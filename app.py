@@ -73,7 +73,8 @@ def pagina_cadastro():
                 # armazena informações do usuário na sessão (session), que é um armazenamento temporário de dados durante a navegação do usuário
                 session['usuario_logado'] = {'email':loginAluno.email,
                                             'turma':loginAluno.turma,
-                                            'nome':loginAluno.nome}
+                                            'nome':loginAluno.nome,
+                                            'cod_aluno':loginAluno.cod_aluno}
                 return redirect('/')
             else:
                 session.clear()
@@ -159,7 +160,7 @@ def pagina_rnc():
         if request.method == "GET":
             return render_template("rnc.html")
         if request.method == "POST":
-            data = request.form.get("get")
+            data = request.form.get("date")
             numRNC = request.form.get("numRNC")
             local = request.form.get("local")
             qtdentregue = request.form.get("qtdentregue")
@@ -170,7 +171,7 @@ def pagina_rnc():
 
             tbrnc = Rnc()
 
-            if tbrnc.rnc(descRNC, data, numRNC, local, qtdentregue, qtdrepro, respInsp, codProd, session['usuario_logado']['turma']):
+            if tbrnc.rnc(descRNC, data, numRNC, local, qtdentregue, qtdrepro, respInsp, codProd, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
                 return redirect("/")
             else:
                 return 'Erro ao realizar o processo de RNC'
