@@ -45,13 +45,15 @@ body, html {
 .container-grid {
   width: 20rem;
   height: 16rem;
-  background: var(--cor-icone-pgInicial);
+  background: linear-gradient(to bottom right, #a77aff, #65a3ff);;
   filter: blur(3rem);
   margin-bottom: 5rem;
   border-radius: 2.5rem;
 }
 
 .container-cards{
+
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(53, 51, 205, 1) 3%, rgba(53, 51, 205, 1) 97%, rgba(255,255,255,1) 100%);
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -85,15 +87,16 @@ body, html {
 }
 
 
-/*GALERIA DE IMAGENS COM ELEMENTOS FLUTUANTE (FLOAT), TODAS AS CLASS SERVICOS SÃO IGUAIS*/
 .servicos{
-
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: relative;
   /*NÃO DEIXA O CARD FICAR VISIVEL SE O MESMO FICAR MAIOR QUE O PAI*/
   overflow: hidden;
   display: flex;
   /*MARGEM EXTERNA*/
   margin: 5.5rem;
+  margin-top: 10rem;
   /*FLUTUAR*/
   float: left;
   /*LARGURA DO CARD.*/
