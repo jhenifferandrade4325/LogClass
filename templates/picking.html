@@ -1,0 +1,80 @@
+<!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
+{% block css %}
+<link rel="stylesheet" href="/static/styles/picking.css">
+<link rel="stylesheet" href="/static/styles/media/picking-media.css">
+<link rel="stylesheet" href="/static/styles/variaveis.css">
+
+{% endblock %}
+
+{% extends "layout.html" %}
+{% block conteudo %}
+
+<!-- LINK PARA O JAVASCRIPT(FUNCIONALIDADE)   -->
+<script src="/static/js/picking.js" defer></script>
+
+
+<section class="geral-cadastramento">
+
+    <div class="container-cadastramento">
+
+        <div class="cadastramento-titulo">
+            <span class="cadastramento1"> PICKING </span>
+        </div>
+
+        <div class="container-img"></div>
+    </div>
+
+
+    <div class="formulario">
+
+        <div class="form_container">
+
+            <form action="/rnc" method="POST">
+
+
+                <!-- Campo "Código do Produto" -->
+                <input type="number" placeholder="Código do Produto" class="input-field" name="CodProd">
+
+                <!-- Campo "Endereçamento" -->
+                <input type="text" placeholder="Endereçamento" class="input-field" name="enderecamento">
+
+                <!-- Campo "Descrição Técnica" -->
+                <textarea placeholder="Descrição Técnica" class="textarea-field" name="descTec"></textarea>
+
+                <input list="browsers" name="modeloPick" placeholder="Modelo do Produto" class="input-field">
+                    <datalist id="browsers">
+                        <option value="Infantil"></option>
+                        <option value="Adulto"></option>
+                        <option value="Íntima"></option>
+                        <option value="Esportiva"></option>
+                </datalist>
+
+                <!-- Campo "Fabricante" -->
+                <input type="text" placeholder="Fabricante" class="input-field" name="fabri">
+
+                <!-- Campo "Quantidade" -->
+                <input type="text" placeholder= "Quantidade" class="input-field" name="qtde">
+
+                <!-- Campo "Data" -->
+                <input type="date" placeholder="Data:" class="input-field" name="data">
+                
+                <!-- Campo "lote" -->
+                <input type="text" placeholder="Lote" class="input-field" name="lote">
+
+                <!-- Campo "número de Picking" -->
+                <input type="number" placeholder="Número de Picking" class="input-field" name="numPicking">
+
+                <!-- Campo "Total de produtos Separados" -->
+                <input type="number" placeholder="Total de produtos Separados" class="input-field" name="totalProd">
+                
+                <!-- Botão de Enviar -->
+                <button class="submit-btn">Enviar</button>
+
+            </form>
+        </div>
+
+    </div>
+    
+</section>
+
+{% endblock %}
