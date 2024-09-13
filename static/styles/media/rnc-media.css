@@ -1,3 +1,4 @@
+/* Media para telas de smartphones */
 @media (max-width: 576px) {
 
 
@@ -24,6 +25,7 @@
 
 }
 
+/* Media para telas de Tablets */
 @media (min-width: 768px) {
 
 
@@ -51,6 +53,7 @@
 
 }
 
+/* Media para tela do tamanho Desktop */
 @media (min-width: 1200px) {
 
     .container-cadastramento{
@@ -73,6 +76,7 @@
 
 }
 
+/* Media para tela do tamanho Desktop */
 @media (min-width: 1440px){
 
     .container-cadastramento{

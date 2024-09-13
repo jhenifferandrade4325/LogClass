@@ -1,0 +1,47 @@
+:root{
+
+    /* Cores padrões de Letras  */
+    --cor-padrao-letras:#ffffff;
+
+
+    /* Cores da página inicial */
+    --cor-pagina-inicial:linear-gradient(#f4f4f4, #f4f4f4, #004aad, #000000);
+    --cor-titulo1-pgInicial:#6a00c2;
+    --cor-titulo2-pgInicial:#0071c2;
+    --cor-icone-pgInicial:linear-gradient(to bottom right, #a77aff, #65a3ff);
+    --cor-servicos-hover: rgba(83, 103, 156, 0.292);
+    --cor-card-mensagem:#87b7ff;
+
+    /* Cores do login */
+    --cor-fundo-login:linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,51,205,1) 100%);
+    --cor-cards-pgLogin:radial-gradient(circle, rgba(0,74,173,1) 0%, rgba(60,39,98,1) 100%);
+    --cor-btns:#0368D4;
+    --cor-fundo-inputs:#003772;
+
+
+    /* Cores do footer */
+    --cor-dpop-btn:#3498DB;
+    --cor-footer:#000000;
+
+    /* Cores das páginas de funcionais */
+    --cor-fundo-pg-funcoes:#e5e5e5;
+    --cor-bordas: #ccc;
+    --cor-fundo-formularios:#f9f9f9;
+    --cor-fundo-options:#fff;
+    --cor-hover-options:#f0f0f0;
+    --cor-btn-enviar:#6a1b9a;
+    --cor-hover-btn-enviar: #4a148c;
+
+    /* Cor do icone de Cadastramento */
+    --cor-icone-cadastramento:linear-gradient(to bottom , #ff2c84, #ff99a5);
+
+    /*  */
+
+    /*  */
+
+    /*  */
+
+    /*  */
+
+    /*  */
+}

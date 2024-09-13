@@ -3,7 +3,7 @@
 
 
 body{
-    background-color: #e5e5e5;
+    background-color: var(--cor-fundo-pg-funcoes);
 }
 
 .geral-cadastramento{
@@ -26,13 +26,13 @@ body{
     font-size: 3.5rem;
     color: #000000;
     margin-left: 0.5rem;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .container-img {
     width: 12rem;
     height: 25rem;
-    background: linear-gradient(to bottom , #ff2c84, #ff99a5);
+    background: var(--cor-icone-cadastramento);
     filter: blur(3rem);
     margin-right: 10rem;
     border-radius: 2.5rem;
@@ -59,9 +59,9 @@ body{
     margin-bottom: 15px;
     padding: 12px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--cor-bordas);
     border-radius: 4px;
-    background-color: #f9f9f9;
+    background-color: var(--cor-fundo-formularios);
 }
 
 .textarea-field {
@@ -96,8 +96,8 @@ body{
     width: 100%;
     padding: 0;
     list-style: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: var(--cor-fundo-options);
+    border: 1px solid var(--cor-bordas);
     border-radius: 4px;
     max-height: 150px;
     overflow-y: auto;
@@ -115,17 +115,17 @@ body{
 }
 
 .option:hover {
-    background-color: #f0f0f0;
+    background-color: var(--cor-hover-options);
 }
 
 .submit-btn {
-    background-color: #6a1b9a;
-    color: #fff;
+    background-color: var(--cor-btn-enviar);
+    color: var(--cor-fundo-options);
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .submit-btn:hover {
-    background-color: #4a148c;
+    background-color: var(--cor-hover-btn-enviar);
 }

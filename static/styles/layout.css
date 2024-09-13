@@ -1,18 +1,17 @@
 *{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 700;
-    list-style: none;
-    font-size: 1rem;
-    text-decoration: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  list-style: none;
+  font-size: 1rem;
+  text-decoration: none;
 }
-
 
 /* ****************************** padronização/ estilização MENU ************************************ */
 
-
+/* Estilização do cabeçalho */
 .header-container{
   width: 100vw;
   height: 10vh;
@@ -27,6 +26,7 @@
   
 }
 
+/* Estilização da imagem do logo */
 .header-container img{
   max-width: 11rem;
   max-height: 13rem;
@@ -34,6 +34,7 @@
   margin-top: 4rem;
 }
 
+/* Estilização do botão de dropdown */
 .dropbtn {
     background-color: #3498DB;
     color: white;
@@ -83,8 +84,9 @@
     
   }
 
+/* ****************************** Padronização/ estilização RODAPÉ ************************************ */
 
-/* ****************************** padronização/ estilização RODAPÉ ************************************ */
+/* Estilização do rodapé */
 footer{
     width: 100vw;
     height: 4vh;

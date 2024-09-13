@@ -9,9 +9,13 @@
 {% extends "layout.html" %}
 {% block conteudo %}
 
+<!-- Início da seção geral -->
 <section class="container-geral">
-    <section class="container-principal">
 
+    <!-- Início da seção principal -->
+    <div class="container-principal">
+
+        <!-- Título da página -->
         <div class="titulo-destaque">
             <span class="part1">LOG</span>
             <span class="part2">CLASS</span>
@@ -19,11 +23,14 @@
 
         <div class="container-grid"></div>
     
-    </section>
+    </div>
+    <!-- Fim da seção principal -->
     
-    <section class="container-cards">
+    <!-- Início da seção de cards -->
+    <div class="container-cards">
         <div class="c-galeria">
 
+            <!-- Card: Processo de cadastramento -->
             <div class="servicos">
                 <figure><img src="/static/img/caixas.png" alt="Processo de cadastramento"></figure>
                 <a href="/cadastramento">
@@ -81,22 +88,23 @@
                     </a>
                 </div>
 
-     </div>  
+        </div>  
+    </div>
+    <!-- Fim da seção de cards -->
 
-    </section>
-
-
-    <section class="container-mensagem_professor">
+    <!-- Início da seção de mensagem do professor -->
+    <div class="container-mensagem_professor">
 
         <div class="mensagem">
-
             <h2> Mensagem do Professor </h2>
             <!-- Campo "Mensagem" -->
             <input type="text" placeholder="Mensagem do Professor" class="input-field">
         </div>
 
-    </section>
-</section>
+    </div>
+    <!-- Fim da seção de mensagem do professor -->
 
+</section>
+<!-- Fim da seção geral -->
 
 {% endblock %}

@@ -1,15 +1,18 @@
 {% extends "layout.html" %}
 {% block css %}
 <link rel="stylesheet" href="/static/styles/login.css">
+<link rel="stylesheet" href="/static/styles/variaveis.css">
 {% endblock %}
 
 
 {% block conteudo %}
 
-<div class="container" id="intro-section">
-    <div class="header">
+<div class="container-bem-vindo" id="intro-section">
+    <div class="inicio-bem-vindo">
         <h2 id="logo-h2">BEM-VINDO AO LOG CLASS</h2>
-        <img src="/static/img/logo.png" alt="Logo" class="logo-image">
+        <figure>
+            <img src="/static/img/logo.png" alt="Logo" class="logo-image">
+        </figure>
     </div>
 
     <div class="login-prompt">
@@ -19,7 +22,7 @@
     </div>
 </div>
 
-<div class="container" id="register-section" style="display: none;">
+<div class="container-bem-vindo" id="register-section" style="display: none;">
     <div class="connect-box">
         <h2>CONECTE-SE</h2>
         <p>Selecione seu tipo de conta.</p>
@@ -57,7 +60,7 @@
 </div>
 
 <!-- Seção de login -->
-<div class="container" id="login-section" style="display: none;">
+<div class="container-bem-vindo" id="login-section" style="display: none;">
     <div class="connect-box" id="connect-login">
         <h2>CONECTE-SE</h2>
         <p>Selecione seu tipo de conta.</p>
