@@ -6,6 +6,7 @@ class Aluno:
         self.nome = None
         self.email = None
         self.senha = None
+        self.turma = None
 
     # criando uma função para cadastrar o aluno
     def cadastrar (self, nome, email, senha, turma):
@@ -26,20 +27,23 @@ class Aluno:
         return True
     
     # função para logar o aluno 
-    def logar (self, email, senha):
+    def logar (self, email, senha, turma):
         # conectando com o banco de dados
-        mydb = Conexao.conectar()
+        mydb = Conexao.conectarAluno(turma)
 
         mycursor = mydb.cursor()
 
         # variável que armazena uma função do sql
-        dados = f"SELECT * FROM database_geral.tb_aluno WHERE email = '{email} AND senha = '{senha}"
+        dados = f"SELECT * FROM tb_aluno WHERE email = '{email}' AND senha = '{senha}'"
 
         # executando
         mycursor.execute(dados)
 
         # selecionando apenas um dado do comando acima
-        resultado = mycursor.fetchone
+        resultado = mycursor.fetchone()
+
+        # fechando o banco de dados 
+        mydb.close()
 
         # caso não encontre o usuário com os dados que foram passados 
         if not resultado == None:
@@ -47,11 +51,10 @@ class Aluno:
             self.email = resultado[2]
             self.senha = resultado[3]
             self.nome = resultado[1]
+            self.turma = turma
+            return True
         else:
             self.logado = False
+            return False
 
-        # salvando os dados 
-        mydb.commit()
 
-        # fechando o banco de dados 
-        mydb.close()

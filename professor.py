@@ -31,24 +31,26 @@ class Professor:
 
         mycursor = mydb.cursor()
 
-        dados = f"SELECT * FROM database_geral.tb_professor WHERE email_prof = '{email_prof} AND senha_espec = '{senha_espec}"
+        dados = f"SELECT * FROM tb_professor WHERE email_prof = '{email_prof}' AND senha_espec = '{senha_espec}'"
 
         # executando
         mycursor.execute(dados)
 
-        resultado = mycursor.fetchone
+        resultado = mycursor.fetchone()
+
+        mydb.close()
 
         # caso não encontre o usuário com os dados que foram passados 
         if not resultado == None:
             self.logado = True
             self.email_prof = resultado[2]
             self.senha_espec = resultado[3]
+            return True
         else:
             self.logado = False
+            return False
 
-        mydb.commit()
 
-        mydb.close()
 
     def criaDatabse(bancodedados):
         # conectando com o banco de dados

@@ -62,14 +62,31 @@ def pagina_cadastro():
         if formulario == "LoginAluno":
             email = request.form.get("email")
             senha = request.form.get("senha")
+            turma = request.form.get("turma")
 
             loginAluno = Aluno()
 
-            if loginAluno.logar(email, senha):
+            if loginAluno.logar(email, senha, turma):
                 # armazena informações do usuário na sessão (session), que é um armazenamento temporário de dados durante a navegação do usuário
                 session['usuario_logado'] = {'email':loginAluno.email,
                                             'turma':loginAluno.turma,
                                             'nome':loginAluno.nome}
+                return redirect('/')
+            else:
+                session.clear()
+                return 'Email ou senha incorretos.'
+            
+        if formulario == "LoginProfessor":
+            email = request.form.get("email")
+            senha = request.form.get("senha")
+
+            loginProfessor = Professor()
+
+            if loginProfessor.logarProf(email, senha):
+                # armazena informações do usuário na sessão (session), que é um armazenamento temporário de dados durante a navegação do usuário
+                session['professor_logado'] = {'email':loginProfessor.email_prof,
+                                            'nome':loginProfessor.nome_prof,
+                                            'senha': loginProfessor.senha_espec}
                 return redirect('/')
             else:
                 session.clear()
