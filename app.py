@@ -138,10 +138,29 @@ def pagina_expedicao():
         return redirect("/login")
 
 # roteamento da página dos processos de registro picking
-@app.route("/picking")
+@app.route("/picking", methods=["GET", "POST"])
 def pagina_picking():
     if "usuario_logado" in session:
-        return render_template("picking.html")
+        if request.method == "GET":
+            return render_template("picking.html")
+        if request.method == "POST":
+            numPicking = request.form.get("numPicking")
+            enderecamento = request.form.get("enderecamento")
+            descTec = request.form.get("descTec")
+            modeloPick = request.form.get("modeloPick")
+            fabri = request.form.get("fabri")
+            qtde = request.form.get("qtde")
+            data = request.form.get("data")
+            lote = request.form.get("lote")
+            totalProd = request.form.get("totalProd")
+            codProd = request.form.get("codProd")
+
+            tbpicking = Picking()
+
+            if tbpicking.picking(numPicking, enderecamento, descTec, modeloPick, fabri, qtde, data, lote, totalProd, codProd, session['usuario_logado']['turma']):
+                return redirect("/")
+            else:
+                return 'Erro ao realizar o processo de Picking'
     else:
         return redirect("/login")
     
