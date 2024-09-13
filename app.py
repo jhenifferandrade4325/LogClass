@@ -31,10 +31,10 @@ def pagina_rnc():
 def pagina_picking():
     return render_template("picking.html")
 
-# # roteamento da página dos processos de registro estoque
-# @app.route("/estoque")
-# def pagina_estoque():
-#     return render_template("estoque.html")
+# roteamento da página dos processos de registro estoque
+@app.route("/estoque")
+def pagina_estoque():
+    return render_template("estoque.html")
 
 # # roteamento da página dos processos de registro expedição
 # @app.route("/expedicao")

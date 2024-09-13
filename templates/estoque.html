@@ -1,0 +1,57 @@
+<!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
+{% block css %}
+<link rel="stylesheet" href="/static/styles/estoque.css">
+<link rel="stylesheet" href="/static/styles/media/picking-media.css">
+
+{% endblock %}
+
+{% extends "layout.html" %}
+{% block conteudo %}
+
+    <!-- Section 01. 
+    Essa Section possui um espaço para imagem (cor solicitada pelo cliente) e nome da matéria. -->
+    <section class="geral-cadastramento">
+        <section class="container-cadastramento">
+            <div class="cadastramento-titulo">
+                <span class="cadastramento1"> CONTROLE DE ESTOQUE </span>
+            </div>
+            <div class="container-img"></div>
+        </section>
+    
+    <!-- Section 02. Formulário do CONTROLE DE ESTOQUE
+    Section que contém o formulário composto por inputs. Foi utilizado "number" para os dados numéricos, "text" para dados escritos e "date" para datas. Na descrição técnica, optamos por textarea
+    porque facilita a inserção de textos extensos. -->
+        <section class="formulario">
+            <div class="form_container">
+                <form action="/estoque" method="POST">
+    
+                    <span class="cadastramentoD"> Cadastrar dados: </span>
+                    <input type="number" placeholder="Código do Produto" class="input-field" name="cod_prod">
+
+                    <input type="number" placeholder="Número de Lote" class="input-field" name="num_lt">
+    
+                    <input type="text" placeholder="Localização" class="input-field" name="loc_">
+
+                    <textarea placeholder="Descrição Técnica" class="textarea-field"></textarea>
+
+                    <span class="cadastramentoD"> Data de Entrada: </span>
+                    <input type="date" placeholder="Data de Entrada:" class="input-field" name="dt_enter">
+                 
+                    <input type="text" placeholder= "Quantidade de itens" class="input-field" name="qt_item">
+
+                    <span class="cadastramentoD"> Data de Saída: </span>
+                    <input type="date" placeholder="Data de Saída:" class="input-field" name="dt_end">
+    
+                    <input type="number" placeholder="Saldo" class="input-field" name="_saldo">
+                    
+                    <input type="text" placeholder="Funcionário Responsável" class="input-field">
+                    <!-- Botão para enviar os dados para o Banco de Dados -->
+                    <button class="submit-btn">Enviar</button>
+    
+                </form>
+            </div>
+        </section>
+
+    </section>
+
+{% endblock %}

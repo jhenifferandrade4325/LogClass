@@ -16,7 +16,6 @@
 .header-container{
   width: 100vw;
   height: 10vh;
-  background-color: #f4f4f4;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,9 +28,10 @@
 }
 
 .header-container img{
-  max-width: 6rem;
-  max-height: 8rem;
+  max-width: 11rem;
+  max-height: 13rem;
   border-radius: 100%;
+  margin-top: 4rem;
 }
 
 .dropbtn {
@@ -39,10 +39,13 @@
     color: white;
     padding: 16px;
     font-size: 16px;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     border: none;
     border-radius: 2rem;
     cursor: pointer;
-    margin-right: 10rem;
+    margin-right: 6rem;
   }
   
   .dropbtn:hover, .dropbtn:focus {
@@ -62,7 +65,8 @@
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    margin-right: 6rem;
+    margin-right: 1rem;
+    right: 0;
   }
   
   .dropdown-content a {
@@ -83,14 +87,21 @@
 /* ****************************** padronização/ estilização RODAPÉ ************************************ */
 footer{
     width: 100vw;
-    height: 7vh;
+    height: 4vh;
     background-color: #000000;
     position: fixed;
     bottom: 0;
     left: 0;
     color: #ffffff;
-    text-align: center;
+    /* text-align: center; */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+footer p{
+  margin-left: 2rem;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
