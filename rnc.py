@@ -9,17 +9,16 @@ class Rnc:
         self.quant_entregue = None
         self.quant_reprovada = None
         self.resp_inspecao = None
-        self.cpf = None
         self.cod_prod = None
 
     # criando uma função para que seja possível a realização do processo de rnc
-    def rnc(self, desc_rnc, recebimento, num_rnc, local_rnc, quant_entregue, quant_reprovada, resp_inspecao, cpf, cod_prod):
+    def rnc(self, desc_rnc, recebimento, num_rnc, local_rnc, quant_entregue, quant_reprovada, resp_inspecao, cod_prod, turma):
         # conectando com o banco de dados
-        mydb = Conexao.conectar()
+        mydb = Conexao.conectarAluno(turma)
 
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_rnc(desc_rnc, recebimento, num_rnc, local_rnc, quant_entregue, quant_reprovada, resp_inspecao, cpf, cod_prod) VALUES('{desc_rnc}', '{recebimento}', '{num_rnc}', '{local_rnc}', '{quant_entregue}', '{quant_reprovada}', '{resp_inspecao}', '{cpf}', '{cod_prod}')"
+        dados = f"INSERT INTO tb_rnc(desc_rnc, recebimento, num_rnc, local_rnc, quant_entregue, quant_reprovada, resp_inspecao, cod_prod) VALUES('{desc_rnc}', '{recebimento}', '{num_rnc}', '{local_rnc}', '{quant_entregue}', '{quant_reprovada}', '{resp_inspecao}', '{cod_prod}')"
 
         #executar
         mycursor.execute(dados)

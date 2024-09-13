@@ -19,8 +19,11 @@ app.secret_key = 'logclass'
 @app.route("/")
 #função da página inicial
 def pagina_inicial():
-    return render_template("pagina-inicial.html")
-
+    if "usuario_logado" in session:
+        return render_template("pagina-inicial.html")
+    else:
+        return redirect("/login")
+    
 # roteamento da página de cadastro e login que no caso são "juntas" 
 @app.route("/login", methods=["GET", "POST"])
 def pagina_cadastro():
@@ -41,7 +44,7 @@ def pagina_cadastro():
 
             # mandando os dados que foram obtidos para a função que está dentro da classe Aluno
            if aluno.cadastrar(nome, email, senha, turma):
-               return redirect("/")
+               return redirect("/login")
            else:
                return "Erro ao Cadastrar o aluno"
            
@@ -115,7 +118,7 @@ def pagina_cadastramento():
             else:
                 return 'Erro ao realizar o processo de Cadastramento'
     else:
-        return 'Usuário não cadastrado'
+        return redirect("/login")
 
 # roteamento da página dos processos de registro estoque
 @app.route("/estoque")
@@ -123,7 +126,7 @@ def pagina_estoque():
     if "usuario_logado" in session:
         return render_template("estoque.html")
     else:
-        return 'Usuário não cadastrado'  
+        return redirect("/login")  
 
 # roteamento da página dos processos de registro expedição
 @app.route("/expedicao")
@@ -131,7 +134,7 @@ def pagina_expedicao():
     if "usuario_logado" in session:
         return render_template("expedicao.html")
     else:
-        return 'Usuário não cadastrado'
+        return redirect("/login")
 
 # roteamento da página dos processos de registro picking
 @app.route("/picking")
@@ -139,7 +142,7 @@ def pagina_picking():
     if "usuario_logado" in session:
         return render_template("picking.html")
     else:
-        return 'Usuário não cadastrado'
+        return redirect("/login")
     
 # roteamento da página dos processos de registro pop
 @app.route("/pop")
@@ -147,14 +150,31 @@ def pagina_pop():
     if "usuario_logado" in session:
         return render_template("pop.html")
     else:
-        return 'Usuário não cadastrado'
+        return redirect("/login")
 
 # roteamento da página dos processos de registro rnc
-@app.route("/rnc")
+@app.route("/rnc", methods=["GET", "POST"])
 def pagina_rnc():
     if "usuario_logado" in session:
-        return render_template("rnc.html")
+        if request.method == "GET":
+            return render_template("rnc.html")
+        if request.method == "POST":
+            data = request.form.get("get")
+            numRNC = request.form.get("numRNC")
+            local = request.form.get("local")
+            qtdentregue = request.form.get("qtdentregue")
+            qtdrepro = request.form.get("qtdrepro")
+            descRNC = request.form.get("descRNC")
+            respInsp = request.form.get("respInsp")
+            codProd = request.form.get("codProd")
+
+            tbrnc = Rnc()
+
+            if tbrnc.rnc(descRNC, data, numRNC, local, qtdentregue, qtdrepro, respInsp, codProd, session['usuario_logado']['turma']):
+                return redirect("/")
+            else:
+                return 'Erro ao realizar o processo de RNC'
     else:
-        return 'Usuário não cadastrado'
+        return redirect("/login")
 
 app.run(debug=True)
