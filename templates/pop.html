@@ -1,0 +1,49 @@
+<!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
+{% block css %}
+<link rel="stylesheet" href="/static/styles/pop.css">
+<link rel="stylesheet" href="/static/styles/media/cadastramento-media.css">
+{% endblock %}
+
+{% extends "layout.html" %}
+{% block conteudo %}
+
+    <!-- Section 01. 
+    Essa Section possui um espaço para imagem (cor solicitada pelo cliente) e nome da matéria. -->
+    <section class="geral-cadastramento">
+        <section class="container-cadastramento">
+            <div class="cadastramento-titulo">
+                <span class="cadastramento1"> POP </span>
+            </div>
+            <div class="container-img"></div>
+        </section>
+    
+    <!-- Section 02. Formulário de POP (procedimento operacional padrão)
+    Section que contém o formulário composto por inputs. Foi utilizado "text" para dados escritos e "date" para datas. Na descrição técnica, optamos por textarea
+    porque facilita a inserção de textos extensos. -->
+        <section class="formulario">
+            <div class="form_container">
+                <form action="/pop" method="POST">
+    
+                    <span class="cadastramentoD"> Data de Saída: </span>
+                    <input type="date" placeholder="Data de Saída:" class="input-field" name="dt_end1">
+
+                    <input type="text" placeholder="Nome da Tarefa:" class="input-field" name="task_name">
+
+                    <input type="text" placeholder="Responsável:" class="input-field" name="resp_">
+
+                    <textarea placeholder="Material Necessário:" class="textarea-field"></textarea>
+                    <textarea placeholder="Passos Críticos:" class="textarea-field"></textarea>
+                    <textarea placeholder="Manuseio do Material:" class="textarea-field"></textarea>
+                    <textarea placeholder="Resultados esperados:" class="textarea-field"></textarea>
+                    <textarea placeholder="Ações Corretivas:" class="textarea-field"></textarea>
+                
+                    <!-- Botão para enviar os dados para o Banco de Dados -->
+                    <button class="submit-btn">Enviar</button>
+    
+                </form>
+            </div>
+        </section>
+
+    </section>
+
+{% endblock %}

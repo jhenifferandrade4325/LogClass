@@ -36,15 +36,15 @@ def pagina_picking():
 def pagina_estoque():
     return render_template("estoque.html")
 
-# # roteamento da página dos processos de registro expedição
-# @app.route("/expedicao")
-# def pagina_expedicao():
-#     return render_template("expedicao.html")
+# roteamento da página dos processos de registro expedição
+@app.route("/expedicao")
+def pagina_expedicao():
+    return render_template("expedicao.html")
 
-# # roteamento da página dos processos de registro pop
-# @app.route("/pop")
-# def pagina_pop():
-#     return render_template("pop.html")
+# roteamento da página dos processos de registro pop
+@app.route("/pop")
+def pagina_pop():
+    return render_template("pop.html")
 
 
 
