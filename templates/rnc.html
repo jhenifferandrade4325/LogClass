@@ -1,0 +1,66 @@
+<!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
+{% block css %}
+<link rel="stylesheet" href="/static/styles/rnc.css">
+<link rel="stylesheet" href="/static/styles/media/rnc-media.css">
+
+{% endblock %}
+
+{% extends "layout.html" %}
+{% block conteudo %}
+
+
+<!-- LINK PARA O JAVASCRIPT(FUNCIONALIDADE)   -->
+<script src="/static/js/rnc.js" defer></script>
+
+
+<section class="geral-cadastramento">
+
+    <section class="container-cadastramento">
+
+        <div class="cadastramento-titulo">
+            <span class="cadastramento1"> RNC </span>
+        </div>
+
+        <div class="container-img"></div>
+    </section>
+
+
+    <section class="formulario">
+
+        <div class="form_container">
+
+            <form action="/rnc" method="POST">
+           
+                <!-- Campo "Recebido em" -->
+                <input type="date" placeholder="Recebido em:" class="input-field" name="date">
+
+                <!-- Campo "Número da RNC" -->
+                <input type="text" placeholder="Número da RNC" class="input-field" name="numRNC">
+
+                <!-- Campo "Local" -->
+                <input type="text" placeholder="Local" class="input-field" name="local">
+
+                <!-- Campo "Quantidade entregue" -->
+                <input type="text" placeholder= "Quantidade Entregue" class="input-field" name="qtdentregue">
+
+                <!-- Campo "Quantidade Reprovada" -->
+                <input type="text" placeholder="Quantidade Reprovada" class="input-field" name="qtdrepro">
+
+                <!-- Campo "Descrição da RNC" -->
+                <textarea placeholder="Descrição da RNC" class="textarea-field" name="descRNC"></textarea>
+
+                <!-- Campo "Responsável pela inspeção" -->
+                <input type="text" placeholder="Responsável pela inspeção" class="input-field" name="respInsp">
+
+                <!-- Botão de Enviar -->
+                <button class="submit-btn">Enviar</button>
+
+            </form>
+        </div>
+
+    </section>
+    
+</section>
+
+
+{% endblock %}

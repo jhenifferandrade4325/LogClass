@@ -19,7 +19,6 @@ body {
     flex-wrap: wrap;
 }
 
-/* Novo estilo para o layout */
 .header, .login-prompt {
     height: 350px;
     text-align: center;
@@ -58,8 +57,7 @@ body {
     margin-top: 40px;
 }
 
-/* Manter o estilo original para as outras seções */
-.login-box, .connect-box {
+.register-box, .connect-box {
     background: rgb(0,74,173);
     background: radial-gradient(circle, rgba(0,74,173,1) 0%, rgba(60,39,98,1) 100%);
     border-radius: 10px;
@@ -68,7 +66,7 @@ body {
     text-align: center;
 }
 
-.login-box h2, .connect-box h2 {
+.register-box h2, .connect-box h2 {
     margin-bottom: 20px;
     font-weight: bold;
 }
@@ -81,7 +79,7 @@ form {
 
 input {
     padding: 10px;
-    width: 90%;
+    width: 97%;
     border: none;
     border-radius: 5px;
     outline: none;
@@ -97,6 +95,7 @@ button[type="submit"] {
     color: #fff;
     font-weight: bold;
     cursor: pointer;
+    width: 97%;
 }
 
 .signup-link {
@@ -192,17 +191,13 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-#login-aluno, #login-professor {
+#register-aluno, #register-professor {
     display: none;
 }
 .active {
     display: block;
 }
 
-
-
-
-/* Estilo para a seção de Login */
 #login-existente-box {
     background: rgb(0,74,173);
     background: radial-gradient(circle, rgba(0,74,173,1) 0%, rgba(60,39,98,1) 100%);
@@ -248,5 +243,33 @@ button[type="submit"] {
     display: block;
     margin-top: 10px;
     color: #0368D4;
-   
 }
+
+.register-box, .login-box, .connect-box {
+    background: radial-gradient(circle, rgba(0,74,173,1) 0%, rgba(60,39,98,1) 100%);
+    border-radius: 10px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    display: none;
+}
+
+.connect-box h2, .login-box h2, .register-box h2 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.voltar-btn {
+    display: block;
+    width: 97%;
+    padding: 10px;
+    margin-top: 3px; 
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 5rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+

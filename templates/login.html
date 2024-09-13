@@ -19,75 +19,73 @@
     </div>
 </div>
 
-<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+<div class="container" id="register-section" style="display: none;">
+    <div class="connect-box">
+        <h2>CONECTE-SE</h2>
+        <p>Selecione seu tipo de conta.</p>
+        <button class="account-type" id="aluno-register-btn">ALUNO</button>
+        <button class="account-type" id="professor-register-btn">PROFESSOR</button>
+    </div>
 
-<!-- Seções de login escondidas inicialmente -->
-<div class="container" id="login-section" style="display: none;">
-    <div class="login-box" id="login-aluno">
+    <div class="register-box" id="register-aluno" style="display: none;">
         <h2>Cadastro do Aluno</h2>
-        <form action="/login" method="POST">
-            <input type="hidden" value="Aluno" name="tipo">
-            <input type="name" placeholder="Nome" required name="nome">
-            <input type="email" placeholder="E-mail" required name="email">
-            <input type="password" placeholder="Senha" required name="senha">
+        <form>
+            <input type="text" placeholder="Nome Completo" required>
+            <input type="email" placeholder="E-mail" required>
+            <input type="password" placeholder="Senha" required>
             <input list="browsers" name="turma" placeholder="Turma">
             <datalist id="browsers">
-                <option value="turma1"></option>
-                <option value="turma2"></option>
-                <option value="turma3"></option>
-            </datalist>
-
-            <a href="#" id="voltar-aluno" class="signup-link">VOLTAR</a>
-            <!-- <i class="fa-solid fa-turn-down-left">Voltar</i> NÃO ESQUECER DE CORRIGIR -->
+            <option value="turma1"></option>
+            <option value="turma2"></option>
+            <option value="turma3"></option>
+        </datalist>
             <button type="submit">IR</button>
+            <a href="#" id="voltar-register" class="voltar-btn">VOLTAR</a>
+        </form>
+    </div>
+
+    <div class="register-box" id="register-professor" style="display: none;">
+        <h2>Cadastro do Professor</h2>
+        <form>
+            <input type="text" placeholder="Nome Completo" required>
+            <input type="email" placeholder="E-mail" required>
+            <input type="password" placeholder="Código de Acesso" required>
+            <button type="submit">IR</button>
+            <a href="#" id="voltar-register" class="voltar-btn">VOLTAR</a>
+        </form>
+    </div>
+</div>
+
+<!-- Seção de login -->
+<div class="container" id="login-section" style="display: none;">
+    <div class="connect-box" id="connect-login">
+        <h2>CONECTE-SE</h2>
+        <p>Selecione seu tipo de conta.</p>
+        <button class="account-type" id="aluno-login-btn">ALUNO</button>
+        <button class="account-type" id="professor-login-btn">PROFESSOR</button>
+    </div>
+    
+    <div class="login-box" id="login-aluno" style="display: none;">
+        <h2>Login do Aluno</h2>
+        <form>
+            <input type="email" placeholder="E-mail" required>
+            <input type="password" placeholder="Senha" required>
+            <button type="submit">IR</button>
+            <a href="#" id="voltar-login" class="voltar-btn">VOLTAR</a>
         </form>
     </div>
 
     <div class="login-box" id="login-professor" style="display: none;">
-        <h2>Cadastro do Professor</h2>
-        <form action="/login" method="POST">
-            <input type="hidden" value="Professor" name="tipo">
-            <input type="name" placeholder="Nome" required name="nome">
-            <input type="email" placeholder="E-mail" required name="email">
-            <input type="text" placeholder="Código de Acesso" required name="senha">
-            <a href="#" id="voltar-professor" class="signup-link">VOLTAR</a>
+        <h2>Login do Professor</h2>
+        <form>
+            <input type="email" placeholder="E-mail" required>
+            <input type="password" placeholder="Código de Acesso" required>
             <button type="submit">IR</button>
+            <a href="#" id="voltar-login" class="voltar-btn">VOLTAR</a>
         </form>
-    </div>
-
-    <!-- ---------------------------------------------------------------------------------------------------------------- -->
-
-
-    <!-- Seção de Login para quem já possui conta -->
-    <div class="container" id="login-existente-section" style="display: none;">
-        <div class="login-box" id="login-existente-box">
-            <h2>Login do Aluno</h2>
-            <form action="/login" method="POST">
-                <input type="hidden" value="LoginAluno" name="tipo">
-                <input type="email" id="email-login" placeholder="E-MAIL" required name="email">
-                <input type="password" id="senha-login" placeholder="SENHA" required name="senha">
-                <button type="submit" id="login-existente-btn">ENTRAR</button>
-            </form>
-            <a href="#" id="voltar-login-existente-link" class="signup-link">VOLTAR</a>
-        </div>
-    </div>
-
-
-    <!-- ----------------------------------------------------------------------------------------------------------------- -->
-
-    <div class="connect-box">
-        <h2>CONECTE-SE</h2>
-        <p>Selecione seu tipo de conta.</p>
-        <button class="account-type" id="aluno-btn">ALUNO</button>
-        <button class="account-type" id="professor-btn">PROFESSOR</button>
-        <a href="/login" id="voltar-aluno" class="signup-link">VOLTAR</a>
     </div>
 </div>
 
 <script src="/static/js/login.js"></script>
-
-
-<!-- CONTEUDO DO SITE -->
-
 
 {% endblock %}
