@@ -32,19 +32,21 @@
     
                     <input type="text" placeholder="Localização" class="input-field" name="loc_">
 
-                    <textarea placeholder="Descrição Técnica" class="textarea-field"></textarea>
+                    <textarea placeholder="Descrição Técnica" class="textarea-field" name="descricao"></textarea>
 
                     <span class="cadastramentoD"> Data de Entrada: </span>
                     <input type="date" placeholder="Data de Entrada:" class="input-field" name="dt_enter">
                  
-                    <input type="text" placeholder= "Quantidade de itens" class="input-field" name="qt_item">
+                    <input type="number" placeholder= "Quantidade de itens" class="input-field" name="qt_item">
 
                     <span class="cadastramentoD"> Data de Saída: </span>
                     <input type="date" placeholder="Data de Saída:" class="input-field" name="dt_end">
+
+                    <input type="number" placeholder="Quantidade da Saída" class="input-field" name="qt_saida">
     
                     <input type="number" placeholder="Saldo" class="input-field" name="_saldo">
                     
-                    <input type="text" placeholder="Funcionário Responsável" class="input-field">
+                    <input type="text" placeholder="Funcionário Responsável" class="input-field" name="funcionario">
                     <!-- Botão para enviar os dados para o Banco de Dados -->
                     <button class="submit-btn">Enviar</button>
     

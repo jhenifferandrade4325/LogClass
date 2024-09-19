@@ -16,14 +16,14 @@ class Estoque:
         self.cpf = None
 
     # função para o cadastro de estoque
-    def estoque (self, cod_prod_est, num_lote_est, loc_est, desc_tec, data_entrega, quant_itens_entrada, data_saida, saldo, fuc_responsavel, cpf):
+    def estoque (self, cod_prod_est, num_lote_est, loc_est, desc_tec, data_entrega, quant_itens_entrada, data_saida, qt_saida, saldo, fuc_responsavel, cod_aluno, turma):
         # conectando com o banco de dados
-        mydb = Conexao.conectar()
+        mydb = Conexao.conectarAluno(turma)
 
         # criando um cursor para executar comandos SQL na conexão com o banco de dados
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_estoque(cod_prod_est, num_lote_est, loc_est, desc_tec, data_entrega, quant_itens_entrada, data_saida, saldo, fuc_responsavel, cpf) VALUES ('{cod_prod_est}', '{num_lote_est}', '{loc_est}', '{desc_tec}', '{data_entrega}', '{quant_itens_entrada}', '{data_saida}', '{saldo}', '{fuc_responsavel}', '{cpf}')"
+        dados = f"INSERT INTO tb_estoque(cod_prod_est, num_lote_est, loc_est, desc_tec, data_entrega, quant_itens_entrada, data_saida, quant_saida, saldo, func_responsavel, cod_aluno) VALUES ('{cod_prod_est}', '{num_lote_est}', '{loc_est}', '{desc_tec}', '{data_entrega}', '{quant_itens_entrada}', '{data_saida}', '{qt_saida}', '{saldo}', '{fuc_responsavel}', '{cod_aluno}')"
 
         #executando o comando que foi determinado a cima
         mycursor.execute(dados)

@@ -129,10 +129,29 @@ def pagina_cadastramento():
 
 # roteamento da página dos processos de registro estoque
 # RF008
-@app.route("/estoque")
+@app.route("/estoque",  methods=["GET", "POST"])
 def pagina_estoque():
     if "usuario_logado" in session:
-        return render_template("estoque.html")
+        if request.method == "GET":
+            return render_template("estoque.html")
+        if request.method == "POST":
+            cod_prod = request.form.get("cod_prod")
+            num_lote = request.form.get("num_lt")
+            loc_ = request.form.get("loc_")
+            descricao = request.form.get("descricao")
+            dt_enter = request.form.get("dt_enter")
+            qt_item = request.form.get("qt_item")
+            dt_end = request.form.get("dt_end")
+            qt_saida = request.form.get("qt_saida")
+            _saldo = request.form.get("_saldo")
+            funcionario = request.form.get("funcionario")
+
+            tbEstoque = Estoque()
+
+            if tbEstoque.estoque(cod_prod, num_lote, loc_, descricao, dt_enter, qt_item, dt_end, qt_saida, _saldo, funcionario, session['usuario_logado']['cod_aluno'] , session['usuario_logado']['turma']):
+                return redirect("/")
+            else:
+                return "Erro ao realizar o processo de Controle de Estoque"
     else:
         return redirect("/login")  
 
