@@ -107,6 +107,7 @@ def pagina_cadastro():
 def pagina_cadastramento():
 
 # as páginas são protegidas por autenticação de sessão para garantir que apenas usuários autenticados possam acessá-las.
+# 
     if "usuario_logado" in session:
         if request.method == "GET":
             return render_template("cadastramento.html")
