@@ -107,7 +107,7 @@ def pagina_cadastro():
 def pagina_cadastramento():
 
 # as páginas são protegidas por autenticação de sessão para garantir que apenas usuários autenticados possam acessá-las.
-# 
+# if que determina o acesso às páginas apenas se o aluno estiver logado.
     if "usuario_logado" in session:
         if request.method == "GET":
             return render_template("cadastramento.html")
@@ -127,6 +127,7 @@ def pagina_cadastramento():
                 return 'Erro ao realizar o processo de Cadastramento'
     else:
         return redirect("/login")
+
 
 # roteamento da página dos processos de registro estoque
 # RF008
