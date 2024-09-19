@@ -1,5 +1,5 @@
 body{
-    background-color: #e5e5e5;
+    background-color: var(--cor-fundo-pg-funcoes);
 }
 
 /* Geral cadastramento: section que engloba toda interface dessa página. */
@@ -23,16 +23,16 @@ body{
 /* Título do cadastramento: Controle de Estoque */
 .cadastramento-titulo span{
     font-size: 3.5rem;
-    color: #000000;
+    color: var(--cor-titulo);
     margin-left: 0.5rem;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 /* Imagem da section de "apresentação" da matéria. Cada matéria possui uma cor. */
 .container-img {
     width: 12rem;
     height: 25rem;
-    background: linear-gradient(to bottom , #ff2c84, #ff99a5);
+    background: var(--cor-icone-cadastramento);
     filter: blur(3rem);
     margin-right: 10rem;
     border-radius: 2.5rem;
@@ -63,7 +63,7 @@ body{
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #f9f9f9;
+    background-color: var(--cor-fundo-formularios);
 }
 
 /* Espaço da Descrição Técnica. */
@@ -74,16 +74,16 @@ body{
 
 /* Estiliza o botão de enviar. */
 .submit-btn {
-    background-color: #6a1b9a;
-    color: #fff;
+    background-color: var(--cor-btn-enviar);
+    color: var(--cor-fundo-options);
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: 0.3s;
 }
 
 /* Estiliza o botão de enviar quando passamos o mouse. */
 .submit-btn:hover {
-    background-color: #4a148c;
+    background-color: var(--cor-hover-btn-enviar);
 }
 
 .cadastramentoD {

@@ -1,27 +1,45 @@
 /* Media de telas para smartphones */
 @media (max-width: 576px) {
 
-
-    .container-cadastramento{
-        gap: 7rem;
+    .titulo-destaque .part1 {
+        font-size: 3.5rem;
+        margin-left: 1rem;
     }
 
-    .cadastramento-titulo span{
-        font-size: 2rem;
-        margin-left: 10rem;
+    .titulo-destaque .part2 {
+        font-size: 3.5rem;
+    }
 
-    }   
-    
-    .container-img {
+    .container-grid {
         width: 10rem;
-        height: 7rem;
+        height: 12rem;
+        margin-bottom: 3rem;
     }
 
-    .form_container {
-        width: 25rem;
-        padding: 3.5rem;
-        
+    .c-galeria{
+    
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        grid-auto-rows: 12rem;
+        grid-column-gap: 2rem;
+        grid-row-gap: 3rem;
+     
     }
+
+    .servicos{
+        /*MARGEM EXTERNA*/
+        margin: 2rem;
+        margin-top: 2rem;
+        /*LARGURA DO CARD.*/
+        width: 70%;
+        /*COR DE FUNDO DO CARD*/
+        height: 90%;
+        /*CENTRALIZA O TEXTO*/
+        /*SUAVIZAR EFEITO DA TRANSIÇÃO*/
+        transition: transform 0.5s;
+        flex-direction: column;
+      }
 
 }
 
