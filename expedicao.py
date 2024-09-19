@@ -8,17 +8,16 @@ class Expedicao:
         self.quant_exp = None
         self.data_emb_exp = None
         self.responsavel_exp = None
-        self.cpf = None
-        self.cod_prod = None
+        self.cod_aluno = None
 
     # criando a função para cadastro da expedição dos produtos
-    def estoque(self, cod_prod_exp, desc_exp, num_lote_exp, quant_exp, data_emb_exp, responsavel_exp, cpf, cod_prod):
+    def expedicao(self, cod_prod_exp, desc_exp, num_lote_exp, quant_exp, data_emb_exp, responsavel_exp, cod_aluno, turma):
         # conectando com o banco de dados
-        mydb = Conexao.conectar()
+        mydb = Conexao.conectarAluno(turma)
 
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_estoque(cod_prod_exp, desc_exp, num_lote_exp, quant_exp, data_emb_exp, responsavel_exp, cpf, cod_prod) VALUES ('{cod_prod_exp}', '{desc_exp}', '{num_lote_exp}', '{quant_exp}', '{data_emb_exp}', '{responsavel_exp}', '{cpf}', '{cod_prod}')"
+        dados = f"INSERT INTO tb_estoque(cod_prod_exp, desc_exp, num_lote_exp, quant_exp, data_emb_exp, responsavel_exp, cod_aluno) VALUES ('{cod_prod_exp}', '{desc_exp}', '{num_lote_exp}', '{quant_exp}', '{data_emb_exp}', '{responsavel_exp}', '{cod_aluno}')"
 
         #executar
         mycursor.execute(dados)

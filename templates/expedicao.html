@@ -29,18 +29,18 @@
             <div class="form_container">
                 <form action="/estoque" method="POST">
 
-                    <input type="text" placeholder="Código do Produto:" class="input-field" name="">
+                    <input type="text" placeholder="Código do Produto:" class="input-field" name="cod_prod">
 
                     <span class="cadastramentoD"> Data da Embalagem: </span>
-                    <input type="date" placeholder="Data de Saída:" class="input-field" name="">
+                    <input type="date" placeholder="Data de Saída:" class="input-field" name="data_saida">
 
-                    <input type="text" placeholder="Número do Lote:" class="input-field" name="">
+                    <input type="text" placeholder="Número do Lote:" class="input-field" name="num_lote">
 
-                    <input type="text" placeholder="Responsável pela embalagem:" class="input-field" name="">
+                    <input type="text" placeholder="Responsável pela embalagem:" class="input-field" name="responsavel">
 
-                    <input type="number" placeholder="Quantidade" class="input-field" name="">
+                    <input type="number" placeholder="Quantidade" class="input-field" name="quantidade">
 
-                    <textarea placeholder="Descrição Técnica:" class="textarea-field"></textarea>
+                    <textarea placeholder="Descrição Técnica:" class="textarea-field" name="descricao_tec"></textarea>
                 
                     <!-- Botão para enviar os dados para o Banco de Dados -->
                     <button class="submit-btn">Enviar</button>

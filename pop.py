@@ -2,7 +2,6 @@ from conexao import Conexao
 # classe que armazena as funções que correspondem ao registro de pop
 class Pop:
     def __init__(self):
-        self.cod_pop = None
         self.data_pop = None
         self.tarefa_pop = None
         self.responsavel_pop = None
@@ -11,16 +10,16 @@ class Pop:
         self.manuseio_pop = None
         self.resul_pop = None
         self.acao_pop = None
-        self.cpf = None
+        self.cod_aluno = None
     
     # criando a função para realizar o processo de pop
-    def pop(self, cod_pop, data_pop, tarefa_pop, responsavel_pop, material_pop, passos_pop, manuseio_pop, resul_pop, acao_pop, cpf):
+    def pop(self, data_pop, tarefa_pop, responsavel_pop, material_pop, passos_pop, manuseio_pop, resul_pop, acao_pop, cod_aluno, turma):
         # conectando com o banco de dados
-        mydb = Conexao.conectar()
+        mydb = Conexao.conectarAluno(turma)
 
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_pop(cod_pop, data_pop, tarefa_pop, responsavel_pop, material_pop, passos_pop, manuseio_pop, resul_pop, acao_pop, cpf) VALUES('{cod_pop}', '{data_pop}', '{tarefa_pop}', '{responsavel_pop}', '{material_pop}', '{passos_pop}', '{manuseio_pop}', '{resul_pop}', '{acao_pop}', '{cpf}')"
+        dados = f"INSERT INTO tb_pop(data_pop, tarefa_pop, responsavel_pop, material_pop, passos_pop, manuseio_pop, resul_pop, acao_pop, cod_aluno) VALUES('{data_pop}', '{tarefa_pop}', '{responsavel_pop}', '{material_pop}', '{passos_pop}', '{manuseio_pop}', '{resul_pop}', '{acao_pop}', '{cod_aluno}')"
 
         #executar
         mycursor.execute(dados)

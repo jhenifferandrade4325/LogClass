@@ -157,10 +157,23 @@ def pagina_estoque():
 
 # roteamento da página dos processos de registro expedição
 # RF010
-@app.route("/expedicao")
+@app.route("/expedicao", methods=["GET", "POST"])
 def pagina_expedicao():
     if "usuario_logado" in session:
-        return render_template("expedicao.html")
+        if request.method == "GET":
+            return render_template("expedicao.html")
+        if request.method == "POST":
+            cod_prod = request.form.get("cod_prod")
+            data_saida = request.form.get("data_saida")
+            num_lote = request.form.get("num_lote")
+            responsavel = request.form.get("responsavel")
+            quantidade = request.form.get("quantidade")
+            descricao_tec = request.form.get("descricao_tec")
+            tbExpedicao = Expedicao()
+            if tbExpedicao.expedicao(cod_prod, descricao_tec, num_lote, quantidade, data_saida, responsavel, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
+                return redirect ('/')
+            else:
+                return "Erro ao realizar o processo de cadastro de expedição."
     else:
         return redirect("/login")
 
@@ -194,10 +207,25 @@ def pagina_picking():
     
 # roteamento da página dos processos de registro pop
 # RF009
-@app.route("/pop")
+@app.route("/pop", methods=["GET", "POST"])
 def pagina_pop():
     if "usuario_logado" in session:
-        return render_template("pop.html")
+        if request.method == "GET":
+            return render_template("pop.html")
+        if request.method == "POST":
+            dt_end1 = request.form.get("dt_end1")
+            task_name = request.form.get("task_name")
+            resp_ = request.form.get("resp_")
+            material = request.form.get("material")
+            passos = request.form.get("passos")
+            manuseio = request.form.get("manuseio")
+            resultados = request.form.get("resultados")
+            acoes = request.form.get("acoes")
+            tbPop = Pop()
+            if tbPop.pop(dt_end1, task_name, resp_, material, passos, manuseio, resultados, acoes, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
+                return redirect ('/')
+            else:
+                return 'Erro ao realizar o processo de POP'
     else:
         return redirect("/login")
 
