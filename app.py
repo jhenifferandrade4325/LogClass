@@ -25,6 +25,10 @@ def pagina_inicial():
         return redirect("/login")
     
 # roteamento da página de cadastro e login que no caso são "juntas" 
+# RF001
+# RF002
+# RF003
+# RF004
 @app.route("/login", methods=["GET", "POST"])
 def pagina_cadastro():
 # cada rota processa solicitações GET e POST de forma apropriada, interage com diferentes classes
@@ -44,6 +48,7 @@ def pagina_cadastro():
 
             # mandando os dados que foram obtidos para a função que está dentro da classe Aluno
            if aluno.cadastrar(nome, email, senha, turma):
+               
                return redirect("/login")
            else:
                return "Erro ao Cadastrar o aluno"
@@ -97,6 +102,7 @@ def pagina_cadastro():
                 return 'Email ou senha incorretos.'
 
 # roteamento da página de cadastramento
+# RF005
 @app.route("/cadastramento", methods=["GET", "POST"])
 def pagina_cadastramento():
 
@@ -122,6 +128,7 @@ def pagina_cadastramento():
         return redirect("/login")
 
 # roteamento da página dos processos de registro estoque
+# RF008
 @app.route("/estoque")
 def pagina_estoque():
     if "usuario_logado" in session:
@@ -130,6 +137,7 @@ def pagina_estoque():
         return redirect("/login")  
 
 # roteamento da página dos processos de registro expedição
+# RF010
 @app.route("/expedicao")
 def pagina_expedicao():
     if "usuario_logado" in session:
@@ -138,6 +146,7 @@ def pagina_expedicao():
         return redirect("/login")
 
 # roteamento da página dos processos de registro picking
+# RF007
 @app.route("/picking", methods=["GET", "POST"])
 def pagina_picking():
     if "usuario_logado" in session:
@@ -165,6 +174,7 @@ def pagina_picking():
         return redirect("/login")
     
 # roteamento da página dos processos de registro pop
+# RF009
 @app.route("/pop")
 def pagina_pop():
     if "usuario_logado" in session:
@@ -173,6 +183,7 @@ def pagina_pop():
         return redirect("/login")
 
 # roteamento da página dos processos de registro rnc
+# RF006
 @app.route("/rnc", methods=["GET", "POST"])
 def pagina_rnc():
     if "usuario_logado" in session:
