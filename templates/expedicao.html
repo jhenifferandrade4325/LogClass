@@ -1,0 +1,54 @@
+<!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
+{% block css %}
+<link rel="stylesheet" href="/static/styles/expedicao.css">
+<link rel="stylesheet" href="/static/styles/variaveis.css">
+
+{% endblock %}
+
+{% extends "layout.html" %}
+{% block conteudo %}
+
+
+    <!-- LINK PARA O JAVASCRIPT(FUNCIONALIDADE)   -->
+    <script src="/static/js/cadastramento.js" defer></script>
+
+<!-- Section 01. 
+    Essa Section possui um espaço para imagem (cor solicitada pelo cliente) e nome da matéria. -->
+    <section class="geral-cadastramento">
+        <section class="container-cadastramento">
+            <div class="cadastramento-titulo">
+                <span class="cadastramento1"> Cadastro de Expedição </span>
+            </div>
+            <div class="container-img"></div>
+        </section>
+    
+    <!-- Section 02. Formulário de Cadastro de Expedição
+    Section que contém o formulário composto por inputs. Foi utilizado "text" para dados escritos e "date" para datas. Na descrição técnica, optamos por textarea
+    porque facilita a inserção de textos extensos. -->
+        <section class="formulario">
+            <div class="form_container">
+                <form action="/estoque" method="POST">
+
+                    <input type="text" placeholder="Código do Produto:" class="input-field" name="">
+
+                    <span class="cadastramentoD"> Data da Embalagem: </span>
+                    <input type="date" placeholder="Data de Saída:" class="input-field" name="">
+
+                    <input type="text" placeholder="Número do Lote:" class="input-field" name="">
+
+                    <input type="text" placeholder="Responsável pela embalagem:" class="input-field" name="">
+
+                    <input type="number" placeholder="Quantidade" class="input-field" name="">
+
+                    <textarea placeholder="Descrição Técnica:" class="textarea-field"></textarea>
+                
+                    <!-- Botão para enviar os dados para o Banco de Dados -->
+                    <button class="submit-btn">Enviar</button>
+    
+                </form>
+            </div>
+        </section>
+
+    </section>
+
+    {% endblock %}

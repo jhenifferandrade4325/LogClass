@@ -1,0 +1,92 @@
+body{
+    background-color: #e5e5e5;
+}
+
+/* Geral cadastramento: section que engloba toda interface dessa página. */
+.geral-cadastramento{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Container cadastramento: section que estiliza o título (nome da matéria) e cor. */
+.container-cadastramento{
+    margin-top: 10rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    gap: 45rem;
+}
+
+/* Título do cadastramento: Controle de Estoque */
+.cadastramento-titulo span{
+    font-size: 3.5rem;
+    color: #000000;
+    margin-left: 0.5rem;
+    opacity: 0.5;
+}
+
+/* Imagem da section de "apresentação" da matéria. Cada matéria possui uma cor. */
+.container-img {
+    width: 12rem;
+    height: 25rem;
+    background: linear-gradient(to bottom , #ff2c84, #ff99a5);
+    filter: blur(3rem);
+    margin-right: 10rem;
+    border-radius: 2.5rem;
+  }
+
+/* Formulário: section que engloba toda região do formulário e em volta dele. */
+.formulario{
+    margin: 9rem 38rem;
+}
+
+/* Form Container: section que determina o formulário. */
+.form_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30rem;
+    padding: 20px;
+    border-radius: 8px;
+    
+}
+
+/* Determina todas as regiões funcionais do formulário. Tudo o que o usuário clica. */
+.input-field, .textarea-field, .select-menu, .submit-btn {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+/* Espaço da Descrição Técnica. */
+.textarea-field {
+    height: 100px;
+    resize: none;
+}
+
+/* Estiliza o botão de enviar. */
+.submit-btn {
+    background-color: #6a1b9a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Estiliza o botão de enviar quando passamos o mouse. */
+.submit-btn:hover {
+    background-color: #4a148c;
+}
+
+.cadastramentoD {
+    font-size: medium;
+    font-weight: 700;
+}
