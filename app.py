@@ -1,5 +1,5 @@
 # importando módulos e classes necessários para a aplicação
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, jsonify
 from conexao import Conexao
 from aluno import Aluno
 from professor import Professor
@@ -256,5 +256,32 @@ def pagina_rnc():
                 return 'Erro ao realizar o processo de RNC'
     else:
         return redirect("/login")
+    
+@app.route("/api/get/produtos")
+def get_produtos():
+    # conectando o banco de dados
+    mydb = Conexao.conectarAluno(session['usuario_logado']['turma'])
+
+    mycursor = mydb.cursor()
+
+    produtos = ("SELECT * FROM tb_cadastramento")
+
+    mycursor.execute(produtos)
+
+    resultado = mycursor.fetchall()
+
+    lista_produtos = []
+
+    for produto in resultado:
+        lista_produtos.append({
+            "codigo":produto[0],
+            "descricao":produto[1],
+            "modelo":produto[2],
+            "fabricante":produto[3],
+            "numero_lote":produto[4],
+            "enderecamento":produto[5]
+        })
+
+    return jsonify(lista_produtos), 200
 
 app.run(debug=True)
