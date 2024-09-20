@@ -37,7 +37,7 @@
 .dropbtn {
     background-color: var(--cor-drop-btn);
     color: var(--cor-padrao-letras);
-    padding: 16px;
+    padding: 10px 16px;
     font-size: 16px;
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
@@ -46,6 +46,7 @@
     border-radius: 2rem;
     cursor: pointer;
     margin-right: 6rem;
+    text-transform: uppercase;
   }
   
   .dropbtn:hover, .dropbtn:focus {
@@ -67,6 +68,10 @@
     z-index: 1;
     margin-right: 1rem;
     right: 0;
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
   }
   
   .dropdown-content a {
@@ -80,7 +85,59 @@
   
   .show {
     display: block;
-    
+  }
+
+  .dropdown-menu .card a i {
+    font-size: 16px;
+    color: var(--cor-icone-cadastramento);
+  }
+
+  .dropdown-menu .card a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dropdown-menu .card a i {
+    font-size: 16px;
+    color: #0073e6;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px
+  }
+
+  .dropdown-menu .card {
+    padding: 15px;
+    background-color: var(--cor-fundo-options);
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .dropdown-menu .card:hover {
+    transform: scale(1.05);
+    background-color: var(--cor-hover-options);
+  }
+
+  .dropdown-menu .card a {
+    text-decoration: none;
+    color: var(--cor-drop-letras);
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
 /* ****************************** Padronização/ estilização RODAPÉ ************************************ */
