@@ -22,6 +22,25 @@
             </div>
             <div class="container-img"></div>
         </section>
+
+        <div class="container-tabela">
+            <h1>Produtos Cadastrados</h1>
+            <table id="produtos-tabela">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descrição</th>
+                        <th>Modelo</th>
+                        <th>Fabricante</th>
+                        <th>Número do Lote</th>
+                        <th>Endereçamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Produtos serão exibidos aqui -->
+                </tbody>
+            </table>
+        </div>
     
     <!-- Section 02. Formulário de Cadastro de Expedição
     Section que contém o formulário composto por inputs. Foi utilizado "text" para dados escritos e "date" para datas. Na descrição técnica, optamos por textarea
@@ -52,4 +71,5 @@
 
     </section>
 
+    <script src="/static/js/tabela-produtos.js"></script>
     {% endblock %}
