@@ -13,7 +13,7 @@ class Professor:
 
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_professor (nome_prof, email_prof, senha_espec) VALUES ('{nome_prof}', '{email_prof}', '{senha_espec}')"
+        dados = f"INSERT INTO tb_aluno (nome, email, senha) VALUES ('{nome_prof}', '{email_prof}', '{senha_espec}')"
 
         #executar
         mycursor.execute(dados)
@@ -31,7 +31,7 @@ class Professor:
 
         mycursor = mydb.cursor()
 
-        dados = f"SELECT * FROM tb_professor WHERE email_prof = '{email_prof}' AND senha_espec = '{senha_espec}'"
+        dados = f"SELECT * FROM tb_aluno WHERE email = '{email_prof}' AND senha = '{senha_espec}'"
 
         # executando
         mycursor.execute(dados)
@@ -52,7 +52,7 @@ class Professor:
 
 
 
-    def criaDatabse(bancodedados):
+    def criaDatabse(self, bancodedados):
         # conectando com o banco de dados
         mydb = Conexao.conectar()
 
@@ -61,109 +61,131 @@ class Professor:
         # variável que armazena o comando que executará um novo banco de dados
         dados = f"""
             # criando um banco de dados caso ele ainda não exista (IF NOT EXISTS)
-            CREATE DATABASE IF NOT EXISTS database_geral;
-            USE database_geral;
+            CREATE DATABASE IF NOT EXISTS {bancodedados};
+            USE {bancodedados};
 
-            CREATE TABLE IF NOT EXISTS tb_aluno (
-                cod_aluno INT NOT NULL AUTO_INCREMENT,
-                nome VARCHAR(100) NOT NULL,
-                email VARCHAR(100) NOT NULL UNIQUE,
-                senha VARCHAR(100) NOT NULL,
-                PRIMARY KEY (cod_aluno)
+            CREATE TABLE tb_aluno (
+            cod_aluno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            nome VARCHAR(100) NOT NULL,
+            email VARCHAR(100) NOT NULL,
+            senha VARCHAR(100) NOT NULL
             );
 
-            CREATE TABLE IF NOT EXISTS tb_cadastramento (
-                cod_prod VARCHAR(10) NOT NULL,
-                descricao_tecnica VARCHAR(100) NOT NULL,
-                modelo VARCHAR(50) NOT NULL,
-                fabricante VARCHAR(50) NOT NULL,
-                num_lote VARCHAR(20) NOT NULL,
-                enderecamento VARCHAR(100) NOT NULL,
-                PRIMARY KEY (cod_prod)
+            CREATE TABLE tb_cadastramento (
+            cod_prod VARCHAR(100) NOT NULL,
+            descricao_tecnica VARCHAR(100) NOT NULL,
+            modelo VARCHAR(100) NOT NULL,
+            fabricante VARCHAR(100) NOT NULL,
+            num_lote VARCHAR(100) NOT NULL,
+            enderecamento VARCHAR(100) NOT NULL
             );
 
-            CREATE TABLE IF NOT EXISTS tb_estoque (
-                cod_prod_est INT NOT NULL AUTO_INCREMENT,
-                num_lote_est VARCHAR(20) NOT NULL,
-                loc_est CHAR(10) NOT NULL,
-                desc_tec VARCHAR(100) NOT NULL,
-                data_entrega DATE NOT NULL,
-                quant_itens_entrada INT NOT NULL,
-                data_saida DATE NOT NULL,
-                quant_saida INT NOT NULL,
-                saldo INT NOT NULL,
-                func_responsavel VARCHAR(100) NOT NULL,
-                cod_aluno INT NOT NULL,
-                PRIMARY KEY (cod_prod_est),
-                FOREIGN KEY (cod_aluno) REFERENCES tb_aluno(cod_aluno)
+            ALTER TABLE tb_cadastramento ADD CONSTRAINT PK_tb_cadastramento PRIMARY KEY (cod_prod);
+
+
+            CREATE TABLE tb_estoque (
+            cod_prod_est INT NOT NULL,
+            num_lote_est INT NOT NULL,
+            loc_est CHAR(100) NOT NULL,
+            desc_tec VARCHAR(100) NOT NULL,
+            data_entrega DATE NOT NULL,
+            quant_itens_entrada INT NOT NULL,
+            data_saida DATE NOT NULL,
+            quant_saida INT NOT NULL,
+            saldo INT NOT NULL,
+            func_responsavel VARCHAR(100) NOT NULL,
+            cod_aluno INT
             );
 
-            CREATE TABLE IF NOT EXISTS tb_expedicao (
-                cod_prod_exp VARCHAR(10) NOT NULL,
-                desc_exp VARCHAR(100) NOT NULL,
-                num_lote_exp VARCHAR(20) NOT NULL,
-                quant_exp INT NOT NULL,
-                data_emb_exp DATE NOT NULL,
-                responsavel_exp VARCHAR(100) NOT NULL,
-                cod_prod VARCHAR(10) NOT NULL,
-                cod_aluno INT NOT NULL,
-                PRIMARY KEY (cod_prod_exp),
-                FOREIGN KEY (cod_prod) REFERENCES tb_cadastramento(cod_prod),
-                FOREIGN KEY (cod_aluno) REFERENCES tb_aluno(cod_aluno)
+            ALTER TABLE tb_estoque ADD CONSTRAINT PK_tb_estoque PRIMARY KEY (cod_prod_est);
+
+
+            CREATE TABLE tb_expedicao (
+            cod_prod_exp VARCHAR(100) NOT NULL,
+            desc_exp VARCHAR(100) NOT NULL,
+            num_lote_exp VARCHAR(100) NOT NULL,
+            quant_exp VARCHAR(100) NOT NULL,
+            data_emb_exp DATE NOT NULL,
+            respnsavel_exp VARCHAR(100) NOT NULL,
+            cod_aluno INT 
             );
 
-            CREATE TABLE IF NOT EXISTS tb_picking (
-                cod_produto VARCHAR(10) NOT NULL,
-                endereco VARCHAR(100) NOT NULL,
-                desc_tecnica VARCHAR(100) NOT NULL,
-                modelo_pk VARCHAR(50) NOT NULL,
-                fabricante_pk VARCHAR(50) NOT NULL,
-                quant_pk INT NOT NULL,
-                data_pk DATE NOT NULL,
-                lote_pk VARCHAR(20) NOT NULL,
-                num_picking INT NOT NULL,
-                total_pk INT NOT NULL,
-                cod_prod VARCHAR(10) NOT NULL,
-                PRIMARY KEY (cod_produto),
-                FOREIGN KEY (cod_prod) REFERENCES tb_cadastramento(cod_prod)
+            ALTER TABLE tb_expedicao ADD CONSTRAINT PK_tb_expedicao PRIMARY KEY (cod_prod_exp);
+
+
+            CREATE TABLE tb_picking (
+            num_picking INT NOT NULL,
+            endereco VARCHAR(100) NOT NULL,
+            desc_tecnica VARCHAR(100) NOT NULL,
+            modelo_pk VARCHAR(100) NOT NULL,
+            fabricante_pk VARCHAR(100) NOT NULL,
+            quant_pk INT NOT NULL,
+            data_pk DATE NOT NULL,
+            lote_pk VARCHAR(100) NOT NULL,
+            total_pk INT NOT NULL,
+            cod_prod VARCHAR(100) 
             );
 
-            CREATE TABLE IF NOT EXISTS tb_pop (
-                cod_pop CHAR(10) NOT NULL,
-                data_pop DATE NOT NULL,
-                tarefa_pop VARCHAR(100) NOT NULL,
-                responsavel_pop VARCHAR(100) NOT NULL,
-                material_pop VARCHAR(100) NOT NULL,
-                passos_pop TEXT NOT NULL,
-                manuseio_pop TEXT NOT NULL,
-                resultado_pop TEXT NOT NULL,
-                acao_pop TEXT NOT NULL,
-                cod_aluno INT NOT NULL,
-                PRIMARY KEY (cod_pop),
-                FOREIGN KEY (cod_aluno) REFERENCES tb_aluno(cod_aluno)
+            ALTER TABLE tb_picking ADD CONSTRAINT PK_tb_picking PRIMARY KEY (num_picking);
+
+
+            CREATE TABLE tb_pop (
+            cod_pop INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            data_pop DATE NOT NULL,
+            tarefa_pop VARCHAR(100) NOT NULL,
+            responsavel_pop VARCHAR(100) NOT NULL,
+            material_pop VARCHAR(100) NOT NULL,
+            passos_pop VARCHAR(100) NOT NULL,
+            manuseio_pop VARCHAR(100) NOT NULL,
+            resul_pop VARCHAR(100) NOT NULL,
+            acao_pop VARCHAR(100) NOT NULL,
+            cod_aluno INT 
             );
 
-            CREATE TABLE IF NOT EXISTS tb_rnc (
-                desc_rnc VARCHAR(100) NOT NULL,
-                recebimento DATE NOT NULL,
-                num_rnc VARCHAR(20) NOT NULL,
-                local INT NOT NULL,
-                quant_entregue INT NOT NULL,
-                quant_reprovada INT NOT NULL,
-                resp_inspecao VARCHAR(100) NOT NULL,
-                cod_prod VARCHAR(10) NOT NULL,
-                cod_aluno INT NOT NULL,
-                PRIMARY KEY (desc_rnc),
-                FOREIGN KEY (cod_prod) REFERENCES tb_cadastramento(cod_prod),
-                FOREIGN KEY (cod_aluno) REFERENCES tb_aluno(cod_aluno)
-            );"""
+
+
+            CREATE TABLE tb_rnc (
+            desc_rnc VARCHAR(100) NOT NULL,
+            recebimento DATE NOT NULL,
+            num_rnc VARCHAR(100) NOT NULL,
+            local_rnc VARCHAR(100) NOT NULL,
+            quant_entregue INT NOT NULL,
+            quant_reprovada INT NOT NULL,
+            resp_inspecao VARCHAR(100) NOT NULL,
+            cod_prod VARCHAR(100) NOT NULL,
+            cod_aluno INT 
+            );
+
+            ALTER TABLE tb_rnc ADD CONSTRAINT PK_tb_rnc PRIMARY KEY (desc_rnc);
+
+
+            ALTER TABLE tb_estoque ADD CONSTRAINT FK_tb_estoque_0 FOREIGN KEY (cod_aluno) REFERENCES tb_aluno (cod_aluno);
+
+
+            ALTER TABLE tb_expedicao ADD CONSTRAINT FK_tb_expedicao_0 FOREIGN KEY (cod_prod) REFERENCES tb_cadastramento (cod_prod);
+            ALTER TABLE tb_expedicao ADD CONSTRAINT FK_tb_expedicao_1 FOREIGN KEY (cod_aluno) REFERENCES tb_aluno (cod_aluno);
+
+
+            ALTER TABLE tb_picking ADD CONSTRAINT FK_tb_picking_0 FOREIGN KEY (cod_prod) REFERENCES tb_cadastramento (cod_prod);
+
+
+            ALTER TABLE tb_pop ADD CONSTRAINT FK_tb_pop_0 FOREIGN KEY (cod_aluno) REFERENCES tb_aluno (cod_aluno);
+
+
+            ALTER TABLE tb_rnc ADD CONSTRAINT FK_tb_rnc_0 FOREIGN KEY (cod_prod) REFERENCES tb_cadastramento (cod_prod);
+            ALTER TABLE tb_rnc ADD CONSTRAINT FK_tb_rnc_1 FOREIGN KEY (cod_aluno) REFERENCES tb_aluno (cod_aluno);"""
+            
 
         #executar
-        mycursor.execute(dados)
+        mycursor.execute(dados, multi=True)
 
         # salvar o que foi adicionado ao banco de dados
         mydb.commit()
-
+        
+        nomes = f"INSERT into tb_database (nomeBase) VALUES ('{bancodedados}')"
+        mycursor.execute(nomes)
+        mydb.commit()
+        
         # fechando o banco de dados
         mydb.close()
 

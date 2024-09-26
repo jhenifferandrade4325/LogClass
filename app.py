@@ -1,5 +1,5 @@
 # importando módulos e classes necessários para a aplicação
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, jsonify
 from conexao import Conexao
 from aluno import Aluno
 from professor import Professor
@@ -19,8 +19,12 @@ app.secret_key = 'logclass'
 @app.route("/")
 #função da página inicial
 def pagina_inicial():
+    # varificação se há algum usuário logado no sistema para a liberar a visualização da página
     if "usuario_logado" in session:
         return render_template("pagina-inicial.html")
+    elif "professor_logado" in session:
+        return render_template("pagina-inicial.html")
+    # se não houver nenhum usuário logado o mesmo será direcionado para a página de cadastro e login
     else:
         return redirect("/login")
     
@@ -38,6 +42,7 @@ def pagina_cadastro():
         # extraindo os dados que serão recolhidos no formulário
         formulario = request.form.get("tipo")
         # verificando qual o formulário que será usado
+        # RF001
         if formulario == "Aluno":
            nome = request.form.get("nome")
            email = request.form.get("email")
@@ -52,7 +57,7 @@ def pagina_cadastro():
                return redirect("/login")
            else:
                return "Erro ao Cadastrar o aluno"
-           
+        # RF002
         if formulario == "Professor":
             nome = request.form.get("nome")
             email = request.form.get("email")
@@ -67,6 +72,7 @@ def pagina_cadastro():
             else:
                 return redirect("/login")
 
+        # RF003
         if formulario == "LoginAluno":
             email = request.form.get("email")
             senha = request.form.get("senha")
@@ -84,7 +90,8 @@ def pagina_cadastro():
             else:
                 session.clear()
                 return 'Email ou senha incorretos.'
-            
+        
+        # RF004
         if formulario == "LoginProfessor":
             email = request.form.get("email")
             senha = request.form.get("senha")
@@ -109,6 +116,27 @@ def pagina_cadastramento():
 # as páginas são protegidas por autenticação de sessão para garantir que apenas usuários autenticados possam acessá-las.
 # if que determina o acesso às páginas apenas se o aluno estiver logado.
     if "usuario_logado" in session:
+        if request.method == "GET":
+            return render_template("cadastramento.html")
+        if request.method == "POST":
+            # pegando os valores dos inputs da página cadastramento
+            descricao = request.form.get("descricao")
+            modelo = request.form.get("modelo")
+            fabricante = request.form.get("fabricante")
+            codigo = request.form.get("codigo")
+            numeroLote = request.form.get("numeroLote")
+            enderecamento = request.form.get("enderecamento")
+            
+            # armazenando a classe da página de cadastramento em que estão os comandos sql em uma várial
+            tbCadastramento = Cadastramento()
+
+            # chamando a função que está dentro da classe 
+            if tbCadastramento.cadastramento(codigo, descricao, modelo, fabricante, numeroLote, enderecamento, session['usuario_logado']['turma']):
+                return redirect("/")
+            else:
+                return 'Erro ao realizar o processo de Cadastramento'
+    # verificando se o usuário logado é o professor, para poder liberar a vizualização das páginas
+    elif "professor_logado" in session:
         if request.method == "GET":
             return render_template("cadastramento.html")
         if request.method == "POST":
@@ -154,14 +182,49 @@ def pagina_estoque():
                 return redirect("/")
             else:
                 return "Erro ao realizar o processo de Controle de Estoque"
+    elif "professor_logado" in session:
+        if request.method == "GET":
+            return render_template("estoque.html")
+        if request.method == "POST":
+            cod_prod = request.form.get("cod_prod")
+            num_lote = request.form.get("num_lt")
+            loc_ = request.form.get("loc_")
+            descricao = request.form.get("descricao")
+            dt_enter = request.form.get("dt_enter")
+            qt_item = request.form.get("qt_item")
+            dt_end = request.form.get("dt_end")
+            qt_saida = request.form.get("qt_saida")
+            _saldo = request.form.get("_saldo")
+            funcionario = request.form.get("funcionario")
+
+            tbEstoque = Estoque()
+
+            if tbEstoque.estoque(cod_prod, num_lote, loc_, descricao, dt_enter, qt_item, dt_end, qt_saida, _saldo, funcionario, session['usuario_logado']['cod_aluno'] , session['usuario_logado']['turma']):
+                return redirect("/")
+            else:
+                return "Erro ao realizar o processo de Controle de Estoque"
     else:
         return redirect("/login")  
-
 # roteamento da página dos processos de registro expedição
 # RF010
 @app.route("/expedicao", methods=["GET", "POST"])
 def pagina_expedicao():
     if "usuario_logado" in session:
+        if request.method == "GET":
+            return render_template("expedicao.html")
+        if request.method == "POST":
+            cod_prod = request.form.get("cod_prod")
+            data_saida = request.form.get("data_saida")
+            num_lote = request.form.get("num_lote")
+            responsavel = request.form.get("responsavel")
+            quantidade = request.form.get("quantidade")
+            descricao_tec = request.form.get("descricao_tec")
+            tbExpedicao = Expedicao()
+            if tbExpedicao.expedicao(cod_prod, descricao_tec, num_lote, quantidade, data_saida, responsavel, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
+                return redirect ('/')
+            else:
+                return "Erro ao realizar o processo de cadastro de expedição."
+    elif "professor_logado" in session:
         if request.method == "GET":
             return render_template("expedicao.html")
         if request.method == "POST":
@@ -184,6 +247,27 @@ def pagina_expedicao():
 @app.route("/picking", methods=["GET", "POST"])
 def pagina_picking():
     if "usuario_logado" in session:
+        if request.method == "GET":
+            return render_template("picking.html")
+        if request.method == "POST":
+            numPicking = request.form.get("numPicking")
+            enderecamento = request.form.get("enderecamento")
+            descTec = request.form.get("descTec")
+            modeloPick = request.form.get("modeloPick")
+            fabri = request.form.get("fabri")
+            qtde = request.form.get("qtde")
+            data = request.form.get("data")
+            lote = request.form.get("lote")
+            totalProd = request.form.get("totalProd")
+            codProd = request.form.get("codProd")
+
+            tbpicking = Picking()
+
+            if tbpicking.picking(numPicking, enderecamento, descTec, modeloPick, fabri, qtde, data, lote, totalProd, codProd, session['usuario_logado']['turma']):
+                return redirect("/")
+            else:
+                return 'Erro ao realizar o processo de Picking'
+    elif "professor_logado" in session:
         if request.method == "GET":
             return render_template("picking.html")
         if request.method == "POST":
@@ -228,6 +312,23 @@ def pagina_pop():
                 return redirect ('/')
             else:
                 return 'Erro ao realizar o processo de POP'
+    elif "professor_logado" in session:
+        if request.method == "GET":
+            return render_template("pop.html")
+        if request.method == "POST":
+            dt_end1 = request.form.get("dt_end1")
+            task_name = request.form.get("task_name")
+            resp_ = request.form.get("resp_")
+            material = request.form.get("material")
+            passos = request.form.get("passos")
+            manuseio = request.form.get("manuseio")
+            resultados = request.form.get("resultados")
+            acoes = request.form.get("acoes")
+            tbPop = Pop()
+            if tbPop.pop(dt_end1, task_name, resp_, material, passos, manuseio, resultados, acoes, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
+                return redirect ('/')
+            else:
+                return 'Erro ao realizar o processo de POP'
     else:
         return redirect("/login")
 
@@ -254,7 +355,90 @@ def pagina_rnc():
                 return redirect("/")
             else:
                 return 'Erro ao realizar o processo de RNC'
+    elif "professor_logado" in session:
+        if request.method == "GET":
+            return render_template("rnc.html")
+        if request.method == "POST":
+            data = request.form.get("date")
+            numRNC = request.form.get("numRNC")
+            local = request.form.get("local")
+            qtdentregue = request.form.get("qtdentregue")
+            qtdrepro = request.form.get("qtdrepro")
+            descRNC = request.form.get("descRNC")
+            respInsp = request.form.get("respInsp")
+            codProd = request.form.get("codProd")
+
+            tbrnc = Rnc()
+
+            if tbrnc.rnc(descRNC, data, numRNC, local, qtdentregue, qtdrepro, respInsp, codProd, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
+                return redirect("/")
+            else:
+                return 'Erro ao realizar o processo de RNC'
     else:
         return redirect("/login")
+    
+@app.route("/api/get/produtos")
+def get_produtos():
+    #conectando com o banco de dados
+    mydb = Conexao.conectarAluno(session['usuario_logado']['turma'])
+    
+    mycursor = mydb.cursor()
+    
+    produtos = ("SELECT * FROM tb_cadastramento")
+    
+    mycursor.execute(produtos)
+    
+    resultado = mycursor.fetchall()
+    
+    lista_produtos = []
+    
+    for produto in resultado:
+        lista_produtos.append({
+            "codigo":produto[0],
+            "descricao":produto[1],
+            "modelo":produto[2],
+            "fabricante":produto[3],
+            "numero_lote":produto[4],
+            "enderecamento":produto[5]
+        })
+        
+    return jsonify(lista_produtos), 200
 
+@app.route("/criarBD", methods=["GET", "POST"])
+def criarBD():
+    if request.method == "GET":
+        return render_template("professor.html")
+    if request.method == "POST":
+      
+        nomeBD = request.form.get("nomeTurma")
+        criarDataBase = Professor()
+            
+        if criarDataBase.criaDatabse(nomeBD):
+            
+            # conectando o banco de dados
+            mydb = Conexao.conectar()
+
+            mycursor = mydb.cursor()
+            # Consulta ao banco de dados para obter os produtos da categoria "ouro"
+            nomeDataBase = ("SELECT * FROM tb_database")
+
+            #executar
+            mycursor.execute(nomeDataBase)
+            resultado = mycursor.fetchall()
+            
+            mydb.close()
+
+            lista_nomes = []
+            
+            for nomeBD in resultado:
+                lista_nomes.append({
+                    "database":nomeBD[0]
+                })
+
+            return render_template("login.html", lista_nomes = lista_nomes)
+
+        else:
+            return "Erro ao criar o banco de dados"
+        
+    
 app.run(debug=True)

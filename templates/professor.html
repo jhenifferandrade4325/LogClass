@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="/static/styles/media/layout-media.css">
+<link rel="stylesheet" href="/static/styles/login.css">
+<link rel="stylesheet" href="/static/styles/variaveis.css">
+{% endblock %}
+
+{% block conteudo %}
+
+<form action="/criarBD" method="POST">
+    <input type="text" placeholder="Nome da Turma" name="nomeTurma">
+    <button type="submit">ENVIAR</button>
+</form>
+
+<!-- Início da seção de mensagem do professor -->
+<div class="container-mensagem_professor">
+
+    <div class="mensagem">
+        <h2> Mensagem do Professor </h2>
+        <!-- Campo "Mensagem" -->
+        <input type="text" placeholder="Mensagem do Professor" class="input-field" name="mensagem">
+    </div>
+
+</div>
+<!-- Fim da seção de mensagem do professor -->
+
+{% endblock %}
