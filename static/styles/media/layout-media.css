@@ -1,5 +1,46 @@
+/* Media para o menor celular que existe no mercado Iphone SE */
+@media (max-width: 320px){
+
+     /* ****************************** padronização/ estilização MENU ************************************ */
+
+     .header-container{
+        height: 8vh;
+      }
+
+    .header-container img{
+        max-width: 7rem;
+        max-height: 8rem;
+       
+    }
+
+    .dropbtn {
+        margin-top: 1rem;
+        margin-right: 0.5rem;
+    }
+
+    .dropdown-content {
+        min-width: 1rem;
+        margin-right: 0.2rem;
+    }
+
+    .dropdown-content a {
+        padding: 0.2rem 1rem;
+    }
+
+
+    /* ****************************** Padronização/ estilização RODAPÉ ************************************ */
+
+
+    footer p{
+        margin-left: 2rem;
+        margin-top: 0.2rem;
+    }
+
+
+}
+
 /* Media de telas para smartphones */
-@media (max-width: 576px) {
+@media (min-width: 576px) {
 
     /* ****************************** padronização/ estilização MENU ************************************ */
 
@@ -65,7 +106,7 @@
     }
 
     .dropdown-content {
-        min-width:5rem;
+        min-width:10rem;
         margin-right: 1rem;
     }
 

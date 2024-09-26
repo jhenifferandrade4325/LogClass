@@ -13,10 +13,13 @@ body {
 
 .container-bem-vindo {
     display: flex;
-    align-items: flex-start;
+    align-items: baseline;
     justify-content: center;
+    align-content: center;
     gap: 4rem;
     flex-wrap: wrap;
+    margin-bottom: 15rem;
+    
 }
 
 .inicio-bem-vindo, .login-prompt {
@@ -60,9 +63,10 @@ body {
     background: var(--cor-fundo-inputs);
     background: var(--cor-cards-pgLogin);
     border-radius: 1rem;
-    padding: 3rem;
-    width: 3rem;
+    padding: 4rem;
+    width: 5rem;
     text-align: center;
+    
 }
 
 .register-box h2, .connect-box h2 {
@@ -250,10 +254,6 @@ button[type="submit"] {
     display: none;
 }
 
-.connect-box h2, .login-box h2, .register-box h2 {
-    margin-bottom: 2rem;
-    font-weight: bold;
-}
 
 .voltar-btn {
     display: block;

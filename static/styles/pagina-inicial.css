@@ -1,12 +1,14 @@
 body, html {
   margin: 0;
   padding: 0;
-  height: 100vh;
   font-family: Arial, sans-serif;
 }
 
 .container-geral{
   background: var(--cor-pagina-inicial);
+  height: 100vh;
+  width: 100vw;
+  
 }
 
 .container-principal{
