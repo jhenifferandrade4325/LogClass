@@ -436,27 +436,7 @@ def criarBD():
             
         if criarDataBase.criaDatabse(nomeBD):
             
-            # conectando o banco de dados
-            mydb = Conexao.conectar()
-
-            mycursor = mydb.cursor()
-            # Consulta ao banco de dados para obter os produtos da categoria "ouro"
-            nomeDataBase = ("SELECT * FROM databaseprofessor.tb_database")
-
-            #executar
-            mycursor.execute(nomeDataBase)
-            resultado = mycursor.fetchall()
-            
-            mydb.close()
-
-            lista_nomes = []
-            
-            for nomeBD in resultado:
-                lista_nomes.append({
-                    "database":nomeBD[0]
-                })
-
-            return render_template("login.html", lista_nomes = lista_nomes)
+            return redirect ("/")
 
         else:
             return "Erro ao criar o banco de dados"
