@@ -37,7 +37,28 @@ def pagina_inicial():
 def pagina_cadastro():
 # cada rota processa solicitações GET e POST de forma apropriada, interage com diferentes classes
     if request.method == "GET":
-        return render_template("login.html")
+        # conectando o banco de dados
+        mydb = Conexao.conectar()
+
+        mycursor = mydb.cursor()
+        # Consulta ao banco de dados para obter os produtos da categoria "ouro"
+        nomeDataBase = ("SELECT * FROM databaseprofessor.tb_database")
+
+        #executar
+        mycursor.execute(nomeDataBase)
+        resultado = mycursor.fetchall()
+        
+        mydb.close()
+
+        lista_nomes = []
+        
+        for nomeBD in resultado:
+            lista_nomes.append({
+                "database":nomeBD[0]
+            })
+
+        return render_template("login.html", lista_nomes = lista_nomes)
+
     if request.method == "POST":
         # extraindo os dados que serão recolhidos no formulário
         formulario = request.form.get("tipo")
@@ -420,7 +441,7 @@ def criarBD():
 
             mycursor = mydb.cursor()
             # Consulta ao banco de dados para obter os produtos da categoria "ouro"
-            nomeDataBase = ("SELECT * FROM tb_database")
+            nomeDataBase = ("SELECT * FROM databaseprofessor.tb_database")
 
             #executar
             mycursor.execute(nomeDataBase)
