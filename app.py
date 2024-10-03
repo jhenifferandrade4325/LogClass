@@ -427,19 +427,52 @@ def get_produtos():
 
 @app.route("/criarBD", methods=["GET", "POST"])
 def criarBD():
-    if request.method == "GET":
-        return render_template("professor.html")
-    if request.method == "POST":
-      
-        nomeBD = request.form.get("nomeTurma")
-        criarDataBase = Professor()
-            
-        if criarDataBase.criaDatabse(nomeBD):
-            
-            return redirect ("/")
+    if "professor_logado" in session:
+        if request.method == "GET":
+            return render_template("professor.html")
+        if request.method == "POST":
+            nomeBD = request.form.get("nomeTurma")
+            criarDataBase = Professor()
 
-        else:
-            return "Erro ao criar o banco de dados"
-        
+            if criarDataBase.criaDatabse(nomeBD):
+                return redirect("/")
+            else:
+                return "Erro ao criar o banco de dados"
+    else:
+        return "Acesso negado", 403
+    
+@app.route("/eviar_mensagem", methods=["GET", "POST"])
+def enviar_mensagens():
+    if "professor_logado" in session:
+        if request.method == "GET":
+            return render_template("professor.html")
+        if request.method == "POST":
+            # Pega a mensagem do formulário
+            mensagem = request.form.get("mensagem")
+            bancoDados = request.form.get("nomeTurma")
+            # conectando o banco de dados
+            mydb = Conexao.conectarAluno(bancoDados)
+
+            mycursor = mydb.cursor()
+
+            mensagens = f"INSERT INTO tb_mensagens (mensagens) VALUES ({mensagem})"
+
+            #executando a variável a cima
+            mycursor.execute(mensagens)
+
+            envia_mensagem = mycursor.fetchall()
+            
+            lista_mensagem = []
+            
+            for mensagem in envia_mensagem:
+                lista_mensagem.append({
+                    "mensagem":mensagem[0]
+                })
+
+            return jsonify(lista_mensagem), 200
+            
+
+            
+
     
 app.run(debug=True)

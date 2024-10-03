@@ -68,6 +68,11 @@ class Professor:
                 USE {bancodedados};
             """,
             """
+                CREATE TABLE tb_mensagens (
+                    mensagens VARCHAR(100)
+                );
+            """,
+            """
                 CREATE TABLE tb_aluno (
                 cod_aluno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 nome VARCHAR(100) NOT NULL,
