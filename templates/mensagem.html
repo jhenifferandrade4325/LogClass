@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="/static/styles/media/layout-media.css">
+<link rel="stylesheet" href="/static/styles/login.css">
+<link rel="stylesheet" href="/static/styles/variaveis.css">
+{% endblock %}
+
+{% block conteudo %}
+
+<!-- Início da seção de mensagem do professor -->
+<div class="container-mensagem_professor">
+    <div class="mensagem">
+        <form action="/enviar_mensagem" method="POST">
+            <input list="browsers" name="turma" placeholder="Turma">
+            <datalist id="browsers">
+            {% for nomeBD in lista_nomes %}
+            <option value="{{nomeBD['database']}}">{{nomeBD['database']}}</option>
+            {% endfor %}
+            </datalist>
+            <input type="text" placeholder="Mensagem do Professor" name="mensagem">
+            <button type="submit">ENVIAR</button>
+        </form>        
+    </div>
+</div>
+
+<!-- Fim da seção de mensagem do professor -->
+
+{% endblock %}

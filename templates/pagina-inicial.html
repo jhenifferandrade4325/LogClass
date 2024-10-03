@@ -102,9 +102,9 @@
     <div class="container-mensagem_professor">
 
         <div class="mensagem">
-            {% for mensagem in mensagens %}
+            {% for mensagem in lista_mensagens %}
             <div class="mensagem">
-                <p>{{ mensagem }}</p>
+                <p>{{mensagem['mensagem']}}</p>
             </div>
             {% endfor %}
         </div>

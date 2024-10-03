@@ -21,7 +21,28 @@ app.secret_key = 'logclass'
 def pagina_inicial():
     # varificação se há algum usuário logado no sistema para a liberar a visualização da página
     if "usuario_logado" in session:
-        return render_template("pagina-inicial.html")
+        # conectando o banco de dados
+        mydb = Conexao.conectar()
+
+        mycursor = mydb.cursor()
+        # Consulta ao banco de dados para obter os produtos da categoria "ouro"
+        mensagens = (f"SELECT mensagens FROM databaseprofessor.tb_mensagens WHERE turma = '{session['usuario_logado']['turma']}'")
+
+        #executar
+        mycursor.execute(mensagens)
+        resultado = mycursor.fetchall()
+        
+        mydb.close()
+
+        lista_mensagens = []
+        
+        for mensagens_enviadas in resultado:
+            lista_mensagens.append({
+                "mensagem":mensagens_enviadas[0]
+            })
+
+        return render_template("pagina-inicial.html", lista_mensagens = lista_mensagens)
+
     elif "professor_logado" in session:
         return render_template("pagina-inicial.html")
     # se não houver nenhum usuário logado o mesmo será direcionado para a página de cadastro e login
@@ -441,24 +462,49 @@ def criarBD():
     else:
         return "Acesso negado", 403
     
-@app.route("/eviar_mensagem", methods=["GET", "POST"])
+@app.route("/enviar_mensagem", methods=["GET", "POST"])
 def enviar_mensagens():
     if "professor_logado" in session:
         if request.method == "GET":
-            return render_template("professor.html")
+            # conectando o banco de dados
+            mydb = Conexao.conectar()
+
+            mycursor = mydb.cursor()
+            # Consulta ao banco de dados para obter os produtos da categoria "ouro"
+            nomeDataBase = ("SELECT * FROM databaseprofessor.tb_database")
+
+            #executar
+            mycursor.execute(nomeDataBase)
+            resultado = mycursor.fetchall()
+            
+            mydb.close()
+
+            lista_nomes = []
+            
+            for nomeBD in resultado:
+                lista_nomes.append({
+                    "database":nomeBD[0]
+                })
+
+            return render_template("mensagem.html", lista_nomes = lista_nomes)
+
         if request.method == "POST":
             # Pega a mensagem do formulário
             mensagem = request.form.get("mensagem")
-            bancoDados = request.form.get("nomeTurma")
+            bancoDados = request.form.get("turma")
             # conectando o banco de dados
-            mydb = Conexao.conectarAluno(bancoDados)
+            mydb = Conexao.conectar()
 
             mycursor = mydb.cursor()
 
-            mensagens = f"INSERT INTO tb_mensagens (mensagens) VALUES ({mensagem})"
+            mensagens = f"INSERT INTO tb_mensagens (mensagens, turma) VALUES ('{mensagem}', '{bancoDados}')"
 
             #executando a variável a cima
             mycursor.execute(mensagens)
+
+            mydb.commit()
+
+            mydb.close()
 
             envia_mensagem = mycursor.fetchall()
             
@@ -472,7 +518,4 @@ def enviar_mensagens():
             return jsonify(lista_mensagem), 200
             
 
-            
-
-    
 app.run(debug=True)
