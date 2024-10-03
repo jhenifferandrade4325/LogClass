@@ -1,18 +1,20 @@
 /* Media para telas de smartphones */
 @media (max-width: 576px) {
 
-
     .container-cadastramento{
-        gap: 2rem;
-        margin-top: 3rem;
+        gap: 5.32rem;
     }
 
     .cadastramento-titulo span{
-        font-size: 1.5rem;
-        margin-left: 14.5rem;
+        font-size: 1.3rem;
+        margin-left: 15rem;
+
     }   
     
-    
+    .container-img {
+        width: 15rem;
+        height: 9rem;
+    }
 
     .form_container {
         width: 25rem;
@@ -53,18 +55,20 @@
 @media (min-width: 1200px) {
 
 
+    .container-cadastramento{
+        gap: 25rem;
+    }
+
     .cadastramento-titulo span{
-        font-size: 2.5rem;
+        font-size: 3rem;
     }   
     
     .container-img {
-        height: 10rem;
+        height: 15rem;
     }
 
     .form_container {
-        width: 45rem;
-        padding: 1.5rem;
-        
+        width: 35rem;
     }
 
 }
@@ -73,7 +77,7 @@
 @media (min-width: 1440px){
 
     .container-cadastramento{
-        gap: 40rem;
+        gap: 35rem;
     }
 
     .cadastramento-titulo span{
@@ -82,13 +86,11 @@
     
     .container-img {
         height: 22.5rem;
+        margin-right: 15rem;
     }
 
     .form_container {
         width: 40rem;
-        padding: 1.5rem;
-        
     }
 
 }
-

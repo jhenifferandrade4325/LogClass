@@ -1,6 +1,7 @@
 <!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
 {% block css %}
 <link rel="stylesheet" href="/static/styles/expedicao.css">
+<link rel="stylesheet" href="/static/styles/media/expedicao-media.css">
 <link rel="stylesheet" href="/static/styles/media/layout-media.css">
 <link rel="stylesheet" href="/static/styles/variaveis.css">
 
@@ -16,18 +17,25 @@
 <!-- Section 01. 
     Essa Section possui um espaço para imagem (cor solicitada pelo cliente) e nome da matéria. -->
     <section class="geral-cadastramento">
-        <section class="container-cadastramento">
+
+        <div class="container-cadastramento">
+
             <div class="cadastramento-titulo">
-                <span class="cadastramento1"> Cadastro de Expedição </span>
+                <span class="expedicao1"> Cadastro de </span>
+                <span class="expedicao2"> Expedição </span>
             </div>
+
             <div class="container-img"></div>
-        </section>
+
+        </div>
     
     <!-- Section 02. Formulário de Cadastro de Expedição
     Section que contém o formulário composto por inputs. Foi utilizado "text" para dados escritos e "date" para datas. Na descrição técnica, optamos por textarea
     porque facilita a inserção de textos extensos. -->
         <section class="formulario">
+
             <div class="form_container">
+
                 <form action="/estoque" method="POST">
 
                     <input type="text" placeholder="Código do Produto:" class="input-field" name="cod_prod">
@@ -47,7 +55,9 @@
                     <button class="submit-btn">Enviar</button>
     
                 </form>
+
             </div>
+
         </section>
 
     </section>

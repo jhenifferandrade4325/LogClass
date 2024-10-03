@@ -1,8 +1,68 @@
+/* Media de telas para smartphones */
+@media (max-width: 576px){
 
+
+    .titulo-destaque .part1{
+        font-size: 3.5rem;
+        margin-left: 0.5rem;
+    }
+
+    .titulo-destaque .part2{
+        font-size: 3.5rem;
+    }
+
+    .container-grid{
+        width: 8rem;
+        height: 10rem;
+    }
+
+    .container-cards{
+        height: 100vh;
+        width: 100vw;
+        gap: 1; 
+    }
+
+    .c-galeria{
+        grid-template-columns: repeat(2, 2fr);
+        width: 100%;
+        grid-auto-rows: 180px;
+        grid-column-gap: 2rem;
+        grid-row-gap: 4.5rem;
+        margin-bottom: 6rem;
+        margin-right: 12rem;
+        margin-left: 2rem;
+    }
+
+    .servicos{
+        /*LARGURA DO CARD.*/
+        width: 75%;
+        /*COR DE FUNDO DO CARD*/
+        height: 100%;
+    }
+
+    .servicos img{
+        width: 100%;
+        /*ALTURA AUTOMATICA DA IMAGEM*/
+        height: 11rem;
+    }
+
+    .mensagem h2{
+        margin-top: 22rem;
+        font-size:2rem;
+    }
+
+    .mensagem input{
+        width: 90%;
+        height: 12rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+      }
+
+
+}
 
 /* Media de telas para Tablets */
 @media (min-width: 768px) {
-
 
     .container-cadastramento{
         gap: 20rem;
@@ -15,11 +75,23 @@
     }   
 
     .c-galeria{
-        margin-right: 6rem;
+        margin-top: 4rem;
+        margin-right: 10rem;
+        grid-row-gap: 7rem;
+        grid-column-gap: 7rem;
+        margin-right: 14rem;
+        margin-left: 2rem;
+    }
+
+    .servicos{
+        /*LARGURA DO CARD.*/
+        width: 100%;
+        /*COR DE FUNDO DO CARD*/
+        height: 116.5%;
     }
 
     .servicos img{
-        height: 16rem;
+        height: 14rem;
     }
     
     .container-img {
@@ -27,53 +99,18 @@
         height: 20rem;
     }
 
-    .form_container {
-        width: 25rem;
-        margin-right: 2.5rem;
-        
+    .container-mensagem_professor{
+        margin-top: 1rem;
     }
 
-}
-
-/* Media de telas para Desktop */
-@media (max-width: 1200px) {
-
-    .container-cadastramento{
-        gap: 25rem;
+    .mensagem h2{
+        font-size: 4.5rem;
     }
 
-    .cadastramento-titulo span{
-        font-size: 3rem;
-    }   
-    
-    .container-img {
-        height: 15rem;
-    }
-
-    .form_container {
-        width: 35rem;
-    }
-
-}
-
-/* Media de telas para Desktop */
-@media (max-width: 1440px){
-
-    .container-cadastramento{
-        gap: 35rem;
-    }
-
-    .cadastramento-titulo span{
-        font-size: 3.5rem;
-    }   
-    
-    .container-img {
-        height: 22.5rem;
-        margin-right: 15rem;
-    }
-
-    .form_container {
+    .mensagem input{
         width: 40rem;
+        height: 18rem;
     }
 
 }
+

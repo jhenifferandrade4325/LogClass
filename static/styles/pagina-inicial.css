@@ -120,7 +120,6 @@ body, html {
   object-fit: cover;
   filter: brightness(80%);/*DEIXA A IMAGEM MAIS ESCURA, MAIS CINZA*/
   padding: 0;
-
   transition: transform 0.5s ease;
 }
 
