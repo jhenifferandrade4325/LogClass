@@ -29,3 +29,22 @@ class Cadastramento:
         mydb.close()
 
         return True
+    
+    def cadastramentoProf (self, cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento):
+        # conectando com o banco de dados
+        mydb = Conexao.conectar()
+
+        # criando um cursor para executar comandos SQL na conexão com o banco de dados
+        mycursor = mydb.cursor()
+
+        dados = f"INSERT INTO databaseProfessor.tb_cadastramento (cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento) VALUES ('{cod_prod}', '{descricao_tecnica}', '{modelo}', '{fabricante}', '{num_lote}', '{enderecamento}')"
+
+        #executando a variável a cima
+        mycursor.execute(dados)
+
+        # realiza o commit da transação, garantindo que as alterações feitas na base de dados sejam salvas
+        mydb.commit()
+
+        mydb.close()
+
+        return True

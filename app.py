@@ -191,7 +191,7 @@ def pagina_cadastramento():
             
             tbCadastramento = Cadastramento()
 
-            if tbCadastramento.cadastramento(codigo, descricao, modelo, fabricante, numeroLote, enderecamento, session['usuario_logado']['turma']):
+            if tbCadastramento.cadastramentoProf(codigo, descricao, modelo, fabricante, numeroLote, enderecamento):
                 return redirect("/")
             else:
                 return 'Erro ao realizar o processo de Cadastramento'
