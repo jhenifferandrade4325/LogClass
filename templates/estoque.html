@@ -22,9 +22,41 @@
             </div>
 
             <div class="container-img"></div>
+<<<<<<< HEAD
 
         </div>
     
+=======
+        </section>
+
+        <section class="container-tabela">
+            <h1>Produtos Cadastrados</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descrição</th>
+                        <th>Modelo</th>
+                        <th>Fabricante</th>
+                        <th>Número do Lote</th>
+                        <th>Endereçamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produto in lista_produtos %}
+                    <tr>
+                        <td>{{produto['codigo']}}</td>
+                        <td>{{produto['descricao']}}</td>
+                        <td>{{produto['modelo']}}</td>
+                        <td>{{produto['fabricante']}}</td>
+                        <td>{{produto['numero_lote']}}</td>
+                        <td>{{produto['enderecamento']}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+>>>>>>> 3343987aee7d3f13492ad4915e7e17b6a89548ef
     
     <!-- Section 02. Formulário do CONTROLE DE ESTOQUE
     Section que contém o formulário composto por inputs. Foi utilizado "number" para os dados numéricos, "text" para dados escritos e "date" para datas. Na descrição técnica, optamos por textarea
