@@ -1,14 +1,22 @@
 {% extends "layout.html" %}
 {% block css %}
+<link rel="stylesheet" href="/static/styles/mensagem.css">
+<link rel="stylesheet" href="/static/styles/media/mensagem-media.css">
 <link rel="stylesheet" href="/static/styles/media/layout-media.css">
-<link rel="stylesheet" href="/static/styles/login.css">
 <link rel="stylesheet" href="/static/styles/variaveis.css">
-{% endblock %}
+
 
 {% block conteudo %}
 
+
+{% endblock %}
+
+
 <!-- Início da seção de mensagem do professor -->
 <div class="container-mensagem_professor">
+    <div class="titulomensagem">
+        <h2>Envie uma mensagem para seus alunos</h2>
+    </div>
     <div class="mensagem">
         <form action="/enviar_mensagem" method="POST">
             <input list="browsers" name="turma" placeholder="Turma">

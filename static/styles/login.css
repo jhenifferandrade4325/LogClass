@@ -17,8 +17,7 @@ body {
     justify-content: center;
     align-content: center;
     gap: 4rem;
-    flex-wrap: wrap;
-    margin-bottom: 15rem;
+    flex-wrap: wrap
     
 }
 
@@ -258,7 +257,6 @@ button[type="submit"] {
 .voltar-btn {
     display: block;
     width: 97%;
-    padding: 2rem;
     margin-top: 0.5rem; 
     border: none;
     border-radius: 1.5rem;

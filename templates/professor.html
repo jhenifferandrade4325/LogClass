@@ -1,16 +1,20 @@
 {% extends "layout.html" %}
 {% block css %}
+<link rel="stylesheet" href="/static/styles/professor.css">
 <link rel="stylesheet" href="/static/styles/media/layout-media.css">
-<link rel="stylesheet" href="/static/styles/login.css">
 <link rel="stylesheet" href="/static/styles/variaveis.css">
 {% endblock %}
 
 {% block conteudo %}
 
-<form action="/criarBD" method="POST">
-    <input type="text" placeholder="Nome da Turma" name="nomeTurma">
-    <button type="submit">ENVIAR</button>
-</form>
+    <div class="titulomensagem">
+        <h2>Cadastre sua turma no Banco de Dados</h2>
+    </div>
+
+    <form action="/criarBD" method="POST">
+        <input type="text" placeholder="Nome da Turma" name="nomeTurma">
+        <button type="submit">ENVIAR</button>
+    </form>
 
 
 
