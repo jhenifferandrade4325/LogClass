@@ -582,6 +582,51 @@ def enviar_mensagens():
                 })
 
             return redirect("/")
-            
+
+
+@app.route("/professor/listarBD")
+def listar_bancos():
+    if "professor_logado" in session:
+        # Conectando ao banco de dados
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
+
+        # Buscando os nomes dos bancos de dados criados
+        mycursor.execute("SELECT nomeBase FROM databaseprofessor.tb_database")
+        bancos = mycursor.fetchall()
+
+        # Convertendo o resultado em uma lista de dicionários
+        lista_bancos = [{"nome": banco[0]} for banco in bancos]
+
+        # Fechando a conexão
+        mycursor.close()
+        mydb.close()
+
+        # Renderizando o template com a lista de bancos de dados
+        return render_template("listar_bancos.html", lista_bancos=lista_bancos)
+    else:
+        return "Acesso negado", 403
+
+@app.route("/professor/excluirBD/<nomeBD>", methods=["POST"])
+def excluir_banco(nomeBD):
+    if "professor_logado" in session:
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
+
+        # Comando para excluir o banco de dados
+        mycursor.execute(f"DROP DATABASE IF EXISTS {nomeBD}")
+
+        # Remover o banco de dados da tabela de referência
+        mycursor.execute("DELETE FROM databaseprofessor.tb_database WHERE nomeBase = %s", (nomeBD,))
+        
+        mydb.commit()
+        mycursor.close()
+        mydb.close()
+
+        return redirect("/professor/listarBD")
+    else:
+        return "Acesso negado", 403
+
+
 
 app.run(debug=True)
