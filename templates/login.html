@@ -1,8 +1,10 @@
 
-
 <link rel="stylesheet" href="/static/styles/media/">
 <link rel="stylesheet" href="/static/styles/login.css">
+<link rel="stylesheet" href="/static/styles/media/login-media.css">
 <link rel="stylesheet" href="/static/styles/variaveis.css">
+
+
 
 
 <div class="container-bem-vindo" id="intro-section">
@@ -20,7 +22,7 @@
     </div>
 </div>
 
-<div class="container-bem-vindo" id="register-section" style="display: none;">
+<div class="container-bem-vindo" id="register-section" >
     <div class="connect-box">
         <h2>CONECTE-SE</h2>
         <p>Selecione seu tipo de conta.</p>
@@ -28,7 +30,7 @@
         <button class="account-type" id="professor-register-btn">PROFESSOR</button>
     </div>
 
-    <div class="register-box" id="register-aluno" style="display: none;">
+    <div class="register-box" id="register-aluno">
         <h2>Cadastro do Aluno</h2>
         <form action="/login" method="POST">
             <input type="hidden" value="Aluno" name="tipo">
@@ -46,7 +48,7 @@
         </form>
     </div>
 
-    <div class="register-box" id="register-professor" style="display: none;">
+    <div class="register-box" id="register-professor">
         <h2>Cadastro do Professor</h2>
         <form action="/login" method="POST">
             <input type="hidden" value="Professor" name="tipo">
@@ -68,7 +70,7 @@
         <button class="account-type" id="professor-login-btn">PROFESSOR</button>
     </div>
     
-    <div class="login-box" id="login-aluno" style="display: none;">
+    <div class="login-box" id="login-aluno">
         <h2>Login do Aluno</h2>
         <form action="/login" method="POST">
             <input type="hidden" value="LoginAluno" name="tipo">
@@ -85,7 +87,7 @@
         </form>
     </div>
 
-    <div class="login-box" id="login-professor" style="display: none;">
+    <div class="login-box" id="login-professor">
         <h2>Login do Professor</h2>
         <form action="/login" method="POST">
             <input type="hidden" value="LoginProfessor" name="tipo">

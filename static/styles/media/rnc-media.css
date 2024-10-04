@@ -3,19 +3,23 @@
 
 
     .container-cadastramento{
-        gap: 8rem;
+        gap: 2rem;
+        margin-top: 3rem;
     }
 
     .cadastramento-titulo span{
-        font-size: 2rem;
-        margin-left: 10rem;
-
+        font-size: 2.5rem;
+        margin-left: 14.5rem;
+        margin-right: 5rem;
     }   
-    
-    .container-img {
+
+    .container-img{
+        margin-top: 6rem;
+        height: 20rem;
         width: 10rem;
-        height: 7rem;
     }
+    
+    
 
     .form_container {
         width: 25rem;
@@ -30,46 +34,48 @@
 
 
     .container-cadastramento{
-        gap: 15rem;
+        gap: 10rem;
     }
 
     .cadastramento-titulo span{
-        font-size: 2.5rem;
-        margin-left: 10rem;
+        font-size: 3.5rem;
+        margin-left: 3rem;
+        margin-right: 5rem;
 
     }   
     
     .container-img {
         width: 10rem;
         height: 20rem;
+        margin-right: 1rem;
     }
 
     .form_container {
         width: 30rem;
-        padding: 1.5rem;
-        margin-right: 2.5rem;
+        padding: 2rem;
         
     }
 
 }
 
-/* Media para tela do tamanho Desktop */
+/* Media para telas de Tablets */
 @media (min-width: 1200px) {
 
-    .container-cadastramento{
-        gap: 30rem;
-    }
 
     .cadastramento-titulo span{
-        font-size: 3rem;
+        font-size: 4.5rem;
+        margin-left: 3rem;
+        margin-right: 10rem;
     }   
     
     .container-img {
-        height: 20rem;
+        width: 13rem;
+        height: 23rem;
+        margin-right: 1rem;
     }
 
     .form_container {
-        width: 40rem;
+        width: 45rem;
         padding: 1.5rem;
         
     }
@@ -84,17 +90,20 @@
     }
 
     .cadastramento-titulo span{
-        font-size: 3.5rem;
+        font-size: 5rem;
+        margin-left: 3rem;
+        margin-right: 1rem;
     }   
     
     .container-img {
-        height: 22.5rem;
+        width: 15rem;
+        height: 25rem;
+        margin-right: 1.5rem;
     }
 
     .form_container {
-        width: 40rem;
+        width: 50rem;
         padding: 1.5rem;
-        
     }
 
 }
