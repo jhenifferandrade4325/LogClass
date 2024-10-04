@@ -253,7 +253,29 @@ def pagina_estoque():
 def pagina_expedicao():
     if "usuario_logado" in session:
         if request.method == "GET":
-            return render_template("expedicao.html")
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+            
+            produtos = ("SELECT * FROM databaseProfessor.tb_cadastramento")
+            
+            mycursor.execute(produtos)
+            
+            resultado = mycursor.fetchall()
+            
+            lista_produtos = []
+            
+            for produto in resultado:
+                lista_produtos.append({
+                    "codigo":produto[0],
+                    "descricao":produto[1],
+                    "modelo":produto[2],
+                    "fabricante":produto[3],
+                    "numero_lote":produto[4],
+                    "enderecamento":produto[5]
+                })
+            return render_template("expedicao.html", lista_produtos=lista_produtos)
         if request.method == "POST":
             cod_prod = request.form.get("cod_prod")
             data_saida = request.form.get("data_saida")
@@ -290,7 +312,29 @@ def pagina_expedicao():
 def pagina_picking():
     if "usuario_logado" in session:
         if request.method == "GET":
-            return render_template("picking.html")
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+            
+            produtos = ("SELECT * FROM databaseProfessor.tb_cadastramento")
+            
+            mycursor.execute(produtos)
+            
+            resultado = mycursor.fetchall()
+            
+            lista_produtos = []
+            
+            for produto in resultado:
+                lista_produtos.append({
+                    "codigo":produto[0],
+                    "descricao":produto[1],
+                    "modelo":produto[2],
+                    "fabricante":produto[3],
+                    "numero_lote":produto[4],
+                    "enderecamento":produto[5]
+                })
+            return render_template("picking.html", lista_produtos=lista_produtos)
         if request.method == "POST":
             numPicking = request.form.get("numPicking")
             enderecamento = request.form.get("enderecamento")
@@ -380,7 +424,30 @@ def pagina_pop():
 def pagina_rnc():
     if "usuario_logado" in session:
         if request.method == "GET":
-            return render_template("rnc.html")
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+            
+            produtos = ("SELECT * FROM databaseProfessor.tb_cadastramento")
+            
+            mycursor.execute(produtos)
+            
+            resultado = mycursor.fetchall()
+            
+            lista_produtos = []
+            
+            for produto in resultado:
+                lista_produtos.append({
+                    "codigo":produto[0],
+                    "descricao":produto[1],
+                    "modelo":produto[2],
+                    "fabricante":produto[3],
+                    "numero_lote":produto[4],
+                    "enderecamento":produto[5]
+                })
+
+            return render_template("rnc.html", lista_produtos = lista_produtos)
         if request.method == "POST":
             data = request.form.get("date")
             numRNC = request.form.get("numRNC")
@@ -422,11 +489,11 @@ def pagina_rnc():
 @app.route("/api/get/produtos")
 def get_produtos():
     #conectando com o banco de dados
-    mydb = Conexao.conectarAluno(session['usuario_logado']['turma'])
+    mydb = Conexao.conectar()
     
     mycursor = mydb.cursor()
     
-    produtos = ("SELECT * FROM tb_cadastramento")
+    produtos = ("SELECT * FROM databaseProfessor.tb_cadastramento")
     
     mycursor.execute(produtos)
     
@@ -443,7 +510,6 @@ def get_produtos():
             "numero_lote":produto[4],
             "enderecamento":produto[5]
         })
-        
     return jsonify(lista_produtos), 200
 
 @app.route("/criarBD", methods=["GET", "POST"])
@@ -515,7 +581,7 @@ def enviar_mensagens():
                     "mensagem":mensagem[0]
                 })
 
-            return jsonify(lista_mensagem), 200
+            return redirect("/")
             
 
 app.run(debug=True)
