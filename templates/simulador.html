@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/styles/media/layout-media.css">
+<link rel="stylesheet" href="/static/styles/login.css">
+<link rel="stylesheet" href="/static/styles/variaveis.css">
+{% endblock %}
+
+{% block conteudo %}
+    <section class="nota-fiscal">
+        <h1>Informações da Encomenda</h1>
+    
+    
+    <div class="empresa">
+        <h2>Empresa: {{ pedido['fabricante'] }} </h2>
+        <p>Código do Pedido: {{ pedido['codigo'] }}</p>
+    </div>
+
+    <div class="detalhes">
+        <h3>Detalhes do Pedido</h3>
+        <ul>
+            <li>Produto: {{ pedido['descricao'] }} </li>
+            <li>Quantidade a Separar: {{ pedido['qtde'] }} </li>
+            <li>Endereçamento: {{ pedido['enderacamento'] }} </li>
+            <li>Número do Lote: {{ pedido['numero_lote'] }} </li>
+            <li>Data: {{ pedido['data'] }} </li>
+            <li>Número de Picking: {{ pedido['numPicking'] }} </li>
+            <li>Total de Produtos Separados: {{ pedido['totalProd'] }} </li>
+        </ul>
+    </div>
+</section>
+
+{% endblock %}
