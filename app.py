@@ -10,6 +10,7 @@ from expedicao import Expedicao
 from picking import Picking
 from pop import Pop
 from rnc import Rnc
+from simulador import Simulador
 
 #app é o servidor
 #criei o objeto app usando a classe Flask
@@ -379,37 +380,38 @@ def pagina_picking():
         return redirect("/login")
     
 
-    @app.route('/simulador')
-    def simulador():
-        if "usuario_logado" in session or "professor_logado" in session:
-            mybd = Conexao.conectar()
-            mycursor = mydb.cursor()
+@app.route('/simulador')
+def simulador():
+    if "usuario_logado" in session or "professor_logado" in session:
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
 
-            mycursor.execute("SELECT * FROM databaseProfessor.tb_cadastramento")
-            pedidos = mycursor.fetchall()
+        mycursor.execute("SELECT * FROM databaseProfessor.tb_cadastramento")
+        pedidos = mycursor.fetchall()
 
-            pedido_aleatorio = random.choice(pedidos) if pedidos else {}
+        pedido_aleatorio = random.choice(pedidos) if pedidos else {}
 
-            if pedido_aleatorio:
-                pedido_info = {
-                    "codigo": pedido_aleatorio[0],
-                    "descricao": pedido_aleatorio[1],
-                    "modelo": pedido_aleatorio[2],
-                    "fabricante": pedido_aleatorio[3],
-                    "numero_lote": pedido_aleatorio[4],
-                    "enderecamento": pedido_aleatorio[5],
-                    "qtde": pedido_aleatorio[6],
-                    "data": pedido_aleatorio[7]
-                }
-            else:
-                pedido_info = {}
-
-            mycursor.close()
-            mydb.close()
-
-            return render_template("simulador.html", pedido=pedido_info)
+        if pedido_aleatorio:
+            pedido_info = {
+                "codigo": pedido_aleatorio[0],
+                "descricao": pedido_aleatorio[1],
+                "modelo": pedido_aleatorio[2],
+                "fabricante": pedido_aleatorio[3],
+                "numero_lote": pedido_aleatorio[4],
+                "enderecamento": pedido_aleatorio[5],
+                "qtde": pedido_aleatorio[6],
+                "data": pedido_aleatorio[7]
+            }
         else:
-            return redirect("/login")
+            pedido_info = {}
+
+        mycursor.close()
+        mydb.close()
+
+
+        return render_template("simulador.html", pedido=pedido_info)
+    else:
+        return redirect("/login")
        
     
 # roteamento da página dos processos de registro pop
