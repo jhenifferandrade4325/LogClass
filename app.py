@@ -386,21 +386,23 @@ def simulador():
         mydb = Conexao.conectar()
         mycursor = mydb.cursor()
 
-        mycursor.execute("SELECT * FROM databaseProfessor.tb_cadastramento")
+        mycursor.execute("SELECT * FROM turma1.tb_picking")
         pedidos = mycursor.fetchall()
 
         pedido_aleatorio = random.choice(pedidos) if pedidos else {}
 
         if pedido_aleatorio:
             pedido_info = {
-                "codigo": pedido_aleatorio[0],
-                "descricao": pedido_aleatorio[1],
-                "modelo": pedido_aleatorio[2],
-                "fabricante": pedido_aleatorio[3],
-                "numero_lote": pedido_aleatorio[4],
-                "enderecamento": pedido_aleatorio[5],
-                "qtde": pedido_aleatorio[6],
-                "data": pedido_aleatorio[7]
+                "num_picking": pedido_aleatorio[0],
+                "enderecamento": pedido_aleatorio[1],
+                "desc_tecnica": pedido_aleatorio[2],
+                "modelo": pedido_aleatorio[3],
+                "fabricante": pedido_aleatorio[4],
+                "quantidade": pedido_aleatorio[5],
+                "data": pedido_aleatorio[6],
+                "lote": pedido_aleatorio[7],
+                "total_produtos": pedido_aleatorio[8],
+                "cod_prod": pedido_aleatorio[9]
             }
         else:
             pedido_info = {}
