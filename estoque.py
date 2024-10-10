@@ -35,3 +35,4 @@ class Estoque:
 
         # retorna True indicando que a operação foi realizada com sucesso
         return True
+    

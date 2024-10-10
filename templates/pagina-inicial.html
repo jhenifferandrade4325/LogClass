@@ -97,11 +97,11 @@
 
     <!-- Início da seção de mensagem do professor -->
      
-     <div class="titulomensagem-prof">
+    {% if "usuario_logado" in session %}
+    <div class="titulomensagem-prof">
         <h2>Mensagem do Professor</h2>
      </div>
 
-    {% if "usuario_logado" in session %}
     <div class="container-mensagem_professor">
 
         

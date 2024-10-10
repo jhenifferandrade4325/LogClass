@@ -45,6 +45,7 @@ class Professor:
             self.logado = True
             self.email_prof = resultado[2]
             self.senha_espec = resultado[3]
+            self.cod_aluno = resultado[0]
             return True
         else:
             self.logado = False

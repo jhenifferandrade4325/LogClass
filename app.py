@@ -144,7 +144,9 @@ def pagina_cadastro():
                 # armazena informações do usuário na sessão (session), que é um armazenamento temporário de dados durante a navegação do usuário
                 session['professor_logado'] = {'email':loginProfessor.email_prof,
                                             'nome':loginProfessor.nome_prof,
-                                            'senha': loginProfessor.senha_espec}
+                                            'turma':"databaseProfessor",
+                                            'senha': loginProfessor.senha_espec,
+                                            'cod_aluno': loginProfessor.cod_aluno}
                 return redirect('/')
             else:
                 session.clear()
@@ -203,14 +205,17 @@ def pagina_cadastramento():
 # RF008
 @app.route("/estoque",  methods=["GET", "POST"])
 def pagina_estoque():
-    if "usuario_logado" in session:
+    if "usuario_logado" in session or "professor_logado" in session:
         if request.method == "GET":
             #conectando com o banco de dados
             mydb = Conexao.conectar()
             
             mycursor = mydb.cursor()
-            
-            turma = session['usuario_logado']['turma']
+
+            if "usuario_logado" in session:           
+                turma = session['usuario_logado']['turma']
+            else:
+                turma = session['professor_logado']['turma']
 
             produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
             
@@ -245,67 +250,36 @@ def pagina_estoque():
 
             tbEstoque = Estoque()
 
-            if tbEstoque.estoque(cod_prod, num_lote, loc_, descricao, dt_enter, qt_item, dt_end, qt_saida, _saldo, funcionario, session['usuario_logado']['cod_aluno'] , session['usuario_logado']['turma']):
+            if "usuario_logado" in session:           
+                turma = session['usuario_logado']['turma']
+                cod_aluno = session['usuario_logado']['cod_aluno']
+            else:
+                turma = session['professor_logado']['turma']
+                cod_aluno = session['professor_logado']['cod_aluno']
+
+            if tbEstoque.estoque(cod_prod, num_lote, loc_, descricao, dt_enter, qt_item, dt_end, qt_saida, _saldo, funcionario, cod_aluno, turma):
                 return redirect("/")
             else:
                 return "Erro ao realizar o processo de Controle de Estoque"
-    elif "professor_logado" in session:
-        if request.method == "GET":
-            #conectando com o banco de dados
-            mydb = Conexao.conectar()
-            
-            mycursor = mydb.cursor()
-            
-            produtos = (f"SELECT * FROM databaseProfessor.tb_cadastramento")
-            
-            mycursor.execute(produtos)
-            
-            resultado = mycursor.fetchall()
-            
-            lista_produtos = []
-            
-            for produto in resultado:
-                lista_produtos.append({
-                    "codigo":produto[0],
-                    "descricao":produto[1],
-                    "modelo":produto[2],
-                    "fabricante":produto[3],
-                    "numero_lote":produto[4],
-                    "enderecamento":produto[5]
-                })
-            return render_template("estoque.html", lista_produtos=lista_produtos)
-        if request.method == "POST":
-            cod_prod = request.form.get("cod_prod")
-            num_lote = request.form.get("num_lt")
-            loc_ = request.form.get("loc_")
-            descricao = request.form.get("descricao")
-            dt_enter = request.form.get("dt_enter")
-            qt_item = request.form.get("qt_item")
-            dt_end = request.form.get("dt_end")
-            qt_saida = request.form.get("qt_saida")
-            _saldo = request.form.get("_saldo")
-            funcionario = request.form.get("funcionario")
-
-            tbEstoque = Estoque()
-
-            if tbEstoque.estoque(cod_prod, num_lote, loc_, descricao, dt_enter, qt_item, dt_end, qt_saida, _saldo, funcionario, session['usuario_logado']['cod_aluno'] , session['usuario_logado']['turma']):
-                return redirect("/")
-            else:
-                return "Erro ao realizar o processo de Controle de Estoque"
-    else:
-        return redirect("/login")  
+        else:
+            return redirect("/login")
 # roteamento da página dos processos de registro expedição
 # RF010
 @app.route("/expedicao", methods=["GET", "POST"])
 def pagina_expedicao():
-    if "usuario_logado" in session:
+    if "usuario_logado" in session or "professor_logado" in session:
         if request.method == "GET":
             #conectando com o banco de dados
             mydb = Conexao.conectar()
             
             mycursor = mydb.cursor()
             
-            turma = session['usuario_logado']['turma']
+            if "usuario_logado" in session:           
+                turma = session['usuario_logado']['turma']
+                cod_aluno = session['usuario_logado']['cod_aluno']
+            else:
+                turma = session['professor_logado']['turma']
+                cod_aluno = session['professor_logado']['cod_aluno']
 
             produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
             
@@ -333,63 +307,37 @@ def pagina_expedicao():
             quantidade = request.form.get("quantidade")
             descricao_tec = request.form.get("descricao_tec")
             tbExpedicao = Expedicao()
-            if tbExpedicao.expedicao(cod_prod, descricao_tec, num_lote, quantidade, data_saida, responsavel, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
-                return redirect ('/')
+
+            if "usuario_logado" in session:           
+                turma = session['usuario_logado']['turma']
+                cod_aluno = session['usuario_logado']['cod_aluno']
             else:
-                return "Erro ao realizar o processo de cadastro de expedição."
-    elif "professor_logado" in session:
-        if request.method == "GET":
-         if request.method == "GET":
-            #conectando com o banco de dados
-            mydb = Conexao.conectar()
-            
-            mycursor = mydb.cursor()
-            
-            produtos = (f"SELECT * FROM databaseProfessor.tb_cadastramento")
-            
-            mycursor.execute(produtos)
-            
-            resultado = mycursor.fetchall()
-            
-            lista_produtos = []
-            
-            for produto in resultado:
-                lista_produtos.append({
-                    "codigo":produto[0],
-                    "descricao":produto[1],
-                    "modelo":produto[2],
-                    "fabricante":produto[3],
-                    "numero_lote":produto[4],
-                    "enderecamento":produto[5]
-                })
-            return render_template("expedicao.html", lista_produtos=lista_produtos)
-        if request.method == "POST":
-            cod_prod = request.form.get("cod_prod")
-            data_saida = request.form.get("data_saida")
-            num_lote = request.form.get("num_lote")
-            responsavel = request.form.get("responsavel")
-            quantidade = request.form.get("quantidade")
-            descricao_tec = request.form.get("descricao_tec")
-            tbExpedicao = Expedicao()
-            if tbExpedicao.expedicao(cod_prod, descricao_tec, num_lote, quantidade, data_saida, responsavel, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
+                turma = session['professor_logado']['turma']
+                cod_aluno = session['professor_logado']['cod_aluno']
+
+            if tbExpedicao.expedicao(cod_prod, descricao_tec, num_lote, quantidade, data_saida, responsavel, cod_aluno, turma):
                 return redirect ('/')
             else:
                 return "Erro ao realizar o processo de cadastro de expedição."
     else:
         return redirect("/login")
-
 # roteamento da página dos processos de registro picking
 # RF007
 @app.route("/picking", methods=["GET", "POST"])
 def pagina_picking():
-    if "usuario_logado" in session:
+    if "usuario_logado" in session or "professor_logado" in session:
         if request.method == "GET":
             #conectando com o banco de dados
             mydb = Conexao.conectar()
             
             mycursor = mydb.cursor()
 
-            turma = session['usuario_logado']['turma']
+            if "usuario_logado" in session:           
+                turma = session['usuario_logado']['turma']
+                cod_aluno = session['usuario_logado']['cod_aluno']
+            else:
+                turma = session['professor_logado']['turma']
+                cod_aluno = session['professor_logado']['cod_aluno']
 
             produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
             
@@ -423,53 +371,18 @@ def pagina_picking():
 
             tbpicking = Picking()
 
-            if tbpicking.picking(numPicking, enderecamento, descTec, modeloPick, fabri, qtde, data, lote, totalProd, codProd, session['usuario_logado']['turma']):
+            if "usuario_logado" in session:           
+                turma = session['usuario_logado']['turma']
+                cod_aluno = session['usuario_logado']['cod_aluno']
+            else:
+                turma = session['professor_logado']['turma']
+                cod_aluno = session['professor_logado']['cod_aluno']
+
+            if tbpicking.picking(numPicking, enderecamento, descTec, modeloPick, fabri, qtde, data, lote, totalProd, codProd, turma):
                 return redirect("/")
             else:
                 return 'Erro ao realizar o processo de Picking'
-    elif "professor_logado" in session:
-        if request.method == "GET":
-            #conectando com o banco de dados
-            mydb = Conexao.conectar()
-            
-            mycursor = mydb.cursor()
-
-            produtos = (f"SELECT * FROM databaseProfessor.tb_cadastramento")
-            
-            mycursor.execute(produtos)
-            
-            resultado = mycursor.fetchall()
-            
-            lista_produtos = []
-            
-            for produto in resultado:
-                lista_produtos.append({
-                    "codigo":produto[0],
-                    "descricao":produto[1],
-                    "modelo":produto[2],
-                    "fabricante":produto[3],
-                    "numero_lote":produto[4],
-                    "enderecamento":produto[5]
-                })
-            return render_template("picking.html", lista_produtos=lista_produtos)
-        if request.method == "POST":
-            numPicking = request.form.get("numPicking")
-            enderecamento = request.form.get("enderecamento")
-            descTec = request.form.get("descTec")
-            modeloPick = request.form.get("modeloPick")
-            fabri = request.form.get("fabri")
-            qtde = request.form.get("qtde")
-            data = request.form.get("data")
-            lote = request.form.get("lote")
-            totalProd = request.form.get("totalProd")
-            codProd = request.form.get("codProd")
-
-            tbpicking = Picking()
-
-            if tbpicking.picking(numPicking, enderecamento, descTec, modeloPick, fabri, qtde, data, lote, totalProd, codProd, session['usuario_logado']['turma']):
-                return redirect("/")
-            else:
-                return 'Erro ao realizar o processo de Picking'
+    
     else:
         return redirect("/login")
     
@@ -477,7 +390,7 @@ def pagina_picking():
 # RF009
 @app.route("/pop", methods=["GET", "POST"])
 def pagina_pop():
-    if "usuario_logado" in session:
+    if "usuario_logado" in session or "professor_logado" in session:
         if request.method == "GET":
             return render_template("pop.html")
         if request.method == "POST":
@@ -490,24 +403,15 @@ def pagina_pop():
             resultados = request.form.get("resultados")
             acoes = request.form.get("acoes")
             tbPop = Pop()
-            if tbPop.pop(dt_end1, task_name, resp_, material, passos, manuseio, resultados, acoes, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
-                return redirect ('/')
+
+            if "usuario_logado" in session:           
+                turma = session['usuario_logado']['turma']
+                cod_aluno = session['usuario_logado']['cod_aluno']
             else:
-                return 'Erro ao realizar o processo de POP'
-    elif "professor_logado" in session:
-        if request.method == "GET":
-            return render_template("pop.html")
-        if request.method == "POST":
-            dt_end1 = request.form.get("dt_end1")
-            task_name = request.form.get("task_name")
-            resp_ = request.form.get("resp_")
-            material = request.form.get("material")
-            passos = request.form.get("passos")
-            manuseio = request.form.get("manuseio")
-            resultados = request.form.get("resultados")
-            acoes = request.form.get("acoes")
-            tbPop = Pop()
-            if tbPop.pop(dt_end1, task_name, resp_, material, passos, manuseio, resultados, acoes, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
+                turma = session['professor_logado']['turma']
+                cod_aluno = session['professor_logado']['cod_aluno']
+
+            if tbPop.pop(dt_end1, task_name, resp_, material, passos, manuseio, resultados, acoes, cod_aluno, turma):
                 return redirect ('/')
             else:
                 return 'Erro ao realizar o processo de POP'
@@ -518,14 +422,19 @@ def pagina_pop():
 # RF006
 @app.route("/rnc", methods=["GET", "POST"])
 def pagina_rnc():
-    if "usuario_logado" in session:
+    if  "usuario_logado" in session or "professor_logado" in session:
         if request.method == "GET":
             #conectando com o banco de dados
             mydb = Conexao.conectar()
             
             mycursor = mydb.cursor()
             
-            turma = session['usuario_logado']['turma']
+            if "usuario_logado" in session:           
+                turma = session['usuario_logado']['turma']
+                cod_aluno = session['usuario_logado']['cod_aluno']
+            else:
+                turma = session['professor_logado']['turma']
+                cod_aluno = session['professor_logado']['cod_aluno']
 
             produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
             
@@ -558,52 +467,18 @@ def pagina_rnc():
 
             tbrnc = Rnc()
 
-            if tbrnc.rnc(descRNC, data, numRNC, local, qtdentregue, qtdrepro, respInsp, codProd, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
+            if "usuario_logado" in session:           
+                turma = session['usuario_logado']['turma']
+                cod_aluno = session['usuario_logado']['cod_aluno']
+            else:
+                turma = session['professor_logado']['turma']
+                cod_aluno = session['professor_logado']['cod_aluno']
+
+            if tbrnc.rnc(descRNC, data, numRNC, local, qtdentregue, qtdrepro, respInsp, codProd, cod_aluno, turma):
                 return redirect("/")
             else:
                 return 'Erro ao realizar o processo de RNC'
-    elif "professor_logado" in session:
-        if request.method == "GET":
-            #conectando com o banco de dados
-            mydb = Conexao.conectar()
-            
-            mycursor = mydb.cursor()
-
-            produtos = (f"SELECT * FROM databaseProfessor.tb_cadastramento")
-            
-            mycursor.execute(produtos)
-            
-            resultado = mycursor.fetchall()
-            
-            lista_produtos = []
-            
-            for produto in resultado:
-                lista_produtos.append({
-                    "codigo":produto[0],
-                    "descricao":produto[1],
-                    "modelo":produto[2],
-                    "fabricante":produto[3],
-                    "numero_lote":produto[4],
-                    "enderecamento":produto[5]
-                })
-
-            return render_template("rnc.html", lista_produtos = lista_produtos)
-        if request.method == "POST":
-            data = request.form.get("date")
-            numRNC = request.form.get("numRNC")
-            local = request.form.get("local")
-            qtdentregue = request.form.get("qtdentregue")
-            qtdrepro = request.form.get("qtdrepro")
-            descRNC = request.form.get("descRNC")
-            respInsp = request.form.get("respInsp")
-            codProd = request.form.get("codProd")
-
-            tbrnc = Rnc()
-
-            if tbrnc.rnc(descRNC, data, numRNC, local, qtdentregue, qtdrepro, respInsp, codProd, session['usuario_logado']['cod_aluno'], session['usuario_logado']['turma']):
-                return redirect("/")
-            else:
-                return 'Erro ao realizar o processo de RNC'
+    
     else:
         return redirect("/login")
     
