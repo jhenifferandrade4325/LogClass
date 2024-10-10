@@ -1,4 +1,5 @@
 # importando módulos e classes necessários para a aplicação
+import random
 from flask import Flask, render_template, request, redirect, session, jsonify
 from conexao import Conexao
 from aluno import Aluno
