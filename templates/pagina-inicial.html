@@ -5,10 +5,14 @@
 <link rel="stylesheet" href="/static/styles/media/pagina-inicial-media.css">
 <link rel="stylesheet" href="/static/styles/media/layout-media.css">
 <link rel="stylesheet" href="/static/styles/variaveis.css">
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="/static/js/pagina-inicial.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unlock&display=swap" rel="stylesheet">
+    
+    
 {% endblock %}
 
 {% extends "layout.html" %}
@@ -22,9 +26,15 @@
 
         <!-- Título da página -->
         <div class="titulo-destaque">
-            <span class="part1">LOG</span>
+            <span class="part1">L</span>
+            <div class="container">
+                <div class="shape"></div>
+            </div>
+            <span class="partG">G</span>
             <span class="part2">CLASS</span>
         </div>
+
+        
 
         <div class="container-grid"></div>
     
@@ -36,7 +46,7 @@
         <div class="c-galeria">
 
             <!-- Card: Processo de cadastramento -->
-            <div class="servicos">
+            <div class="servicos" id="servicos">
                 <figure><img src="/static/img/caixas.png" alt="Processo de cadastramento"></figure>
                 <a href="/cadastramento">
                 <div class="descricao">
@@ -45,7 +55,8 @@
                 </a>
             </div>
 
-                <div class="servicos">
+            {% if "usuario_logado" in session %}
+                <div class="servicos" id="servicos" >
                     <figure><img src="/static/img/caixas.png" alt="Não conformidade"></figure>
                     <a href="/rnc">
                     <div class="descricao">
@@ -55,7 +66,7 @@
                 </div>
 
 
-                <div class="servicos">
+                <div class="servicos" id="servicos">
                     <figure><img src="/static/img/caixas.png" alt="Picking"></figure>
                     <a href="/picking">
                     <div class="descricao">
@@ -65,7 +76,7 @@
                 </div>
                 
         
-                <div class="servicos">
+                <div class="servicos" id="servicos">
                     <figure><img src="/static/img/caixas.png"></figure>
                     <a href="/estoque">
                     <div class="descricao">
@@ -74,7 +85,7 @@
                     </a>
                 </div>
 
-                <div class="servicos">
+                <div class="servicos" id="servicos">
                     <figure><img src="/static/img/caixas.png" alt="pop"></figure>
                     <a href="/pop">
                     <div class="descricao">
@@ -83,7 +94,7 @@
                     </a>
                 </div>
 
-                <div class="servicos">
+                <div class="servicos" id="servicos">
                     <figure><img src="/static/img/caixas.png" alt="expedicao"></figure>
                     <a href="/expedicao">
                     <div class="descricao">
@@ -119,6 +130,7 @@
     <!-- Fim da seção de mensagem do professor -->
 
 </section>
+
 <!-- Fim da seção geral -->
 
 {% endblock %}
