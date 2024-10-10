@@ -251,7 +251,29 @@ def pagina_estoque():
                 return "Erro ao realizar o processo de Controle de Estoque"
     elif "professor_logado" in session:
         if request.method == "GET":
-            return render_template("estoque.html")
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+            
+            produtos = (f"SELECT * FROM databaseProfessor.tb_cadastramento")
+            
+            mycursor.execute(produtos)
+            
+            resultado = mycursor.fetchall()
+            
+            lista_produtos = []
+            
+            for produto in resultado:
+                lista_produtos.append({
+                    "codigo":produto[0],
+                    "descricao":produto[1],
+                    "modelo":produto[2],
+                    "fabricante":produto[3],
+                    "numero_lote":produto[4],
+                    "enderecamento":produto[5]
+                })
+            return render_template("estoque.html", lista_produtos=lista_produtos)
         if request.method == "POST":
             cod_prod = request.form.get("cod_prod")
             num_lote = request.form.get("num_lt")
@@ -317,7 +339,30 @@ def pagina_expedicao():
                 return "Erro ao realizar o processo de cadastro de expedição."
     elif "professor_logado" in session:
         if request.method == "GET":
-            return render_template("expedicao.html")
+         if request.method == "GET":
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+            
+            produtos = (f"SELECT * FROM databaseProfessor.tb_cadastramento")
+            
+            mycursor.execute(produtos)
+            
+            resultado = mycursor.fetchall()
+            
+            lista_produtos = []
+            
+            for produto in resultado:
+                lista_produtos.append({
+                    "codigo":produto[0],
+                    "descricao":produto[1],
+                    "modelo":produto[2],
+                    "fabricante":produto[3],
+                    "numero_lote":produto[4],
+                    "enderecamento":produto[5]
+                })
+            return render_template("expedicao.html", lista_produtos=lista_produtos)
         if request.method == "POST":
             cod_prod = request.form.get("cod_prod")
             data_saida = request.form.get("data_saida")
@@ -384,7 +429,29 @@ def pagina_picking():
                 return 'Erro ao realizar o processo de Picking'
     elif "professor_logado" in session:
         if request.method == "GET":
-            return render_template("picking.html")
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+
+            produtos = (f"SELECT * FROM databaseProfessor.tb_cadastramento")
+            
+            mycursor.execute(produtos)
+            
+            resultado = mycursor.fetchall()
+            
+            lista_produtos = []
+            
+            for produto in resultado:
+                lista_produtos.append({
+                    "codigo":produto[0],
+                    "descricao":produto[1],
+                    "modelo":produto[2],
+                    "fabricante":produto[3],
+                    "numero_lote":produto[4],
+                    "enderecamento":produto[5]
+                })
+            return render_template("picking.html", lista_produtos=lista_produtos)
         if request.method == "POST":
             numPicking = request.form.get("numPicking")
             enderecamento = request.form.get("enderecamento")
@@ -497,7 +564,30 @@ def pagina_rnc():
                 return 'Erro ao realizar o processo de RNC'
     elif "professor_logado" in session:
         if request.method == "GET":
-            return render_template("rnc.html")
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+
+            produtos = (f"SELECT * FROM databaseProfessor.tb_cadastramento")
+            
+            mycursor.execute(produtos)
+            
+            resultado = mycursor.fetchall()
+            
+            lista_produtos = []
+            
+            for produto in resultado:
+                lista_produtos.append({
+                    "codigo":produto[0],
+                    "descricao":produto[1],
+                    "modelo":produto[2],
+                    "fabricante":produto[3],
+                    "numero_lote":produto[4],
+                    "enderecamento":produto[5]
+                })
+
+            return render_template("rnc.html", lista_produtos = lista_produtos)
         if request.method == "POST":
             data = request.form.get("date")
             numRNC = request.form.get("numRNC")
