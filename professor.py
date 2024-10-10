@@ -187,6 +187,9 @@ class Professor:
             """,
             """
                 ALTER TABLE tb_rnc ADD CONSTRAINT FK_tb_rnc_1 FOREIGN KEY (cod_aluno) REFERENCES tb_aluno (cod_aluno);
+            """,
+            f"""
+                INSERT INTO {bancodedados}.tb_cadastramento SELECT * FROM databaseProfessor.tb_cadastramento;
             """
         ]
             

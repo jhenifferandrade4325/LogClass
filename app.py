@@ -205,7 +205,32 @@ def pagina_cadastramento():
 def pagina_estoque():
     if "usuario_logado" in session:
         if request.method == "GET":
-            return render_template("estoque.html")
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+            
+            turma = session['usuario_logado']['turma']
+
+            produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
+            
+            mycursor.execute(produtos)
+            
+            resultado = mycursor.fetchall()
+            
+            lista_produtos = []
+            
+            for produto in resultado:
+                lista_produtos.append({
+                    "codigo":produto[0],
+                    "descricao":produto[1],
+                    "modelo":produto[2],
+                    "fabricante":produto[3],
+                    "numero_lote":produto[4],
+                    "enderecamento":produto[5]
+                })
+            return render_template("estoque.html", lista_produtos=lista_produtos)
+        
         if request.method == "POST":
             cod_prod = request.form.get("cod_prod")
             num_lote = request.form.get("num_lt")
@@ -258,7 +283,9 @@ def pagina_expedicao():
             
             mycursor = mydb.cursor()
             
-            produtos = ("SELECT * FROM databaseProfessor.tb_cadastramento")
+            turma = session['usuario_logado']['turma']
+
+            produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
             
             mycursor.execute(produtos)
             
@@ -316,8 +343,10 @@ def pagina_picking():
             mydb = Conexao.conectar()
             
             mycursor = mydb.cursor()
-            
-            produtos = ("SELECT * FROM databaseProfessor.tb_cadastramento")
+
+            turma = session['usuario_logado']['turma']
+
+            produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
             
             mycursor.execute(produtos)
             
@@ -429,7 +458,9 @@ def pagina_rnc():
             
             mycursor = mydb.cursor()
             
-            produtos = ("SELECT * FROM databaseProfessor.tb_cadastramento")
+            turma = session['usuario_logado']['turma']
+
+            produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
             
             mycursor.execute(produtos)
             
@@ -486,32 +517,34 @@ def pagina_rnc():
     else:
         return redirect("/login")
     
-@app.route("/api/get/produtos")
-def get_produtos():
-    #conectando com o banco de dados
-    mydb = Conexao.conectar()
+# @app.route("/api/get/produtos")
+# def get_produtos():
+#     #conectando com o banco de dados
+#     mydb = Conexao.conectar()
     
-    mycursor = mydb.cursor()
+#     mycursor = mydb.cursor()
     
-    produtos = ("SELECT * FROM databaseProfessor.tb_cadastramento")
+#     produtos = ("SELECT * FROM databaseProfessor.tb_cadastramento")
     
-    mycursor.execute(produtos)
+#     mycursor.execute(produtos)
     
-    resultado = mycursor.fetchall()
+#     resultado = mycursor.fetchall()
     
-    lista_produtos = []
+#     lista_produtos = []
     
-    for produto in resultado:
-        lista_produtos.append({
-            "codigo":produto[0],
-            "descricao":produto[1],
-            "modelo":produto[2],
-            "fabricante":produto[3],
-            "numero_lote":produto[4],
-            "enderecamento":produto[5]
-        })
-    return jsonify(lista_produtos), 200
+#     for produto in resultado:
+#         lista_produtos.append({
+#             "codigo":produto[0],
+#             "descricao":produto[1],
+#             "modelo":produto[2],
+#             "fabricante":produto[3],
+#             "numero_lote":produto[4],
+#             "enderecamento":produto[5]
+#         })
+#     return jsonify(lista_produtos), 200
 
+# Roteamento da página que cria os bancos de dados para cada turma 
+# RF011
 @app.route("/criarBD", methods=["GET", "POST"])
 def criarBD():
     if "professor_logado" in session:
@@ -527,7 +560,8 @@ def criarBD():
                 return "Erro ao criar o banco de dados"
     else:
         return "Acesso negado", 403
-    
+
+# roteamento da página que o professor utiliza para enviar mensagens para os alunos 
 @app.route("/enviar_mensagem", methods=["GET", "POST"])
 def enviar_mensagens():
     if "professor_logado" in session:

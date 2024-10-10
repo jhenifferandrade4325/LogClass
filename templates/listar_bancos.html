@@ -2,32 +2,35 @@
 {% block css %}
 <link rel="stylesheet" href="/static/styles/media/layout-media.css">
 <link rel="stylesheet" href="/static/styles/variaveis.css">
+<link rel="stylesheet" href="/static/styles/listarBD.css">
 
 {% endblock %}
 
 {% extends "layout.html" %}
 {% block conteudo %}
 
-<h1>Lista de Bancos de Dados</h1>
-<table border="1">
-    <thead>
-        <tr>
-            <th>Nome do Banco de Dados</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for banco in lista_bancos %}
-        <tr>
-            <td>{{ banco.nome }}</td>
-            <td>
-                <form action="{{ url_for('excluir_banco', nomeBD=banco.nome) }}" method="post">
-                    <button type="submit">Excluir</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<section class="gerenciador">
+    <h1>Lista de Bancos de Dados</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome do Banco de Dados</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for banco in lista_bancos %}
+            <tr>
+                <td>{{ banco.nome }}</td>
+                <td>
+                    <form action="{{ url_for('excluir_banco', nomeBD=banco.nome) }}" method="post">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
 
 {% endblock %}
