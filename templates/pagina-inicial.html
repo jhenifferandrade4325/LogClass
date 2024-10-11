@@ -5,8 +5,7 @@
 <link rel="stylesheet" href="/static/styles/media/pagina-inicial-media.css">
 <link rel="stylesheet" href="/static/styles/variaveis.css">
 
-<script src="https://unpkg.com/scrollreveal" defer></script>
-<script src="/static/js/pagina-inicial.js" defer></script>
+
 <script src="/static/js/light&dark.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,22 +21,37 @@
 <!-- Início da seção geral -->
 <section class="container-geral">
 
+
     <!-- Início da seção principal -->
     <div class="container-principal">
 
-        <!-- Título da página -->
-        <div class="titulo-destaque">
-            <span class="part1">L</span>
-            <div class="container">
-                <div class="shape"></div>
-            </div>
-            <span class="partG">G</span>
-            <span class="part2">CLASS</span>
+        <div class="container-video">
+                <div class="background-video">
+                    <video autoplay loop muted poster="your_poster.jpg">
+                        <source src="/static/img/video.mp4" type="video/mp4">
+                    </video>     
+            </div>  
         </div>
 
         
+        <div class="container-conteudo">
+                <!-- Título da página -->
+                <div class="titulo-destaque">
+                    <span class="part1">L</span>
+                    <div class="container">
+                        <div class="shape"></div>
+                    </div>
+                    <span class="partG">G</span>
+                    <span class="part2">CLASS</span>
+                </div>
+                
 
-        <div class="container-grid"></div>
+                <div class="container-mensagem_rolagem">
+                    <a href="#titulomensagem-prof">Ver mensagem do Professor</a>
+                </div>
+
+        </div>
+    
     
     </div>
     <!-- Fim da seção principal -->
@@ -110,22 +124,20 @@
 
     <!-- Início da seção de mensagem do professor -->
      
-     <div class="titulomensagem-prof">
-        <h2>Mensagem do Professor</h2>
-     </div>
-
-    {% if "usuario_logado" in session %}
-    <div class="container-mensagem_professor">
-
-        
-
-        <div class="mensagem">
-            {% for mensagem in lista_mensagens %}
-            <div class="mensagem">
-                <p>{{mensagem['mensagem']}}</p>
-            </div>
-            {% endfor %}
+    <div class="mensagem_professor">
+        <div class="titulomensagem-prof" id="titulomensagem-prof">
+            <h2>Mensagem do Professor</h2>
         </div>
+
+        {% if "usuario_logado" in session %}
+
+            <div class="mensagem">
+                {% for mensagem in lista_mensagens %}
+                <div class="mensagem">
+                    <p>{{mensagem['mensagem']}}</p>
+                </div>
+                {% endfor %}
+            </div>
 
     </div>
     {% endif %}
