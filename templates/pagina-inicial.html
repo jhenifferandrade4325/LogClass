@@ -132,4 +132,12 @@
 
 <!-- Fim da seção geral -->
 
+<script >
+    {% with messages = get_flashed_messages() %}
+        {% for mensagem in messages %}
+            {{ mensagem|safe }}
+        {% endfor %}
+    {% endwith %}
+</script>
+
 {% endblock %}

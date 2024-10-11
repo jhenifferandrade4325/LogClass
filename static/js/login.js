@@ -50,14 +50,19 @@ document.addEventListener("DOMContentLoaded", function() {
         registerProfessor.style.display = "none";
     });
 
-    // Função para exibir a tela de login
-    loginBtn.addEventListener("click", function() {
+    function exibirLogin(){
         introSection.style.display = "none";
         loginSection.style.display = "block";
         connectBoxLogin.style.display = "block";
         loginAluno.style.display = "none";
         loginProfessor.style.display = "none";
+    }
+
+    // Função para exibir a tela de login
+    loginBtn.addEventListener("click", function() {
+        exibirLogin()
     });
+
 
     // Função para exibir o cadastro do aluno
     alunoRegisterBtn.addEventListener("click", function() {
@@ -73,19 +78,28 @@ document.addEventListener("DOMContentLoaded", function() {
         registerAluno.style.display = "none";
     });
 
-    // Função para exibir o login do aluno
-    alunoLoginBtn.addEventListener("click", function() {
+    function exibirLoginAluno(){
         connectBoxLogin.style.display = "none";
         loginAluno.style.display = "block";
         loginProfessor.style.display = "none";
+    };
+
+    // Função para exibir o login do aluno
+    alunoLoginBtn.addEventListener("click", function() {
+        exibirLoginAluno();
     });
 
-    // Função para exibir o login do professor
-    professorLoginBtn.addEventListener("click", function() {
+    function exibirLoginProfessor(){
         connectBoxLogin.style.display = "none";
         loginProfessor.style.display = "block";
         loginAluno.style.display = "none";
+    };
+
+    // Função para exibir o login do professor
+    professorLoginBtn.addEventListener("click", function() {
+        exibirLoginProfessor();
     });
+
 
     // Função para voltar à tela de seleção no cadastro
     document.querySelectorAll("#voltar-register").forEach(button => {

@@ -1,5 +1,5 @@
 # importando módulos e classes necessários para a aplicação
-from flask import Flask, render_template, request, redirect, session, jsonify
+from flask import Flask, render_template, request, redirect, session, jsonify, flash
 from conexao import Conexao
 from aluno import Aluno
 from professor import Professor
@@ -58,6 +58,7 @@ def pagina_inicial():
 def pagina_cadastro():
 # cada rota processa solicitações GET e POST de forma apropriada, interage com diferentes classes
     if request.method == "GET":
+
         # conectando o banco de dados
         mydb = Conexao.conectar()
 
@@ -95,7 +96,8 @@ def pagina_cadastro():
 
             # mandando os dados que foram obtidos para a função que está dentro da classe Aluno
            if aluno.cadastrar(nome, email, senha, turma):
-               
+               flash("alert('Cadastro realizado com sucesso!!')")
+               flash("alert('Realize o Login e seja Bem Vindo!!')")
                return redirect("/login")
            else:
                return "Erro ao Cadastrar o aluno"
@@ -108,6 +110,8 @@ def pagina_cadastro():
 
             if senha == "logclass":
                 if professor.cadastrarProf(nome, email, senha):
+                    flash("alert('Cadastro realizado com sucesso!!')")
+                    flash("alert('Realize o login e seja Bem Vindo!!')")
                     return redirect("/")
                 else:
                     return "Erro ao Cadastrar o professor"
@@ -128,6 +132,7 @@ def pagina_cadastro():
                                             'turma':loginAluno.turma,
                                             'nome':loginAluno.nome,
                                             'cod_aluno':loginAluno.cod_aluno}
+                flash("alert('Muito Bem Vindo ao seu ambiente educacional!!')")
                 return redirect('/')
             else:
                 session.clear()
@@ -147,6 +152,7 @@ def pagina_cadastro():
                                             'turma':"databaseProfessor",
                                             'senha': loginProfessor.senha_espec,
                                             'cod_aluno': loginProfessor.cod_aluno}
+                flash("alert('Muito Bem Vindo ao seu ambiente educacional!!')")
                 return redirect('/')
             else:
                 session.clear()
@@ -176,6 +182,7 @@ def pagina_cadastramento():
 
             # chamando a função que está dentro da classe 
             if tbCadastramento.cadastramento(codigo, descricao, modelo, fabricante, numeroLote, enderecamento, session['usuario_logado']['turma']):
+                flash("alert('Parabéns, você acaou de realizar o processo de cadastramento de um produto!!🎉')")
                 return redirect("/")
             else:
                 return 'Erro ao realizar o processo de Cadastramento'
@@ -194,6 +201,7 @@ def pagina_cadastramento():
             tbCadastramento = Cadastramento()
 
             if tbCadastramento.cadastramentoProf(codigo, descricao, modelo, fabricante, numeroLote, enderecamento):
+                flash("alert('Parabéns, você acaou de realizar o processo de cadastramento de um produto!!🎉')")
                 return redirect("/")
             else:
                 return 'Erro ao realizar o processo de Cadastramento'
@@ -258,6 +266,7 @@ def pagina_estoque():
                 cod_aluno = session['professor_logado']['cod_aluno']
 
             if tbEstoque.estoque(cod_prod, num_lote, loc_, descricao, dt_enter, qt_item, dt_end, qt_saida, _saldo, funcionario, cod_aluno, turma):
+                flash("alert('Parabéns, você acaou de realizar o processo de cadastramento de estoque!!🎉')")
                 return redirect("/")
             else:
                 return "Erro ao realizar o processo de Controle de Estoque"
@@ -316,6 +325,7 @@ def pagina_expedicao():
                 cod_aluno = session['professor_logado']['cod_aluno']
 
             if tbExpedicao.expedicao(cod_prod, descricao_tec, num_lote, quantidade, data_saida, responsavel, cod_aluno, turma):
+                flash("alert('Parabéns, você acaou de realizar o processo de registro de expedição!!🎉')")
                 return redirect ('/')
             else:
                 return "Erro ao realizar o processo de cadastro de expedição."
@@ -379,6 +389,7 @@ def pagina_picking():
                 cod_aluno = session['professor_logado']['cod_aluno']
 
             if tbpicking.picking(numPicking, enderecamento, descTec, modeloPick, fabri, qtde, data, lote, totalProd, codProd, turma):
+                flash("alert('Parabéns, você acaou de realizar o processo de picking!!🎉')")
                 return redirect("/")
             else:
                 return 'Erro ao realizar o processo de Picking'
@@ -412,6 +423,7 @@ def pagina_pop():
                 cod_aluno = session['professor_logado']['cod_aluno']
 
             if tbPop.pop(dt_end1, task_name, resp_, material, passos, manuseio, resultados, acoes, cod_aluno, turma):
+                flash("alert('Parabéns, você acaou de realizar o processo de registro de POP!!🎉')")
                 return redirect ('/')
             else:
                 return 'Erro ao realizar o processo de POP'
@@ -475,6 +487,7 @@ def pagina_rnc():
                 cod_aluno = session['professor_logado']['cod_aluno']
 
             if tbrnc.rnc(descRNC, data, numRNC, local, qtdentregue, qtdrepro, respInsp, codProd, cod_aluno, turma):
+                flash("alert('Parabéns, você acaou de realizar o processo de Registro de Não Conformidade!!🎉')")
                 return redirect("/")
             else:
                 return 'Erro ao realizar o processo de RNC'
@@ -520,6 +533,7 @@ def criarBD():
             criarDataBase = Professor()
 
             if criarDataBase.criaDatabse(nomeBD):
+                flash("alert('Parabéns, você acaou de criar uma nova turma!!🎉')")
                 return redirect("/")
             else:
                 return "Erro ao criar o banco de dados"
@@ -579,7 +593,7 @@ def enviar_mensagens():
                 lista_mensagem.append({
                     "mensagem":mensagem[0]
                 })
-
+            flash("alert('Mensagem enviada para a turma com sucesso!!🎉')")
             return redirect("/")
 
 
@@ -622,6 +636,7 @@ def excluir_banco(nomeBD):
         mycursor.close()
         mydb.close()
 
+        flash("alert('Turma finalizada com sucesso!!🎉')")
         return redirect("/professor/listarBD")
     else:
         return "Acesso negado", 403
