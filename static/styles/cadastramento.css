@@ -191,7 +191,11 @@ body{
 }
 
 .alert{
-    display: flex;
+    display: none;
+    position: fixed;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
     align-items: center;
     justify-content: center;
     background-color: #4CAF50;
@@ -199,6 +203,10 @@ body{
     padding: 15px;
     border-radius: 5px;
     position: relative;
+    z-index: 1000;
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
 }
 
 .alert-icon{

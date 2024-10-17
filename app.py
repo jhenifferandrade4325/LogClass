@@ -176,7 +176,7 @@ def pagina_cadastramento():
 
             # chamando a função que está dentro da classe 
             if tbCadastramento.cadastramento(codigo, descricao, modelo, fabricante, numeroLote, enderecamento, session['usuario_logado']['turma']):
-                return redirect("/")
+                return render_template("cadastramento.html")
             else:
                 return 'Erro ao realizar o processo de Cadastramento'
     # verificando se o usuário logado é o professor, para poder liberar a vizualização das páginas
@@ -194,7 +194,7 @@ def pagina_cadastramento():
             tbCadastramento = Cadastramento()
 
             if tbCadastramento.cadastramentoProf(codigo, descricao, modelo, fabricante, numeroLote, enderecamento):
-                return redirect("/")
+                return render_template("cadastramento.html")
             else:
                 return 'Erro ao realizar o processo de Cadastramento'
     else:
