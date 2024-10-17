@@ -56,107 +56,93 @@ def pagina_inicial():
 # RF004
 @app.route("/login", methods=["GET", "POST"])
 def pagina_cadastro():
-# cada rota processa solicitações GET e POST de forma apropriada, interage com diferentes classes
     if request.method == "GET":
-
-        # conectando o banco de dados
         mydb = Conexao.conectar()
-
         mycursor = mydb.cursor()
-        # Consulta ao banco de dados para obter os produtos da categoria "ouro"
-        nomeDataBase = ("SELECT * FROM databaseprofessor.tb_database")
-
-        #executar
-        mycursor.execute(nomeDataBase)
+        mycursor.execute("SELECT * FROM databaseprofessor.tb_database")
         resultado = mycursor.fetchall()
-        
         mydb.close()
 
-        lista_nomes = []
-        
-        for nomeBD in resultado:
-            lista_nomes.append({
-                "database":nomeBD[0]
-            })
-
-        return render_template("login.html", lista_nomes = lista_nomes)
+        lista_nomes = [{"database": nomeBD[0]} for nomeBD in resultado]
+        return render_template("login.html", lista_nomes=lista_nomes)
 
     if request.method == "POST":
-        # extraindo os dados que serão recolhidos no formulário
-        formulario = request.form.get("tipo")
-        # verificando qual o formulário que será usado
-        # RF001
+        formulario = request.json.get("tipo")  # Mudei para request.json
         if formulario == "Aluno":
-           nome = request.form.get("nome")
-           email = request.form.get("email")
-           senha = request.form.get("senha")
-           turma = request.form.get("turma")
-           # criando uma instância da classe aluno
-           aluno = Aluno()
+            nome = request.json.get("nome")
+            email = request.json.get("email")
+            senha = request.json.get("senha")
+            turma = request.json.get("turma")
+            aluno = Aluno()
 
-            # mandando os dados que foram obtidos para a função que está dentro da classe Aluno
-           if aluno.cadastrar(nome, email, senha, turma):
-               flash("alert('Cadastro realizado com sucesso!!')")
-               flash("alert('Realize o Login e seja Bem Vindo!!')")
-               return redirect("/login")
-           else:
-               return "Erro ao Cadastrar o aluno"
-        # RF002
+            if aluno.verificar_duplicata(email, turma):
+                return jsonify({'mensagem': 'Usuário já cadastrado'}), 409
+
+            if aluno.cadastrar(nome, email, senha, turma):
+                return jsonify({'mensagem': 'Cadastro realizado com sucesso'}), 201
+            else:
+                return jsonify({'mensagem': 'Erro ao cadastrar o aluno'}), 400
+
         if formulario == "Professor":
-            nome = request.form.get("nome")
-            email = request.form.get("email")
-            senha = request.form.get("senha")
+            nome = request.json.get("nome")
+            email = request.json.get("email")
+            senha = request.json.get("senha")
             professor = Professor()
+
+            if professor.verificar_duplicata(email):
+                return jsonify({'mensagem': 'Usuário já cadastrado'}), 409
 
             if senha == "logclass":
                 if professor.cadastrarProf(nome, email, senha):
-                    flash("alert('Cadastro realizado com sucesso!!')")
-                    flash("alert('Realize o login e seja Bem Vindo!!')")
-                    return redirect("/")
+                    return jsonify({'mensagem': 'Cadastro realizado com sucesso'}), 201
                 else:
-                    return "Erro ao Cadastrar o professor"
+                    return jsonify({'mensagem': 'Erro ao cadastrar o professor'}), 400
             else:
-                return redirect("/login")
+                return jsonify({'mensagem': 'Senha incorreta'}), 401
+
+        # Adicionando aqui a lógica para login de alunos e professores...
 
         # RF003
+        formulario = request.json.get("tipo")  
         if formulario == "LoginAluno":
-            email = request.form.get("email")
-            senha = request.form.get("senha")
-            turma = request.form.get("turma")
+            email = request.json.get("email")
+            senha = request.json.get("senha")
+            turma = request.json.get("turma")
 
             loginAluno = Aluno()
 
             if loginAluno.logar(email, senha, turma):
-                # armazena informações do usuário na sessão (session), que é um armazenamento temporário de dados durante a navegação do usuário
-                session['usuario_logado'] = {'email':loginAluno.email,
-                                            'turma':loginAluno.turma,
-                                            'nome':loginAluno.nome,
-                                            'cod_aluno':loginAluno.cod_aluno}
+                session['usuario_logado'] = {
+                    'email': loginAluno.email,
+                    'turma': loginAluno.turma,
+                    'nome': loginAluno.nome,
+                    'cod_aluno': loginAluno.cod_aluno
+                }
                 flash("alert('Muito Bem Vindo ao seu ambiente educacional!!')")
                 return redirect('/')
             else:
                 session.clear()
-                return 'Email ou senha incorretos.'
-        
-        # RF004
+                return 'Email ou senha incorretos.', 401
+
         if formulario == "LoginProfessor":
-            email = request.form.get("email")
-            senha = request.form.get("senha")
+            email = request.json.get("email")
+            senha = request.json.get("senha")
 
             loginProfessor = Professor()
 
             if loginProfessor.logarProf(email, senha):
-                # armazena informações do usuário na sessão (session), que é um armazenamento temporário de dados durante a navegação do usuário
-                session['professor_logado'] = {'email':loginProfessor.email_prof,
-                                            'nome':loginProfessor.nome_prof,
-                                            'turma':"databaseProfessor",
-                                            'senha': loginProfessor.senha_espec,
-                                            'cod_aluno': loginProfessor.cod_aluno}
+                session['professor_logado'] = {
+                    'email': loginProfessor.email_prof,
+                    'nome': loginProfessor.nome_prof,
+                    'turma': "databaseProfessor",
+                    'senha': loginProfessor.senha_espec,
+                    'cod_aluno': loginProfessor.cod_aluno
+                }
                 flash("alert('Muito Bem Vindo ao seu ambiente educacional!!')")
                 return redirect('/')
             else:
                 session.clear()
-                return 'Email ou senha incorretos.'
+                return 'Email ou senha incorretos.', 401
 
 # roteamento da página de cadastramento
 # RF005

@@ -213,3 +213,17 @@ class Professor:
 
         # retornando um valor verdadeiro
         return True
+    
+    def verificar_duplicata(self, email):
+        # conectando com o banco de dados
+        mydb = Conexao.conectar()
+
+        mycursor = mydb.cursor()
+
+        query = "SELECT COUNT(*) FROM databaseProfessor.tb_aluno WHERE email = %s"
+        mycursor.execute(query, (email,))
+        resultado = mycursor.fetchone()[0]
+
+        mydb.close()
+        
+        return resultado > 0
