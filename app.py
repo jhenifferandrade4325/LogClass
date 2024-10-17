@@ -26,7 +26,7 @@ def pagina_inicial():
 
         mycursor = mydb.cursor()
         # Consulta ao banco de dados para obter os produtos da categoria "ouro"
-        mensagens = (f"SELECT mensagens FROM databaseprofessor.tb_mensagens WHERE turma = '{session['usuario_logado']['turma']}'")
+        mensagens = (f"SELECT cod_mensagem, mensagens FROM databaseprofessor.tb_mensagens WHERE turma = '{session['usuario_logado']['turma']}'")
 
         #executar
         mycursor.execute(mensagens)
@@ -38,7 +38,8 @@ def pagina_inicial():
         
         for mensagens_enviadas in resultado:
             lista_mensagens.append({
-                "mensagem":mensagens_enviadas[0]
+                "cod_mensagem":mensagens_enviadas[0],
+                "mensagem":mensagens_enviadas[1]
             })
 
         return render_template("pagina-inicial.html", lista_mensagens = lista_mensagens)
@@ -530,57 +531,69 @@ def criarBD():
 @app.route("/enviar_mensagem", methods=["GET", "POST"])
 def enviar_mensagens():
     if "professor_logado" in session:
-        if request.method == "GET":
-            # conectando o banco de dados
-            mydb = Conexao.conectar()
+        # # Conectando ao banco de dados
+        # mydb = Conexao.conectar()
+        # mycursor = mydb.cursor()
 
-            mycursor = mydb.cursor()
-            # Consulta ao banco de dados para obter os produtos da categoria "ouro"
-            nomeDataBase = ("SELECT * FROM databaseprofessor.tb_database")
-
-            #executar
-            mycursor.execute(nomeDataBase)
-            resultado = mycursor.fetchall()
+        # if request.method == "GET":
+        #     # Consulta ao banco de dados para obter as mensagens
+        #     consulta_mensagens = "SELECT cod_mensagem, mensagens FROM databaseProfessor.tb_mensagens"
+        #     mycursor.execute(consulta_mensagens)
+        #     resultado = mycursor.fetchall()
             
-            mydb.close()
+        #     lista_mensagens = []
+        #     for mensagem in resultado:
+        #         lista_mensagens.append({
+        #             "cod_mensagem": mensagem[0],
+        #             "mensagem": mensagem[1]
+        #         })
 
-            lista_nomes = []
-            
-            for nomeBD in resultado:
-                lista_nomes.append({
-                    "database":nomeBD[0]
-                })
+        #     mydb.close()
 
-            return render_template("mensagem.html", lista_nomes = lista_nomes)
+        #     return render_template("mensagem.html", lista_mensagens=lista_mensagens)
 
         if request.method == "POST":
+            # Conectando ao banco de dados
+            mydb = Conexao.conectar()
+            mycursor = mydb.cursor()
             # Pega a mensagem do formulário
             mensagem = request.form.get("mensagem")
             bancoDados = request.form.get("turma")
-            # conectando o banco de dados
-            mydb = Conexao.conectar()
 
-            mycursor = mydb.cursor()
-
-            mensagens = f"INSERT INTO tb_mensagens (mensagens, turma) VALUES ('{mensagem}', '{bancoDados}')"
-
-            #executando a variável a cima
-            mycursor.execute(mensagens)
-
+            # Inserir a nova mensagem no banco de dados
+            inserir_mensagem = f"INSERT INTO tb_mensagens (mensagens, turma) VALUES (%s, %s)"
+            mycursor.execute(inserir_mensagem, (mensagem, bancoDados))
             mydb.commit()
 
+            flash("alert('Mensagem enviada para a turma com sucesso! 🎉')")
             mydb.close()
 
-            envia_mensagem = mycursor.fetchall()
-            
-            lista_mensagem = []
-            
-            for mensagem in envia_mensagem:
-                lista_mensagem.append({
-                    "mensagem":mensagem[0]
-                })
-            flash("alert('Mensagem enviada para a turma com sucesso!!🎉')")
             return redirect("/")
+
+
+@app.route("/excluir_mensagem", methods=["POST"])
+def excluir_mensagem():
+    if "professor_logado" in session:
+        mensagem_id = request.form.get("mensagem_id")
+        
+        if mensagem_id:
+            # Conectando ao banco de dados
+            mydb = Conexao.conectar()
+            mycursor = mydb.cursor()
+            
+            # Query para deletar a mensagem com o ID fornecido
+            delete_query = "DELETE FROM databaseProfessor.tb_mensagens WHERE cod_mensagem = %s"
+            
+            # Executar a query passando o ID da mensagem
+            mycursor.execute(delete_query, (mensagem_id,))
+            mydb.commit()
+            mydb.close()
+
+            flash("alert('Mensagem excluída com sucesso!')")
+        else:
+            flash("alert('Erro ao excluir a mensagem. ID inválido.')")
+    
+    return redirect("/")
 
 
 @app.route("/professor/listarBD")
