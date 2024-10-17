@@ -60,7 +60,7 @@ body{
     font-size: 16px;
     border: 1px solid var(--cor-bordas);
     border-radius: 4px;
-    background-color: var(--cor-fundo-formularios);
+    background-color: var(--primary-color-light);
 }
 
 .textarea-field {
@@ -95,7 +95,7 @@ body{
     width: 100%;
     padding: 0;
     list-style: none;
-    background-color: var(--cor-fundo-options);
+    background-color: var(--primary-color-light);
     border: 1px solid var(--cor-bordas);
     border-radius: 4px;
     max-height: 150px;
@@ -119,7 +119,7 @@ body{
 
 .submit-btn {
     background-color: var(--cor-btn-enviar);
-    color: var(--cor-padrao-letras);
+    color: var(--primary-color-light);
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;

@@ -14,7 +14,6 @@
 .theme-container {
   height: 100vh;
   width: 100vw;
-  background-color: var(--cor-pagina-inicial);
 }
 
 /* Estilização do cabeçalho */
@@ -28,8 +27,8 @@
   left: 0;
   top: 0;
   margin: 0;
-  background-color: var(--sidebar-bg-light);
   transition: background-color 0.3s;
+  z-index: 10;
   
 }
 
@@ -70,6 +69,7 @@
   }
   
   .dropdown {
+    z-index: 1;
     position: relative;
     display: inline-block;
   }
@@ -81,7 +81,7 @@
     min-width: 8rem;
     overflow: auto;
     box-shadow: 0rem 4rem 6rem 0rem var(--cor-sombra-drop);
-    z-index: 1;
+    z-index: 15;
     margin-right: 1rem;
     right: 0;
     border-radius: 8px;
@@ -188,7 +188,6 @@ footer p{
 }
 
 .theme-container.light {
-  background-color: var(--primary-color-light);
   color: var(--text-color-light);
 }
 
@@ -198,7 +197,6 @@ footer p{
 }
 
 .header-container {
-  background-color: var(--sidebar-bg-light);
   transition: background-color 0.3s;
 }
 

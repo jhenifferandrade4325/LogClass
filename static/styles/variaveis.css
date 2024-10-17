@@ -13,11 +13,14 @@
     --cor-footer: #000000;
 
     /* Cores da página inicial */
-    --cor-pagina-inicial: rgba(255, 255, 255, 1);
+    --cor-pagina-inicial: #f1f1f1;
     --cor-titulo1-pgInicial: #6a00c2;
     --cor-titulo2-pgInicial: #0071c2;
     --cor-msg-professor: #000000;
     --cor-card-mensagem: hsl(217, 100%, 90%);
+    --primary: #d645f3;
+    --secondary: #5D6BF8;
+    --third: #e27fcb;
 
     /* Cores do login */
     --cor-fundo-login: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(53, 51, 205, 1) 100%);
@@ -56,4 +59,9 @@
     --button-bg-dark: #333; /* Cor de fundo do botão escuro */
     --button-hover-dark: #444; /* Cor de hover do botão escuro */
     --sidebar-bg-dark: #2e2e2e; /* Cor de fundo da sidebar escura */
+
+    /* Cores do cadastro de turma no banco de dados */
+    --cor-fundo-input-bd:#1374dcc6;
+    --cor-fundo-pg-bd: #9AA8F5;
+    --cor-btn-enviar:#104884;
 }

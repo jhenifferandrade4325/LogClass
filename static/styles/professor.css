@@ -1,15 +1,17 @@
 body {
     margin: 0;
     padding: 0;
-    background: rgb(0,0,0);
-    background: var( --cor-fundo-login);
     color: var(--cor-padrao-letras);
+    height: 100vh;
+}
+
+.cadastro_turma{
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     flex-direction: column;
-    
 }
   
 
@@ -25,17 +27,22 @@ input {
     border: none;
     border-radius: 0.5rem;
     outline: none;
-    background-color: var(--cor-fundo-prof);
+    background-color: var(--cor-drop-btn);
     color: var(--cor-padrao-letras);
     margin-bottom: 2rem;
 }
+
+input::placeholder{
+    color: var(--cor-padrao-letras);
+}
+
 
 
 button[type="submit"] {
     padding: 1rem;
     border: none;
     border-radius: 0.5rem;
-    background-color: var(--cor-btns);
+    background-color: var(--cor-btn-enviar);
     color: var(--cor-padrao-letras);
     font-weight: bold;
     cursor: pointer;

@@ -4,13 +4,12 @@ body, html {
   font-family: Arial, sans-serif;
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.5s ease;
+  z-index: -1;
 }
 
 .container-geral{
-  background: var(--cor-pagina-inicial);
   height: 100vh;
   width: 100vw;
-  
 }
 
 .container-principal{
@@ -20,6 +19,7 @@ body, html {
   flex-direction: row;
   height: 100vh;
   text-align: center;
+  z-index: -5;
 }
 
 .titulo-destaque {
@@ -56,6 +56,8 @@ body, html {
   margin-left: 0.5rem;
 }
 
+
+
 .container-grid {
   width: 20rem;
   height: 16rem;
@@ -87,7 +89,7 @@ body, html {
   grid-column-gap: 10px;
   grid-row-gap: 6.5rem;
   align-items: center;
-  margin-bottom: 10rem;
+  margin-bottom: 25rem;
   margin-top: 10rem;
   text-align: center;
   /*DEFINE O TAMANHO DO EFEITO NA IMAGEM QUANDO O MOUSE É PASSADO*/
@@ -160,20 +162,6 @@ body, html {
   width: 100%;
 }
 
-.titulomensagem-prof{
-  text-align: center;
-  margin-top: 4rem;
-  margin-bottom: 10rem;
-}
-
-.titulomensagem-prof h2{
-
-  font-size: 3.5rem;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: var(--cor-msg-professor);
-}
-
-
 .container-mensagem_professor{
   height: 30vh;
   width: 40vw;
@@ -183,7 +171,6 @@ body, html {
   justify-content: center;
   margin-left: 29rem;
 }
-
 
 .mensagem p{
   color: var(--cor-msg-professor);
@@ -207,39 +194,16 @@ body, html {
 }
 
 
-/* .titulo-destaque {
-  visibility: visible; 
-}
-
-.mensagem {
-  visibility: visible; 
-}
-
-.c-galeria {
-  visibility: visible; 
-} */
 
 
+/* ---------------ESTILIZAÇÃO DA BLOB------------------ */
 
-
-/* --------------------------------- */
-
-:root {
-  --primary: #d645f3;
-  --secondary: #5D6BF8;
-  --third: #e27fcb;
-}
 
 .container {
   align-items: center;
   display: flex;
-  height: 220px;
+  height: 20rem;
   justify-content: center;
-  
-  /* border: 8px solid #5D6BF8; */
-  /* border-radius: 50%;
-  padding: 10px;
-  background: linear-gradient(45deg, var(--third) 0%, var(--secondary) 100%); */
 }
 
 .shape {

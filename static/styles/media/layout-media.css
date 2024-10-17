@@ -5,12 +5,11 @@
 
     .header-container{
         height: 20vh;
-      }
+    }
 
     .header-container img{
         max-width: 7rem;
         max-height: 8rem;
-       
     }
 
     .dropbtn {

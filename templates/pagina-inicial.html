@@ -109,22 +109,19 @@
     <!-- Fim da seção de cards -->
 
     <!-- Início da seção de mensagem do professor -->
-     
-     <div class="titulomensagem-prof">
-        <h2>Mensagem do Professor</h2>
-     </div>
 
     {% if "usuario_logado" in session %}
     <div class="container-mensagem_professor">
 
-        
-
-        <div class="mensagem">
-            {% for mensagem in lista_mensagens %}
+        <div class="mensagem1">
+            
             <div class="mensagem">
+                {% for mensagem in lista_mensagens %}
+                <br>
                 <p>{{mensagem['mensagem']}}</p>
+                {% endfor %}
             </div>
-            {% endfor %}
+            
         </div>
 
     </div>
