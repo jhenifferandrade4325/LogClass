@@ -1,47 +1,59 @@
-:root{
-
+:root {
     /* Cores padrões de Letras  */
-    --cor-padrao-letras:#ffffff;
+    --cor-padrao-letras: #ffffff;
 
-    /* Cores do cabecalho */
-    --cor-drop-btn:#2980B9;
-    --cor-drop:#f1f1f1;
-    --cor-drop-letras:black;
+    /* Cores do cabeçalho */
+    --cor-drop-btn: #2980B9;
+    --cor-drop: #f1f1f1;
+    --cor-drop-letras: black;
     --cor-drop-hover: #ddd;
-    --cor-sombra-drop:rgba(0,0,0,0.2);
-    
+    --cor-sombra-drop: rgba(0, 0, 0, 0.2);
     
     /* Cores do footer */
-    --cor-footer:#000000;
+    --cor-footer: #000000;
 
-    
     /* Cores da página inicial */
-    --cor-pagina-inicial:rgba(255,255,255,1);
-    --cor-titulo1-pgInicial:#6a00c2;
-    --cor-titulo2-pgInicial:#0071c2;
-    --cor-msg-professor:#000000;
-    --cor-card-mensagem:hsl(217, 100%, 90%) ;
-
+    --cor-pagina-inicial: rgba(255, 255, 255, 1);
+    --cor-titulo1-pgInicial: #6a00c2;
+    --cor-titulo2-pgInicial: #0071c2;
+    --cor-msg-professor: #000000;
+    --cor-card-mensagem: hsl(217, 100%, 90%);
 
     /* Cores do login */
-    --cor-fundo-login:linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,51,205,1) 100%);
-    --cor-cards-pgLogin:radial-gradient(circle, rgba(0,74,173,1) 0%, rgba(60,39,98,1) 100%);
-    --cor-btns:#0368D4;
-    --cor-fundo-inputs:#003772;
-    --cor-fundo-prof:#0a396b;
+    --cor-fundo-login: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(53, 51, 205, 1) 100%);
+    --cor-cards-pgLogin: radial-gradient(circle, rgba(0, 74, 173, 1) 0%, rgba(60, 39, 98, 1) 100%);
+    --cor-btns: #0368D4;
+    --cor-fundo-inputs: #003772;
+    --cor-fundo-prof: #0a396b;
 
-    /* Cores das páginas de funcionais */
-    --cor-titulos:#000;
-    --cor-fundo-pg-funcoes:#e5e5e5;
+    /* Cores das páginas funcionais */
+    --cor-titulos: #000;
+    --cor-fundo-pg-funcoes: #e5e5e5;
     --cor-bordas: #ccc;
-    --cor-fundo-formularios:#f9f9f9;
-    --cor-fundo-options:#fff;
-    --cor-hover-options:#f0f0f0;
-    --cor-btn-enviar:#6a1b9a;
+    --cor-fundo-formularios: #f9f9f9;
+    --cor-fundo-options: #fff;
+    --cor-hover-options: #f0f0f0;
+    --cor-btn-enviar: #6a1b9a;
     --cor-hover-btn-enviar: #4a148c;
 
-    /* Cor do icone de Cadastramento */
-    --cor-icone-cadastramento:linear-gradient(to bottom , #ff217d, #ff8b98);
+    /* Cor do ícone de Cadastramento */
+    --cor-icone-cadastramento: linear-gradient(to bottom, #ff217d, #ff8b98);
 
+    /* Cores do tema claro */
+    --primary-color-light: #f0f0f0; /* Cor de fundo clara */
+    --secondary-color-light: #ffffff; /* Cor secundária clara */
+    --text-color-light: #333; /* Cor do texto claro */
+    --hover-color-light: #ddd; /* Cor de hover clara */
+    --button-bg-light: #e0e0e0; /* Cor de fundo do botão claro */
+    --button-hover-light: #ccc; /* Cor de hover do botão claro */
+    --sidebar-bg-light: #ffffff; /* Cor de fundo da sidebar clara */
 
+    /* Cores do tema escuro */
+    --primary-color-dark: #1e1e1e; /* Cor de fundo escura */
+    --secondary-color-dark: #2e2e2e; /* Cor secundária escura */
+    --text-color-dark: #f0f0f0; /* Cor do texto escuro */
+    --hover-color-dark: #555; /* Cor de hover escura */
+    --button-bg-dark: #333; /* Cor de fundo do botão escuro */
+    --button-hover-dark: #444; /* Cor de hover do botão escuro */
+    --sidebar-bg-dark: #2e2e2e; /* Cor de fundo da sidebar escura */
 }
