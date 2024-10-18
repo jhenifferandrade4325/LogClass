@@ -15,44 +15,44 @@ from rnc import Rnc
 app = Flask(__name__)
 app.secret_key = 'logclass'
 
-@app.route("/confirmacao")
-def confirmacao_usuario():
-    # verificando se o usuário logado é o aluno ou professor, para poder liberar a vizualização
-    if "usuario_logado" in session or "professor_logado" in session:
-        if request.method == "GET":
-            #conectando com o banco de dados
-            mydb = Conexao.conectar()
+# @app.route("/confirmacao")
+# def confirmacao_usuario():
+#     # verificando se o usuário logado é o aluno ou professor, para poder liberar a vizualização
+#     if "usuario_logado" in session or "professor_logado" in session:
+#         if request.method == "GET":
+#             #conectando com o banco de dados
+#             mydb = Conexao.conectar()
             
-            mycursor = mydb.cursor()
+#             mycursor = mydb.cursor()
 
-            confirmacao = (f"SELECT * FROM databaseProfessor.tb_aluno")
+#             confirmacao = (f"SELECT * FROM databaseProfessor.tb_aluno")
 
-            mycursor.execute(confirmacao)
+#             mycursor.execute(confirmacao)
 
-            resultado = mycursor.fetchall()
+#             resultado = mycursor.fetchall()
 
-            # fechar a conexão
-            mydb.close()
+#             # fechar a conexão
+#             mydb.close()
 
-            lista_usuarios = []
+#             lista_usuarios = []
 
-            for usuario in resultado:
-                lista_usuarios.append({
-                    "id": usuario[0],
-                    "nome": usuario[1]
-                })
+#             for usuario in resultado:
+#                 lista_usuarios.append({
+#                     "id": usuario[0],
+#                     "nome": usuario[1]
+#                 })
 
-            return render_template("confirmacao.html", lista_usuarios = lista_usuarios)
+#             return render_template("confirmacao.html", lista_usuarios = lista_usuarios)
         
-@app.route("/aprovar_usuario")
-def aprovar_usuario():
-    # verificando se o usuário logado é o aluno ou professor, para poder liberar a vizualização
-    if "usuario_logado" in session or "professor_logado" in session:
-        if request.method == "GET":
-            #conectando com o banco de dados
-            mydb = Conexao.conectar()
+# @app.route("/aprovar_usuario")
+# def aprovar_usuario():
+#     # verificando se o usuário logado é o aluno ou professor, para poder liberar a vizualização
+#     if "usuario_logado" in session or "professor_logado" in session:
+#         if request.method == "GET":
+#             #conectando com o banco de dados
+#             mydb = Conexao.conectar()
             
-            mycursor = mydb.cursor()
+#             mycursor = mydb.cursor()
 
               
 
