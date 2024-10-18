@@ -257,7 +257,6 @@ def pagina_estoque():
             else:
                 turma = session['professor_logado']['turma']
             
-            C
             produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
             
             mycursor.execute(produtos)
