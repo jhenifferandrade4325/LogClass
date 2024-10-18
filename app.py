@@ -1,4 +1,5 @@
 # importando módulos e classes necessários para a aplicação
+import random
 from flask import Flask, render_template, request, redirect, session, jsonify, flash
 from conexao import Conexao
 from aluno import Aluno
@@ -9,6 +10,7 @@ from expedicao import Expedicao
 from picking import Picking
 from pop import Pop
 from rnc import Rnc
+from simulador import Simulador
 
 #app é o servidor
 #criei o objeto app usando a classe Flask
@@ -257,8 +259,7 @@ def pagina_cadastramento():
 
             # chamando a função que está dentro da classe 
             if tbCadastramento.cadastramento(codigo, descricao, modelo, fabricante, numeroLote, enderecamento, session['usuario_logado']['turma']):
-                flash("alert('Parabéns, você acaou de realizar o processo de cadastramento de um produto!!🎉')")
-                return redirect("/")
+                return render_template("cadastramento.html")
             else:
                 return 'Erro ao realizar o processo de Cadastramento'
     # verificando se o usuário logado é o professor, para poder liberar a vizualização das páginas
@@ -278,8 +279,7 @@ def pagina_cadastramento():
 
             # pegando a função armazenada no objeto para realizar o processo de cadastramento de um produto
             if tbCadastramento.cadastramentoProf(codigo, descricao, modelo, fabricante, numeroLote, enderecamento):
-                flash("alert('Parabéns, você acaou de realizar o processo de cadastramento de um produto!!🎉')")
-                return redirect("/")
+                return render_template("cadastramento.html")
             else:
                 return 'Erro ao realizar o processo de Cadastramento'
     else:
@@ -509,6 +509,43 @@ def pagina_picking():
     
     else:
         return redirect("/login")
+    
+
+@app.route('/simulador')
+def simulador():
+    if "usuario_logado" in session or "professor_logado" in session:
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
+
+        mycursor.execute("SELECT * FROM turma1.tb_picking")
+        pedidos = mycursor.fetchall()
+
+        pedido_aleatorio = random.choice(pedidos) if pedidos else {}
+
+        if pedido_aleatorio:
+            pedido_info = {
+                "num_picking": pedido_aleatorio[0],
+                "enderecamento": pedido_aleatorio[1],
+                "desc_tecnica": pedido_aleatorio[2],
+                "modelo": pedido_aleatorio[3],
+                "fabricante": pedido_aleatorio[4],
+                "quantidade": pedido_aleatorio[5],
+                "data": pedido_aleatorio[6],
+                "lote": pedido_aleatorio[7],
+                "total_produtos": pedido_aleatorio[8],
+                "cod_prod": pedido_aleatorio[9]
+            }
+        else:
+            pedido_info = {}
+
+        mycursor.close()
+        mydb.close()
+
+
+        return render_template("simulador.html", pedido=pedido_info)
+    else:
+        return redirect("/login")
+       
     
 # roteamento da página dos processos de registro pop
 # RF009
