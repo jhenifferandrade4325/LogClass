@@ -257,7 +257,7 @@ def pagina_estoque():
             else:
                 turma = session['professor_logado']['turma']
             
-            C
+            
             produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
             
             mycursor.execute(produtos)
@@ -593,26 +593,26 @@ def criarBD():
 @app.route("/enviar_mensagem", methods=["GET", "POST"])
 def enviar_mensagens():
     if "professor_logado" in session:
-        # # Conectando ao banco de dados
-        # mydb = Conexao.conectar()
-        # mycursor = mydb.cursor()
+        # Conectando ao banco de dados
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
 
-        # if request.method == "GET":
-        #     # Consulta ao banco de dados para obter as mensagens
-        #     consulta_mensagens = "SELECT cod_mensagem, mensagens FROM databaseProfessor.tb_mensagens"
-        #     mycursor.execute(consulta_mensagens)
-        #     resultado = mycursor.fetchall()
+        if request.method == "GET":
+            # Consulta ao banco de dados para obter as mensagens
+            consulta_mensagens = "SELECT cod_mensagem, mensagens FROM databaseProfessor.tb_mensagens"
+            mycursor.execute(consulta_mensagens)
+            resultado = mycursor.fetchall()
             
-        #     lista_mensagens = []
-        #     for mensagem in resultado:
-        #         lista_mensagens.append({
-        #             "cod_mensagem": mensagem[0],
-        #             "mensagem": mensagem[1]
-        #         })
+            lista_mensagens = []
+            for mensagem in resultado:
+                lista_mensagens.append({
+                    "cod_mensagem": mensagem[0],
+                    "mensagem": mensagem[1]
+                })
 
-        #     mydb.close()
+            mydb.close()
 
-        #     return render_template("mensagem.html", lista_mensagens=lista_mensagens)
+            return render_template("mensagem.html", lista_mensagens=lista_mensagens)
 
         if request.method == "POST":
             # Conectando ao banco de dados
