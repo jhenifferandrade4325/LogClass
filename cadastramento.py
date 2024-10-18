@@ -18,10 +18,11 @@ class Cadastramento:
         # criando um cursor para executar comandos SQL na conexão com o banco de dados
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_cadastramento (cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento) VALUES ('{cod_prod}', '{descricao_tecnica}', '{modelo}', '{fabricante}', '{num_lote}', '{enderecamento}')"
+        valores = (cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento)
+        dados = f"INSERT INTO tb_cadastramento (cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento) VALUES (%s, %s, %s, %s, %s, %s)"
 
         #executando a variável a cima
-        mycursor.execute(dados)
+        mycursor.execute(dados, valores)
 
         # realiza o commit da transação, garantindo que as alterações feitas na base de dados sejam salvas
         mydb.commit()
