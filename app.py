@@ -43,6 +43,18 @@ def confirmacao_usuario():
                 })
 
             return render_template("confirmacao.html", lista_usuarios = lista_usuarios)
+        
+@app.route("/aprovar_usuario")
+def aprovar_usuario():
+    # verificando se o usuário logado é o aluno ou professor, para poder liberar a vizualização
+    if "usuario_logado" in session or "professor_logado" in session:
+        if request.method == "GET":
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+
+              
 
 
 #roteamento da página inicial
@@ -198,6 +210,8 @@ def pagina_cadastro():
 
             # criando um objeto com a classe Professor
             loginProfessor = Professor()
+
+            if email == 'admim@adimim.com' and senha == 'K8$tY9':
 
             # realizando o login do aluno por meio da função armazenada na variável
             if loginProfessor.logarProf(email, senha):
