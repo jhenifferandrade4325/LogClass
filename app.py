@@ -15,6 +15,36 @@ from rnc import Rnc
 app = Flask(__name__)
 app.secret_key = 'logclass'
 
+@app.route("/confirmacao")
+def confirmacao_usuario():
+    # verificando se o usuário logado é o aluno ou professor, para poder liberar a vizualização
+    if "usuario_logado" in session or "professor_logado" in session:
+        if request.method == "GET":
+            #conectando com o banco de dados
+            mydb = Conexao.conectar()
+            
+            mycursor = mydb.cursor()
+
+            confirmacao = (f"SELECT * FROM databaseProfessor.tb_aluno")
+
+            mycursor.execute(confirmacao)
+
+            resultado = mycursor.fetchall()
+
+            # fechar a conexão
+            mydb.close()
+
+            lista_usuarios = []
+
+            for usuario in resultado:
+                lista_usuarios.append({
+                    "id": usuario[0],
+                    "nome": usuario[1]
+                })
+
+            return render_template("confirmacao.html", lista_usuarios = lista_usuarios)
+
+
 #roteamento da página inicial
 @app.route("/")
 #função da página inicial
@@ -34,6 +64,7 @@ def pagina_inicial():
         mycursor.execute(mensagens)
 
         resultado = mycursor.fetchall()
+
         # fechar a conexão
         mydb.close()
         # criando uma lista para armazenar todas as mensagens que foram "retiradas" do banco de dados
@@ -70,7 +101,7 @@ def pagina_cadastro():
         resultado = mycursor.fetchall()
         mydb.close()
 
-        # criando uma lista para armazenar todas as turmas que foram "retirados"
+        # criando uma lista para armazenar todas as turmas que foram "retiradas"
         lista_nomes = [{"database": nomeBD[0]} for nomeBD in resultado]
         return render_template("login.html", lista_nomes=lista_nomes)
 
@@ -581,7 +612,7 @@ def criarBD():
             criarDataBase = Professor()
 
             if criarDataBase.criaDatabse(nomeBD):
-                flash("alert('Parabéns, você acaou de criar uma nova turma!!🎉')")
+                flash("alert('Parabéns, você acabou de criar uma nova turma!!🎉')")
                 return redirect("/")
             else:
                 return "Erro ao criar o banco de dados"
@@ -592,26 +623,23 @@ def criarBD():
 @app.route("/enviar_mensagem", methods=["GET", "POST"])
 def enviar_mensagens():
     if "professor_logado" in session:
-        # # Conectando ao banco de dados
-        # mydb = Conexao.conectar()
-        # mycursor = mydb.cursor()
+        # Conectando ao banco de dados
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
 
-        # if request.method == "GET":
-        #     # Consulta ao banco de dados para obter as mensagens
-        #     consulta_mensagens = "SELECT cod_mensagem, mensagens FROM databaseProfessor.tb_mensagens"
-        #     mycursor.execute(consulta_mensagens)
-        #     resultado = mycursor.fetchall()
-            
-        #     lista_mensagens = []
-        #     for mensagem in resultado:
-        #         lista_mensagens.append({
-        #             "cod_mensagem": mensagem[0],
-        #             "mensagem": mensagem[1]
-        #         })
+        if request.method == "GET":
+            # conectando com o banco de dados
+            mydb = Conexao.conectar()
+            # criando um objeto Aluno
+            mycursor = mydb.cursor()
+            # criando uma variável para armazenar a lista de turmas
+            mycursor.execute("SELECT * FROM databaseprofessor.tb_database")
+            resultado = mycursor.fetchall()
+            mydb.close()
 
-        #     mydb.close()
-
-        #     return render_template("mensagem.html", lista_mensagens=lista_mensagens)
+            # criando uma lista para armazenar todas as turmas que foram "retiradas"
+            lista_nomes = [{"database": nomeBD[0]} for nomeBD in resultado]
+            return render_template("mensagem.html", lista_nomes=lista_nomes)
 
         if request.method == "POST":
             # Conectando ao banco de dados
