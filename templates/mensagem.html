@@ -25,7 +25,8 @@
             <option value="{{nomeBD['database']}}">{{nomeBD['database']}}</option>
             {% endfor %}
             </datalist>
-            <input type="text" placeholder="Mensagem do Professor" name="mensagem">
+            <!-- Campo para escrever a mensagem para os alunos -->
+            <textarea placeholder="Mensagem do Professor" class="textarea-mensagem" name="mensagem" type="text"></textarea>
             <button type="submit">ENVIAR</button>
         </form>        
     </div>

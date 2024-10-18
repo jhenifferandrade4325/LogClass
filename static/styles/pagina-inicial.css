@@ -169,7 +169,12 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 29rem;
+  margin-left: 10rem;
+}
+
+.titulomensagem-prof h2{
+  font-size: 3rem;
+  text-align: center;
 }
 
 .mensagem p{
@@ -179,6 +184,8 @@ body, html {
   font-weight: 400;
   font-style: normal;
   text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem;
 }
 
 .mensagem{
@@ -193,8 +200,19 @@ body, html {
   color: var(--cor-msg-professor);
 }
 
+.btn-excluir {
+  background-color: var(--cor-btn-excluir);
+  color: var(--primary-color-light);
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0.8rem;
+  border-radius: 1rem;
+}
 
-
+.btn-excluir:hover {
+  background-color:var(--cor-btn-excluir-hover);
+}
 
 /* ---------------ESTILIZAÇÃO DA BLOB------------------ */
 

@@ -1,17 +1,17 @@
 <!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
 {% block css %}
 <link rel="stylesheet" href="/static/styles/media/layout-media.css">
-<link rel="stylesheet" href="/static/styles/variaveis.css">
 <link rel="stylesheet" href="/static/styles/listarBD.css">
-
+<link rel="stylesheet" href="/static/styles/media/listarBD-media.css">
+<link rel="stylesheet" href="/static/styles/variaveis.css">
 {% endblock %}
 
 {% extends "layout.html" %}
 {% block conteudo %}
 
 <section class="gerenciador">
-    <h1>Lista de Bancos de Dados</h1>
-    <table border="1">
+    <h2>Lista de Bancos de Dados</h2>
+    <table>
         <thead>
             <tr>
                 <th>Nome do Banco de Dados</th>
@@ -24,7 +24,7 @@
                 <td>{{ banco.nome }}</td>
                 <td>
                     <form action="{{ url_for('excluir_banco', nomeBD=banco.nome) }}" method="post">
-                        <button type="submit">Excluir</button>
+                        <button type="submit" class="btn-submit">Excluir</button>
                     </form>
                 </td>
             </tr>

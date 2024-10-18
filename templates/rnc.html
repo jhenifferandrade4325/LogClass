@@ -27,7 +27,7 @@
         </div>
 
         <section class="container-tabela">
-            <h1>Produtos Cadastrados</h1>
+            <h2>Produtos Cadastrados</h2>
             <table>
                 <thead>
                     <tr>
@@ -42,12 +42,12 @@
                 <tbody>
                     {% for produto in lista_produtos %}
                     <tr>
-                        <td>{{ produto['codigo'] }}</td>
-                        <td>{{ produto['descricao'] }}</td>
-                        <td>{{ produto['modelo'] }}</td>
-                        <td>{{ produto['fabricante'] }}</td>
-                        <td>{{ produto['numero_lote'] }}</td>
-                        <td>{{ produto['enderecamento'] }}</td>
+                        <td data-label="Código">{{ produto['codigo'] }}</td>
+                        <td data-label="Descrição">{{ produto['descricao'] }}</td>
+                        <td data-label="Modelo">{{ produto['modelo'] }}</td>
+                        <td data-label="Fabricante">{{ produto['fabricante'] }}</td>
+                        <td data-label="Número do Lote">{{ produto['numero_lote'] }}</td>
+                        <td data-label="Endereçamento">{{ produto['enderecamento'] }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

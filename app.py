@@ -697,6 +697,9 @@ def enviar_mensagens():
         # Conectando ao banco de dados
         mydb = Conexao.conectar()
         mycursor = mydb.cursor()
+        # Conectando ao banco de dados
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
 
         if request.method == "GET":
             # conectando com o banco de dados

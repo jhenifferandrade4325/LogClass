@@ -7,7 +7,7 @@
 
     .cadastramento-titulo span{
         font-size: 2rem;
-        margin-left: 10rem;
+        margin-left: 15rem;
 
     }   
     
@@ -22,6 +22,52 @@
         
     }
 
+    .container-tabela{
+        margin-top: 5rem;
+        width: 40%;
+        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .container-tabela h2{
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Cada linha (tr) se comporta como um bloco individual */
+    tr {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Os dados (td) agora mostram o conteúdo com um rótulo antes */
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Adiciona os rótulos das colunas (usando o conteúdo do atributo data-label) */
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-right: 10px;
+        color: #333;
+    }
+
+    /* Ajusta o tamanho da fonte para telas pequenas */
+    th, td {
+        font-size: 0.8rem;
+    }
+
 }
 
 /* Media de telas para Tablets */
@@ -34,7 +80,7 @@
 
     .cadastramento-titulo span{
         font-size: 3rem;
-        margin-left: 10rem;
+        margin-left: 20rem;
 
     }   
     
@@ -45,8 +91,26 @@
 
     .form_container {
         width: 25rem;
-        margin-right: 2.5rem;
-        
+        margin-left: 15rem;
+    }
+
+    .container-tabela{
+        margin-top: 10rem;
+        width: 80%;
+        margin-left: 13rem;
+    }
+
+    .container-tabela h2{
+        font-size: 1.3rem;
+    }
+    
+    th, td {
+        padding: 0.5rem;
+        font-size: 0.85rem; /* Reduz mais a fonte e padding */
+    }
+    
+    table {
+        width: 100%; /* Permite a tabela ocupar 100% da largura */
     }
 
 }
@@ -70,6 +134,26 @@
         width: 35rem;
     }
 
+    .container-tabela{
+        margin-top: 10rem;
+        width: 65%;
+    }
+
+    .container-tabela h2{
+        font-size: 1.3rem;
+    }
+
+    .form_container {
+        width: 45rem;
+        padding: 1.5rem;
+        
+    }
+
+    th, td {
+        padding: 0.7rem;
+        font-size: 0.9rem; /* Diminui ligeiramente o tamanho da fonte */
+    }
+
 }
 
 /* Media de telas para Desktop */
@@ -90,6 +174,28 @@
 
     .form_container {
         width: 40rem;
+        margin-left: 5rem;
+    }
+
+    .container-tabela{
+        margin-top: 10rem;
+        width: 70%;
+        margin-left: 2rem;
+    
+    }
+
+    .container-tabela h2{
+        font-size: 1.5rem;
+    }
+
+    .form_container {
+        width: 50rem;
+        padding: 1.5rem;
+    }
+
+    th, td {
+        padding: 0.7rem;
+        font-size: 1rem; /* Mantém o tamanho adequado da fonte */
     }
 
 }

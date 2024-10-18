@@ -1,23 +1,17 @@
-
-
 body {
     margin: 0;
     padding: 0;
-    background: rgb(0,0,0);
-    background: var( --cor-fundo-login);
     color: var(--cor-padrao-letras);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     flex-direction: column;
-    
 }
   
 
 
 .titulomensagem h2{
-
     margin-bottom: 5rem;
     font-size: 3rem;  
 }
@@ -32,24 +26,42 @@ body {
 
 input {
     padding: 1rem;
-    width: 100%;
+    width: 97%;
     border: none;
     border-radius: 0.5rem;
     outline: none;
-    background-color: var(--cor-fundo-prof);
+    background-color: var(--cor-drop-btn);
     color: var(--cor-padrao-letras);
-    margin-bottom: 2rem;
     text-align: center;
 }
 
+input::placeholder{
+    color: var(--cor-padrao-letras);
+}
+
+.textarea-mensagem{
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding:1rem;
+    font-size: 1rem;
+    border: 0.2rem solid var(--cor-bordas);
+    border-radius: 4px;
+    background-color: var(--primary-color-light);
+}
+
+.textarea-mensagem {
+    height: 100px;
+    resize: none;
+}
 
 button[type="submit"] {
     padding: 1rem;
     border: none;
     border-radius: 0.5rem;
-    background-color: var(--cor-btns);
+    background-color: var(--cor-btn-enviar-bd);
     color: var(--cor-padrao-letras);
     font-weight: bold;
     cursor: pointer;
     width: 100%;
 }
+
