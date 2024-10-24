@@ -56,7 +56,7 @@
     /* Cores do tema escuro */
     --primary-color-dark: #1e1e1e; /* Cor de fundo escura */
     --secondary-color-dark: #2e2e2e; /* Cor secundária escura */
-    --text-color-dark: #f0f0f0; /* Cor do texto escuro */
+    --text-color-dark: #ffffff; /* Cor do texto escuro */
     --hover-color-dark: #555; /* Cor de hover escura */
     --button-bg-dark: #333; /* Cor de fundo do botão escuro */
     --button-hover-dark: #444; /* Cor de hover do botão escuro */
