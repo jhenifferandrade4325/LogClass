@@ -16,8 +16,14 @@ body {
   
 
 .titulomensagem h2{
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     font-size: 3rem;  
+}
+
+.titulomensagem p{
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 
@@ -42,7 +48,7 @@ button[type="submit"] {
     padding: 1rem;
     border: none;
     border-radius: 0.5rem;
-    background-color: var(--cor-btn-enviar);
+    background-color: var(--cor-btn-enviar-bd);
     color: var(--cor-padrao-letras);
     font-weight: bold;
     cursor: pointer;

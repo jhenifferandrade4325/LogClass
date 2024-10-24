@@ -17,7 +17,7 @@ class Expedicao:
 
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_estoque(cod_prod_exp, desc_exp, num_lote_exp, quant_exp, data_emb_exp, responsavel_exp, cod_aluno) VALUES ('{cod_prod_exp}', '{desc_exp}', '{num_lote_exp}', '{quant_exp}', '{data_emb_exp}', '{responsavel_exp}', '{cod_aluno}')"
+        dados = f"INSERT INTO tb_expedicao(cod_prod_exp, desc_exp, num_lote_exp, quant_exp, data_emb_exp, respnsavel_exp, cod_aluno) VALUES ('{cod_prod_exp}', '{desc_exp}', '{num_lote_exp}', '{quant_exp}', '{data_emb_exp}', '{responsavel_exp}', '{cod_aluno}')"
 
         #executar
         mycursor.execute(dados)

@@ -60,11 +60,16 @@
     }
 
     .container-mensagem_professor{
-        margin-top: 15rem;
         height: 25rem;
         width: 20rem;
         justify-content: flex-start;
-        margin-left: 3rem;
+        margin-left: 2.5rem;
+    }
+
+    .titulomensagem-prof h2{
+        margin-top: 13rem;
+        font-size: 1.8rem;
+        text-align: center;
     }
 
     .mensagem p{
@@ -73,12 +78,18 @@
     }
 
     .mensagem{
-        width: 70vw;
-        height: 25vh;
-        margin-top: 1rem;
-        margin-top: 3rem;
+        width: 78vw;
+        height: 36vh;
+        margin-top: 4rem;
         margin-bottom: 8rem;
         border-radius: 2rem;
+    }
+
+    .btn-excluir {
+        padding: 0.5rem;
+        border-radius: 1rem;
+        width: 10rem;
+        font-size: 0.7rem;
     }
 
 }
@@ -118,7 +129,6 @@
 
     }   
 
-
     .c-galeria{
       
         margin-top: 4rem;
@@ -145,6 +155,13 @@
         height: 20rem;
     }
 
+
+    .titulomensagem-prof h2{
+        margin-top: 1rem;
+        font-size: rem;
+        text-align: center;
+    }
+
     .container-mensagem_professor{
         height: 25vh;
         width: 60vw;
@@ -158,10 +175,18 @@
     .mensagem{
         width: 60vw;
         height: 25vh;
-        margin-top: 4rem;
+        margin-top: 25rem;
         margin-bottom: 20rem;
         border-radius: 2rem;
     }
+
+    .btn-excluir {
+        padding: 0.5rem;
+        border-radius: 1rem;
+        width: 10rem;
+        font-size: 0.7rem;
+    }
+
 
 
 }
@@ -169,22 +194,22 @@
 @media (min-width: 1200px){
 
     .titulo-destaque .part1{
-        font-size: 9rem;
-        margin-left: 2rem;
+        font-size: 14rem;
+        margin-left: 7rem;
     }
 
     .titulo-destaque .part2{
-        font-size: 9rem;
+        font-size: 14rem;
     }
 
     .shape {
-        height: 6.5rem;
-        width: 6.5rem;
+        height: 10rem;
+        width: 10rem;
         margin-left: 0.2rem;
     }
 
     .titulo-destaque .partG {
-        font-size: 9rem;
+        font-size: 14rem;
         opacity: 0.7;
         margin-left: 0.2rem;
         z-index: 0;
@@ -207,6 +232,11 @@
         height: 100%;
     }
 
+    .titulomensagem-prof h2{
+        margin-top: 1rem;
+        font-size: rem;
+        text-align: center;
+    }
 
     .container-mensagem_professor{
         margin-left: 16.5rem;
@@ -220,11 +250,17 @@
     .mensagem{
         width: 50vw;
         height: 30vh;
-        margin-top: 6rem;
-        margin-bottom: 28rem;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
         border-radius: 2rem;
     }
 
+    .btn-excluir {
+        padding: 1rem;
+        border-radius: 1rem;
+        width: 14rem;
+        font-size: 1rem;
+    }
 
 }
 
@@ -267,6 +303,7 @@
     
     .mensagem p{
         font-size: 1.6rem;
+        padding: 2rem;
     }
     
     .mensagem{
@@ -274,7 +311,7 @@
         height: 20rem;
         margin-top: 2rem;
         margin-bottom: 10rem;
-        margin-left: 55rem;
+        margin-left: 52rem;
     }
 }
 

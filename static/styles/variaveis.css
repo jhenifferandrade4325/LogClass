@@ -21,6 +21,8 @@
     --primary: #d645f3;
     --secondary: #5D6BF8;
     --third: #e27fcb;
+    --cor-btn-excluir:#002baa;
+    --cor-btn-excluir-hover:#0368D4;
 
     /* Cores do login */
     --cor-fundo-login: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(53, 51, 205, 1) 100%);
@@ -36,11 +38,11 @@
     --cor-fundo-formularios: #f9f9f9;
     --cor-fundo-options: #fff;
     --cor-hover-options: #f0f0f0;
-    --cor-btn-enviar: #6a1b9a;
-    --cor-hover-btn-enviar: #4a148c;
+    --cor-btn-enviar: #8424c0;
+    --cor-hover-btn-enviar: #471386;
 
     /* Cor do ícone de Cadastramento */
-    --cor-icone-cadastramento: linear-gradient(to bottom, #ff217d, #ff8b98);
+    --cor-icone-cadastramento: linear-gradient(to bottom, #6a00c2, #9373ae);
 
     /* Cores do tema claro */
     --primary-color-light: #f0f0f0; /* Cor de fundo clara */
@@ -63,5 +65,5 @@
     /* Cores do cadastro de turma no banco de dados */
     --cor-fundo-input-bd:#1374dcc6;
     --cor-fundo-pg-bd: #9AA8F5;
-    --cor-btn-enviar:#104884;
+    --cor-btn-enviar-bd:#104884;
 }

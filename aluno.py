@@ -59,4 +59,16 @@ class Aluno:
             self.logado = False
             return False
 
+    def verificar_duplicata(self, email, turma):
+        # conectando com o banco de dados
+        mydb = Conexao.conectarAluno(turma)
 
+        mycursor = mydb.cursor()
+
+        query = "SELECT COUNT(*) FROM tb_aluno WHERE email = %s"
+        mycursor.execute(query, (email,))
+        resultado = mycursor.fetchone()[0]
+
+        mydb.close()
+        
+        return resultado > 0

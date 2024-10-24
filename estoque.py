@@ -23,10 +23,23 @@ class Estoque:
         # criando um cursor para executar comandos SQL na conexão com o banco de dados
         mycursor = mydb.cursor()
 
-        dados = f"INSERT INTO tb_estoque(cod_prod_est, num_lote_est, loc_est, desc_tec, data_entrega, quant_itens_entrada, data_saida, quant_saida, saldo, func_responsavel, cod_aluno) VALUES ('{cod_prod_est}', '{num_lote_est}', '{loc_est}', '{desc_tec}', '{data_entrega}', '{quant_itens_entrada}', '{data_saida}', '{qt_saida}', '{saldo}', '{fuc_responsavel}', '{cod_aluno}')"
+        if data_entrega == '':
+            data_entrega = None
 
+        if quant_itens_entrada == '':
+            quant_itens_entrada = None
+        
+        if data_saida == '':
+            data_saida = None
+
+        if qt_saida == '':
+            qt_saida = None
+
+        dados = f"INSERT INTO tb_estoque(cod_prod_est, num_lote_est, loc_est, desc_tec, data_entrega, quant_itens_entrada, data_saida, quant_saida, saldo, func_responsavel, cod_aluno) VALUES ('{cod_prod_est}', '{num_lote_est}', '{loc_est}', '{desc_tec}', %s, %s, %s, %s, '{saldo}', '{fuc_responsavel}', '{cod_aluno}')"
+
+        valores = (data_entrega, quant_itens_entrada, data_saida, qt_saida)
         #executando o comando que foi determinado a cima
-        mycursor.execute(dados)
+        mycursor.execute(dados, valores)
 
         # realiza o commit da transação, garantindo que as alterações feitas na base de dados sejam salvas
         mydb.commit()
@@ -35,3 +48,4 @@ class Estoque:
 
         # retorna True indicando que a operação foi realizada com sucesso
         return True
+    

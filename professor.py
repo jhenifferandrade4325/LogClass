@@ -45,6 +45,7 @@ class Professor:
             self.logado = True
             self.email_prof = resultado[2]
             self.senha_espec = resultado[3]
+            self.cod_aluno = resultado[0]
             return True
         else:
             self.logado = False
@@ -77,12 +78,12 @@ class Professor:
             """,
             """
                 CREATE TABLE tb_cadastramento (
-                cod_prod VARCHAR(100) NOT NULL,
-                descricao_tecnica VARCHAR(100) NOT NULL,
-                modelo VARCHAR(100) NOT NULL,
-                fabricante VARCHAR(100) NOT NULL,
-                num_lote VARCHAR(100) NOT NULL,
-                enderecamento VARCHAR(100) NOT NULL
+                cod_prod VARCHAR(100),
+                descricao_tecnica VARCHAR(100),
+                modelo VARCHAR(100),
+                fabricante VARCHAR(100),
+                num_lote VARCHAR(100),
+                enderecamento VARCHAR(100)
                 );
             """,
             """
@@ -90,16 +91,16 @@ class Professor:
             """,
             """
                 CREATE TABLE tb_estoque (
-                cod_prod_est INT NOT NULL,
-                num_lote_est INT NOT NULL,
-                loc_est CHAR(100) NOT NULL,
-                desc_tec VARCHAR(100) NOT NULL,
-                data_entrega DATE NOT NULL,
-                quant_itens_entrada INT NOT NULL,
-                data_saida DATE NOT NULL,
-                quant_saida INT NOT NULL,
-                saldo INT NOT NULL,
-                func_responsavel VARCHAR(100) NOT NULL,
+                cod_prod_est INT,
+                num_lote_est INT ,
+                loc_est CHAR(100) ,
+                desc_tec VARCHAR(100) ,
+                data_entrega DATE ,
+                quant_itens_entrada INT ,
+                data_saida DATE ,
+                quant_saida INT ,
+                saldo INT ,
+                func_responsavel VARCHAR(100) ,
                 cod_aluno INT
                 );
             """,
@@ -108,12 +109,12 @@ class Professor:
             """,
             """
                 CREATE TABLE tb_expedicao (
-                cod_prod_exp VARCHAR(100) NOT NULL,
-                desc_exp VARCHAR(100) NOT NULL,
-                num_lote_exp VARCHAR(100) NOT NULL,
-                quant_exp VARCHAR(100) NOT NULL,
-                data_emb_exp DATE NOT NULL,
-                respnsavel_exp VARCHAR(100) NOT NULL,
+                cod_prod_exp VARCHAR(100) ,
+                desc_exp VARCHAR(100) ,
+                num_lote_exp VARCHAR(100) ,
+                quant_exp VARCHAR(100) ,
+                data_emb_exp DATE ,
+                respnsavel_exp VARCHAR(100) ,
                 cod_aluno INT 
                 );
             """,
@@ -122,15 +123,15 @@ class Professor:
             """,
             """
                 CREATE TABLE tb_picking (
-                num_picking INT NOT NULL,
-                endereco VARCHAR(100) NOT NULL,
-                desc_tecnica VARCHAR(100) NOT NULL,
-                modelo_pk VARCHAR(100) NOT NULL,
-                fabricante_pk VARCHAR(100) NOT NULL,
-                quant_pk INT NOT NULL,
-                data_pk DATE NOT NULL,
-                lote_pk VARCHAR(100) NOT NULL,
-                total_pk INT NOT NULL,
+                num_picking INT ,
+                endereco VARCHAR(100) ,
+                desc_tecnica VARCHAR(100) ,
+                modelo_pk VARCHAR(100) ,
+                fabricante_pk VARCHAR(100) ,
+                quant_pk INT ,
+                data_pk DATE ,
+                lote_pk VARCHAR(100) ,
+                total_pk INT ,
                 cod_prod VARCHAR(100) 
                 );
             """,
@@ -140,27 +141,27 @@ class Professor:
             """
                 CREATE TABLE tb_pop (
                 cod_pop INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                data_pop DATE NOT NULL,
-                tarefa_pop VARCHAR(100) NOT NULL,
-                responsavel_pop VARCHAR(100) NOT NULL,
-                material_pop VARCHAR(100) NOT NULL,
-                passos_pop VARCHAR(100) NOT NULL,
-                manuseio_pop VARCHAR(100) NOT NULL,
-                resul_pop VARCHAR(100) NOT NULL,
-                acao_pop VARCHAR(100) NOT NULL,
+                data_pop DATE ,
+                tarefa_pop VARCHAR(100) ,
+                responsavel_pop VARCHAR(100) ,
+                material_pop VARCHAR(100) ,
+                passos_pop VARCHAR(100) ,
+                manuseio_pop VARCHAR(100) ,
+                resul_pop VARCHAR(100) ,
+                acao_pop VARCHAR(100) ,
                 cod_aluno INT 
                 );
             """,
             """
                 CREATE TABLE tb_rnc (
-                desc_rnc VARCHAR(100) NOT NULL,
-                recebimento DATE NOT NULL,
-                num_rnc VARCHAR(100) NOT NULL,
-                local_rnc VARCHAR(100) NOT NULL,
-                quant_entregue INT NOT NULL,
+                desc_rnc VARCHAR(100) ,
+                recebimento DATE ,
+                num_rnc VARCHAR(100) ,
+                local_rnc VARCHAR(100) ,
+                quant_entregue INT ,
                 quant_reprovada INT NOT NULL,
-                resp_inspecao VARCHAR(100) NOT NULL,
-                cod_prod VARCHAR(100) NOT NULL,
+                resp_inspecao VARCHAR(100) ,
+                cod_prod VARCHAR(100) ,
                 cod_aluno INT 
                 );
             """,
@@ -187,6 +188,9 @@ class Professor:
             """,
             """
                 ALTER TABLE tb_rnc ADD CONSTRAINT FK_tb_rnc_1 FOREIGN KEY (cod_aluno) REFERENCES tb_aluno (cod_aluno);
+            """,
+            f"""
+                INSERT INTO {bancodedados}.tb_cadastramento SELECT * FROM databaseProfessor.tb_cadastramento;
             """
         ]
             
@@ -209,3 +213,17 @@ class Professor:
 
         # retornando um valor verdadeiro
         return True
+    
+    def verificar_duplicata(self, email):
+        # conectando com o banco de dados
+        mydb = Conexao.conectar()
+
+        mycursor = mydb.cursor()
+
+        query = "SELECT COUNT(*) FROM databaseProfessor.tb_aluno WHERE email = %s"
+        mycursor.execute(query, (email,))
+        resultado = mycursor.fetchone()[0]
+
+        mydb.close()
+        
+        return resultado > 0

@@ -100,4 +100,11 @@
 
 
 <script src="/static/js/login.js"></script>
+<script >
+    {% with messages = get_flashed_messages() %}
+        {% for mensagem in messages %}
+            {{ mensagem|safe }}
+        {% endfor %}
+    {% endwith %}
+</script>
 

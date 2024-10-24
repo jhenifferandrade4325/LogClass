@@ -1,5 +1,6 @@
 body{
     background-color: var(--cor-fundo-pg-funcoes);
+    overflow-x: hidden;
 }
 
 /* Geral cadastramento: section que engloba toda interface dessa página. */
