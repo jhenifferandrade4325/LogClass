@@ -1,0 +1,45 @@
+<!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
+{% block css %}
+<link rel="stylesheet" href="/static/styles/media/layout-media.css">
+<link rel="stylesheet" href="/static/styles/inventario.css">
+<link rel="stylesheet" href="/static/styles/media/inventario-media.css">
+<link rel="stylesheet" href="/static/styles/variaveis.css">
+{% endblock %}
+
+{% extends "layout.html" %}
+{% block conteudo %}
+
+
+    <div class="geral-inventario">
+
+        <h2>Inventário</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Endereçamento</th>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                    <th>Modelo</th>
+                    <th>Fabricante</th>
+                    <th>Número do Lote</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in lista_produtos %}
+                <tr>
+                    <td data-label="Endereçamento">{{ produto['enderecamento'] }}</td>
+                    <td data-label="Código">{{ produto['codigo'] }}</td>
+                    <td data-label="Descrição">{{ produto['descricao'] }}</td>
+                    <td data-label="Modelo">{{ produto['modelo'] }}</td>
+                    <td data-label="Fabricante">{{ produto['fabricante'] }}</td>
+                    <td data-label="Número do Lote">{{ produto['numero_lote'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+
+    </div>
+
+{% endblock %}
