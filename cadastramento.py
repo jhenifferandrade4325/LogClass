@@ -18,7 +18,9 @@ class Cadastramento:
         # criando um cursor para executar comandos SQL na conexão com o banco de dados
         mycursor = mydb.cursor()
 
+        # armazenando as variáveis que contém os valores obtidos no form (na página "cadastramento.html")
         valores = (cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento)
+        # comando sql para inserir os dados no banco de dados 
         dados = f"INSERT INTO tb_cadastramento (cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento) VALUES (%s, %s, %s, %s, %s, %s)"
 
         #executando a variável a cima
@@ -27,6 +29,7 @@ class Cadastramento:
         # realiza o commit da transação, garantindo que as alterações feitas na base de dados sejam salvas
         mydb.commit()
 
+        # fechando o banco de dados
         mydb.close()
 
         return True

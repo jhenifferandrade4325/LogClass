@@ -288,47 +288,42 @@ def pagina_cadastramento():
 
 # roteamento da página dos processos de registro estoque
 # RF008
-@app.route("/estoque",  methods=["GET", "POST"])
+@app.route("/estoque", methods=["GET", "POST"])
 def pagina_estoque():
-    # verificando se o usuário logado é o aluno ou professor, para poder liberar a vizualização
+    # Verifica se o usuário está logado (aluno ou professor)
     if "usuario_logado" in session or "professor_logado" in session:
+        # Se a requisição é GET, exibimos a página de produtos cadastrados
         if request.method == "GET":
-            #conectando com o banco de dados
+            # Conectando ao banco de dados
             mydb = Conexao.conectar()
-            
             mycursor = mydb.cursor()
 
-            # armazenando o banco de dados dos usuários que estão logados, em uma variável
-            if "usuario_logado" in session:           
-                turma = session['usuario_logado']['turma']
-            else:
-                turma = session['professor_logado']['turma']
-            
-            # usando um comando sql para pegar todos os produtos que foram cadastrados na tabela
-            produtos = (f"SELECT * FROM {turma}.tb_cadastramento")
-            
-            mycursor.execute(produtos)
-            
-            resultado = mycursor.fetchall()
-            
-            # armazenando os produtos em uma lista
-            lista_produtos = []
+            # Obtendo a turma do usuário logado
+            turma = session['usuario_logado']['turma'] if "usuario_logado" in session else session['professor_logado']['turma']
 
-            # adicioando cada produto na lista 
+            # Query SQL para buscar todos os produtos cadastrados na tabela específica da turma
+            produtos = f"SELECT * FROM {turma}.tb_cadastramento"
+            mycursor.execute(produtos)
+            resultado = mycursor.fetchall()
+
+            # Adicionando produtos na lista de dicionários para exibir no frontend
+            lista_produtos = []
             for produto in resultado:
                 lista_produtos.append({
-                    "codigo":produto[0],
-                    "descricao":produto[1],
-                    "modelo":produto[2],
-                    "fabricante":produto[3],
-                    "numero_lote":produto[4],
-                    "enderecamento":produto[5]
+                    "codigo": produto[0],
+                    "descricao": produto[1],
+                    "modelo": produto[2],
+                    "fabricante": produto[3],
+                    "numero_lote": produto[4],
+                    "enderecamento": produto[5]
                 })
-            # enviando a lista para a página que irá organizá-la
+
+            # Renderizando o template estoque.html com a lista de produtos
             return render_template("estoque.html", lista_produtos=lista_produtos)
         
+        # Caso a requisição seja POST, processamos o formulário de cadastro de estoque
         if request.method == "POST":
-            # pegando os dados do formulário
+            # Coletando dados do formulário enviados pelo usuário
             cod_prod = request.form.get("cod_prod")
             num_lote = request.form.get("num_lt")
             loc_ = request.form.get("loc_")
@@ -340,25 +335,59 @@ def pagina_estoque():
             _saldo = request.form.get("_saldo")
             funcionario = request.form.get("funcionario")
 
-            # criando um objeto aramzenando a classe Estoque em uma variável
+            # Criando instância do modelo Estoque para registrar dados
             tbEstoque = Estoque()
 
-            # armazenando o banco de dados de cada usuário logado e seus respectivos códigos que são AUTO_INCREMENT
-            if "usuario_logado" in session:           
-                turma = session['usuario_logado']['turma']
-                cod_aluno = session['usuario_logado']['cod_aluno']
-            else:
-                turma = session['professor_logado']['turma']
-                cod_aluno = session['professor_logado']['cod_aluno']
+            # Obtendo a turma e o código do usuário logado para associar ao registro
+            turma = session['usuario_logado']['turma'] if "usuario_logado" in session else session['professor_logado']['turma']
+            cod_aluno = session['usuario_logado']['cod_aluno'] if "usuario_logado" in session else session['professor_logado']['cod_aluno']
 
-            # realizando o cadastro do controle de estoque, por meio da função que foi armazenada dentro do objeto Estoque
+            # Realizando o cadastro dos dados no estoque e retornando uma mensagem de sucesso ou erro
             if tbEstoque.estoque(cod_prod, num_lote, loc_, descricao, dt_enter, qt_item, dt_end, qt_saida, _saldo, funcionario, cod_aluno, turma):
-                flash("alert('Parabéns, você acaou de realizar o processo de cadastramento de estoque!!🎉')")
+                flash("alert('Parabéns, você acabou de realizar o processo de cadastramento de estoque!!🎉')")
                 return redirect("/")
             else:
                 return "Erro ao realizar o processo de Controle de Estoque"
+    else:
+        # Se o usuário não estiver logado, redirecionamos para a página de login
+        return redirect("/login")
+
+# Nova rota para buscar informações do produto pelo código para preenchimento automático
+# Rota para obter informações de um produto pelo código para preenchimento automático
+@app.route("/produto-info/<codigo>", methods=["GET"])
+def produto_info(codigo):
+    # Obtém o código do produto passado como query string
+    codigo_produto = codigo
+    if "usuario_logado" in session or "professor_logado" in session:
+        # Obtendo a turma do usuário logado para acessar a tabela correta
+        turma = session['usuario_logado']['turma'] if "usuario_logado" in session else session['professor_logado']['turma']
+        
+        # Conectando ao banco de dados
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
+        
+        # Consulta SQL para buscar as informações do produto pelo código
+        query = f"SELECT cod_prod, descricao_tecnica, modelo, fabricante, num_lote, enderecamento FROM {turma}.tb_cadastramento WHERE cod_prod = %s"
+        mycursor.execute(query, (codigo_produto,))
+        produto = mycursor.fetchone()
+
+        # Verifica se o produto foi encontrado e retorna os dados em JSON
+        if produto:
+            produto_info = {
+                "codigo": produto[0],
+                "descricao": produto[1],
+                "modelo": produto[2],
+                "fabricante": produto[3],
+                "numero_lote": produto[4],
+                "enderecamento": produto[5]
+            }
+            return jsonify(produto_info), 200
         else:
-            return redirect("/login")
+            # Retorna um erro 404 se o produto não foi encontrado
+            return jsonify({"erro": "Produto não encontrado"}), 404
+    return jsonify({"erro": "Usuário não autorizado"}), 403
+
+        
 # roteamento da página dos processos de registro expedição
 # RF010
 @app.route("/expedicao", methods=["GET", "POST"])
@@ -697,26 +726,26 @@ def enviar_mensagens():
         # Conectando ao banco de dados
         mydb = Conexao.conectar()
         mycursor = mydb.cursor()
-        # Conectando ao banco de dados
-        mydb = Conexao.conectar()
-        mycursor = mydb.cursor()
 
         if request.method == "GET":
-            # conectando com o banco de dados
-            mydb = Conexao.conectar()
-            # criando um objeto Aluno
-            mycursor = mydb.cursor()
-            # criando uma variável para armazenar a lista de turmas
+            # Consulta para obter a lista de turmas
             mycursor.execute("SELECT * FROM databaseprofessor.tb_database")
             resultado = mycursor.fetchall()
+            lista_nomes = [{"database": nomeBD[0]} for nomeBD in resultado]
+
+            # Consulta para obter a lista de mensagens enviadas
+            mycursor.execute("SELECT cod_mensagem, mensagens, turma FROM tb_mensagens")
+            mensagens = mycursor.fetchall()
+            lista_mensagens = [{"cod_mensagem": msg[0], "mensagem": msg[1], "turma": msg[2]} for msg in mensagens]
+
+            # Fechar a conexão com o banco de dados
             mydb.close()
 
-            # criando uma lista para armazenar todas as turmas que foram "retiradas"
-            lista_nomes = [{"database": nomeBD[0]} for nomeBD in resultado]
-            return render_template("mensagem.html", lista_nomes=lista_nomes)
+            # Renderizar a página com as listas de turmas e mensagens
+            return render_template("mensagem.html", lista_nomes=lista_nomes, lista_mensagens=lista_mensagens)
 
         if request.method == "POST":
-            # Conectando ao banco de dados
+            # Conectando ao banco de dados para enviar mensagem
             mydb = Conexao.conectar()
             mycursor = mydb.cursor()
 
@@ -728,13 +757,12 @@ def enviar_mensagens():
             inserir_mensagem = f"INSERT INTO tb_mensagens (mensagens, turma) VALUES (%s, %s)"
             mycursor.execute(inserir_mensagem, (mensagem, bancoDados))
             mydb.commit()
-
-            # emitindo uma mensagem na interface do usuário quando a mensagem for enviada 
-            flash("alert('Mensagem enviada para a turma com sucesso! 🎉')")
             mydb.close()
 
-            # retornando para a página inicial
-            return redirect("/")
+            # Emite uma mensagem de confirmação ao usuário
+            flash("alert('Mensagem enviada para a turma com sucesso! 🎉')")
+            return redirect("/enviar_mensagem")
+
 
 
 # rota em que está a função que o professor usará para excluir uma mensagem do banco de dados e da interface do usuário
