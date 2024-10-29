@@ -31,23 +31,23 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Endereçamento</th>
                         <th>Código</th>
                         <th>Descrição</th>
                         <th>Modelo</th>
                         <th>Fabricante</th>
                         <th>Número do Lote</th>
-                        <th>Endereçamento</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for produto in lista_produtos %}
                     <tr>
+                        <td data-label="Endereçamento">{{ produto['enderecamento'] }}</td>
                         <td data-label="Código">{{ produto['codigo'] }}</td>
                         <td data-label="Descrição">{{ produto['descricao'] }}</td>
                         <td data-label="Modelo">{{ produto['modelo'] }}</td>
                         <td data-label="Fabricante">{{ produto['fabricante'] }}</td>
                         <td data-label="Número do Lote">{{ produto['numero_lote'] }}</td>
-                        <td data-label="Endereçamento">{{ produto['enderecamento'] }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
