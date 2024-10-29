@@ -26,6 +26,39 @@
         <div class="container-img"></div>
     </div>
 
+    <!-- Status do Produto -->
+    <section class="formulario">
+        <div class="tracking-container">
+            <p class="status">Status do Produto</p>
+            <div class="tracking-steps">
+                <div class="step active">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <p>Produto em Mãos</p>
+                </div>
+                <div class="step active">
+                    <div class="icon-box">
+                        <i class="fa-regular fa-clipboard"></i>
+                    </div>
+                    <p>Cadastramento</p>
+                </div>
+                <div class="step">
+                    <div class="icon-box">
+                        <i class="fa-regular fa-note-sticky"></i>
+                    </div>
+                    <p>Separação</p>
+                </div>
+                <div class="step">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <p>Concluído!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="container-tabela">
         <h2>Produtos Cadastrados</h2>
         <table>
@@ -72,12 +105,6 @@
                 <textarea placeholder="Descrição Técnica" class="textarea-field" name="descTec"></textarea>
 
                 <input list="browsers" name="modeloPick" placeholder="Modelo do Produto" class="input-field">
-                    <datalist id="browsers">
-                        <option value="Infantil"></option>
-                        <option value="Adulto"></option>
-                        <option value="Íntima"></option>
-                        <option value="Esportiva"></option>
-                </datalist>
 
                 <!-- Campo "Fabricante" -->
                 <input type="text" placeholder="Fabricante" class="input-field" name="fabri">
@@ -101,6 +128,10 @@
                 <button class="submit-btn">Enviar</button>
 
             </form>
+        </div>
+
+        <div class="botoes">
+            <a href="/simulador" class="botao-simulador">Ir para Simulador</a>
         </div>
 
     </div>
