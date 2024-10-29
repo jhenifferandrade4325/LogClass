@@ -1,11 +1,14 @@
+<!-- EXTENDENDO O CSS DA PAGINA PRINCIPAL (LAYOUT) -->
+{% block css %}
 <link rel="stylesheet" href="/static/styles/cadastro.css">
 <link rel="stylesheet" href="/static/styles/media/cadastro-media.css">
 <link rel="stylesheet" href="/static/styles/variaveis.css">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}
 
-
-
+{% extends "layout.html" %}
+{% block conteudo %}
 
 <div class="container-bem-vindo" id="intro-section">
     <div class="inicio-bem-vindo">
@@ -33,7 +36,7 @@
 
     <div class="register-box" id="register-aluno">
         <h2>Cadastro do Aluno</h2>
-        <form action="/login" method="POST">
+        <form action="/cadastro" method="POST">
             <input type="hidden" value="Aluno" name="tipo">
             <input type="text" placeholder="Nome Completo" required name="nome">
             <input type="email" placeholder="E-mail" required name="email">
@@ -51,7 +54,7 @@
 
     <div class="register-box" id="register-professor">
         <h2>Cadastro do Professor</h2>
-        <form action="/login" method="POST">
+        <form action="/cadastro" method="POST">
             <input type="hidden" value="Professor" name="tipo">
             <input type="text" placeholder="Nome Completo" required name="nome">
             <input type="email" placeholder="E-mail" required name="email">
@@ -72,3 +75,5 @@
         {% endfor %}
     {% endwith %}
 </script>
+
+{% endblock %}

@@ -105,7 +105,6 @@ def pagina_inicial():
 # RF003
 # RF004
 
-
 @app.route("/cadastro", methods=["GET", "POST"])
 def pagina_cadastro():
     if request.method == "GET":
@@ -118,24 +117,47 @@ def pagina_cadastro():
         resultado = mycursor.fetchall()
         mydb.close()
 
-        # criando uma lista para armazenar todas as turmas que foram "retiradas"
+        # criando uma lista para armazenar todas as turmas que foram "retirados"
         lista_nomes = [{"database": nomeBD[0]} for nomeBD in resultado]
-        return render_template("login.html", lista_nomes=lista_nomes)
-
-        
+        return render_template("cadastro.html", lista_nomes=lista_nomes)
+    
     if request.method == "POST":
-        # criando uma variável para armazenar o valor do input no formulário
-        formulario = request.json.get("tipo")
+        formulario = request.get_json().get("tipo")
 
-        # realizando o cadastro do aluno
         if formulario == "Aluno":
-            # pegando os dados do formulário, mas em forma de json
             nome = request.json.get("nome")
             email = request.json.get("email")
             senha = request.json.get("senha")
             turma = request.json.get("turma")
-            # criando um objeto Aluno
             aluno = Aluno()
+
+            if aluno.verificar_duplicata(email, turma):
+                return render_template("/cadastro")
+
+            if aluno.cadastrar(nome, email, senha, turma):
+                return render_template("/login")
+            else:
+                return render_template("/cadastro")
+
+        elif formulario == "Professor":
+            nome = request.json.get("nome")
+            email = request.json.get("email")
+            senha = request.json.get("senha")
+            professor = Professor()
+
+            if professor.verificar_duplicata(email):
+                return jsonify({'mensagem': 'Usuário já cadastrado'}), 409
+
+            if senha == "logclass":
+                if professor.cadastrarProf(nome, email, senha):
+                    return jsonify({'mensagem': 'Cadastro realizado com sucesso'}), 201
+                else:
+                    return jsonify({'mensagem': 'Erro ao cadastrar o professor'}), 400
+            else:
+                return jsonify({'mensagem': 'Senha incorreta'}), 401
+
+    return jsonify({'mensagem': 'Método não suportado'}), 405
+
 
 
 
@@ -153,73 +175,19 @@ def pagina_login():
 
         # criando uma lista para armazenar todas as turmas que foram "retirados"
         lista_nomes = [{"database": nomeBD[0]} for nomeBD in resultado]
-        return render_template("login.html", lista_nomes=lista_nomes)
+        return render_template("cadastro.html", lista_nomes=lista_nomes)
 
     if request.method == "POST":
         # criando uma variável para armazenar o valor do input no formulário
-        formulario = request.json.get("tipo")
-
-        # realizando o cadastro do aluno
-        if formulario == "Aluno":
-            # pegando os dados do formulário, mas em forma de json
-            nome = request.json.get("nome")
-            email = request.json.get("email")
-            senha = request.json.get("senha")
-            turma = request.json.get("turma")
-            # criando um objeto Aluno
-            aluno = Aluno()
-
-            # verificando, por meio de uma função dentro do objeto aluno, se existem duas pessoas com os mesmos cadastros no banco de dados
-            if aluno.verificar_duplicata(email, turma):
-                # retornando um arquivo json para caso haja usuários com esses dados
-                return jsonify({'mensagem': 'Usuário já cadastrado'}), 409
-            
-            # realizando o cadastro do usuário
-            if aluno.cadastrar(nome, email, senha, turma):
-                # retornando um arquivo json confirmando o cadastro realizado com sucesso
-                return jsonify({'mensagem': 'Cadastro realizado com sucesso'}), 201
-            else:
-                # retornando um arquivo json caso o cadastro nao seja concluído
-                return jsonify({'mensagem': 'Erro ao cadastrar o aluno'}), 400
-        
-        # realizando o cadastro do professor
-        if formulario == "Professor":
-            # pegando os dados do formulário, mas em forma de json
-            nome = request.json.get("nome")
-            email = request.json.get("email")
-            senha = request.json.get("senha")
-
-            # criando um objeto para armazrnar a classe Professor
-            professor = Professor()
-
-            # verificando se já existe um usuário cadastrado esses dados no banco de dados
-            if professor.verificar_duplicata(email):
-                # retornando um arquivo json caso haja usuários com esses dados
-                return jsonify({'mensagem': 'Usuário já cadastrado'}), 409
-
-            # verificando se o usuário cadastrado inserio a senha correta de acesso
-            if senha == "logclass":
-                # realizando o cadastro do professor através da função que está dentro do objeto
-                if professor.cadastrarProf(nome, email, senha):
-                    # retornando um arquivo json confirmando o cadastro realizado com sucesso
-                    return jsonify({'mensagem': 'Cadastro realizado com sucesso'}), 201
-                else:
-                    # retornando um arquivo json caso o cadastro nao seja concluído
-                    return jsonify({'mensagem': 'Erro ao cadastrar o professor'}), 400
-            else:
-                # retornando um arquivo json caso a senha inserida seja incorreta
-                return jsonify({'mensagem': 'Senha incorreta'}), 401
-
-        # Adicionando aqui a lógica para login de alunos e professores...
-
+        formulario = request.form.get("tipo")
         # RF003
         # login de alunos e professores
-        formulario = request.json.get("tipo")  
+        formulario = request.form.get("tipo")  
         if formulario == "LoginAluno":
             # pegando os dados do formulário, mas em forma de json
-            email = request.json.get("email")
-            senha = request.json.get("senha")
-            turma = request.json.get("turma")
+            email = request.form.get("email")
+            senha = request.form.get("senha")
+            turma = request.form.get("turma")
 
             # criando um objeto com a classe Aluno
             loginAluno = Aluno()
@@ -243,8 +211,8 @@ def pagina_login():
 
         if formulario == "LoginProfessor":
             # pegando os dados do formulário, mas em forma de json
-            email = request.json.get("email")
-            senha = request.json.get("senha")
+            email = request.form.get("email")
+            senha = request.form.get("senha")
 
             # criando um objeto com a classe Professor
             loginProfessor = Professor()
